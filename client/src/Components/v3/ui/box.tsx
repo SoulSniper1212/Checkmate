@@ -19,6 +19,7 @@ export interface BoxProps extends React.HTMLAttributes<HTMLDivElement> {
   maxWidth?: string | number
   maxHeight?: string | number
   p?: string | number
+  padding?: string | number
   px?: string | number
   py?: string | number
   pt?: string | number
@@ -26,12 +27,19 @@ export interface BoxProps extends React.HTMLAttributes<HTMLDivElement> {
   pb?: string | number
   pl?: string | number
   m?: string | number
+  margin?: string | number
   mx?: string | number
   my?: string | number
   mt?: string | number
   mr?: string | number
   mb?: string | number
   ml?: string | number
+  marginRight?: string | number
+  marginY?: string | number
+  marginX?: string | number
+  marginTop?: string | number
+  marginBottom?: string | number
+  marginLeft?: string | number
   flex?: string | number
   flexDirection?: 'row' | 'row-reverse' | 'column' | 'column-reverse'
   flexWrap?: 'nowrap' | 'wrap' | 'wrap-reverse'
@@ -45,13 +53,21 @@ export interface BoxProps extends React.HTMLAttributes<HTMLDivElement> {
   gridColumn?: string
   gridRow?: string
   border?: string | number
+  borderRight?: number
+  borderBottom?: number
+  borderColor?: string
   borderRadius?: string | number
   bgcolor?: string
   backgroundColor?: string
   color?: string
   opacity?: number
+  textAlign?: 'left' | 'center' | 'right' | 'justify' | 'inherit'
   transform?: string
   transition?: string
+  top?: string | number
+  left?: string | number
+  src?: string
+  alt?: string
 }
 
 const Box = forwardRef<HTMLDivElement, BoxProps>(
@@ -72,6 +88,7 @@ const Box = forwardRef<HTMLDivElement, BoxProps>(
     maxWidth,
     maxHeight,
     p,
+    padding,
     px,
     py,
     pt,
@@ -79,12 +96,19 @@ const Box = forwardRef<HTMLDivElement, BoxProps>(
     pb,
     pl,
     m,
+    margin,
     mx,
     my,
     mt,
     mr,
     mb,
     ml,
+    marginRight,
+    marginY,
+    marginX,
+    marginTop,
+    marginBottom,
+    marginLeft,
     flex,
     flexDirection,
     flexWrap,
@@ -98,13 +122,21 @@ const Box = forwardRef<HTMLDivElement, BoxProps>(
     gridColumn,
     gridRow,
     border,
+    borderRight,
+    borderBottom,
+    borderColor,
     borderRadius,
     bgcolor,
     backgroundColor,
     color,
     opacity,
+    textAlign,
     transform,
     transition,
+    top,
+    left,
+    src,
+    alt,
     children,
     style,
     ...props
@@ -143,6 +175,11 @@ const Box = forwardRef<HTMLDivElement, BoxProps>(
       getSpacingClass(mr, 'mr'),
       getSpacingClass(mb, 'mb'),
       getSpacingClass(ml, 'ml'),
+      getSpacingClass(marginY, 'my'),
+      getSpacingClass(marginX, 'mx'),
+      getSpacingClass(marginTop, 'mt'),
+      getSpacingClass(marginBottom, 'mb'),
+      getSpacingClass(marginLeft, 'ml'),
       flex && `flex-${flex}`,
       flexDirection && `flex-${flexDirection}`,
       flexWrap && `flex-wrap-${flexWrap}`,
@@ -153,6 +190,7 @@ const Box = forwardRef<HTMLDivElement, BoxProps>(
       border && `border-${border}`,
       borderRadius && `rounded-${borderRadius}`,
       opacity && `opacity-${opacity}`,
+      textAlign && textAlign !== 'inherit' && `text-${textAlign}`,
     ].filter(Boolean).join(' ')
 
     // Handle custom values that don't map to Tailwind utilities
@@ -178,6 +216,14 @@ const Box = forwardRef<HTMLDivElement, BoxProps>(
     if (transform) customStyles.transform = transform
     if (transition) customStyles.transition = transition
     if (zIndex) customStyles.zIndex = zIndex
+    if (top) customStyles.top = top
+    if (left) customStyles.left = left
+    if (src) customStyles.backgroundImage = `url(${src})`
+    if (alt && Component === 'img') customStyles.alt = alt
+    if (padding) customStyles.padding = padding
+    if (margin) customStyles.margin = margin
+    if (marginRight) customStyles.marginRight = marginRight
+    if (borderColor) customStyles.borderColor = borderColor
 
     // Merge sx prop styles
     if (sx) {

@@ -1,10 +1,7 @@
 //Components
-import Stack from "@mui/material/Stack";
+import { Stack } from "@/Components/v3/ui";
 import DataTable from "@/Components/v1/Table/index.jsx";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableRow from "@mui/material/TableRow";
-import TableCell from "@mui/material/TableCell";
+import { Table, TableBody, TableRow, TableCell } from "@/Components/v3/ui";
 import TableSkeleton from "@/Components/v1/Table/skeleton.jsx";
 import Pagination from "@/Components/v1/Table/TablePagination/index.jsx";
 import { StatusLabel } from "@/Components/v1/Label/index.jsx";
@@ -21,8 +18,9 @@ import { useTranslation } from "react-i18next";
 import { useFetchChecksTeam } from "../../../../../Hooks/v1/checkHooks.js";
 import { useFetchChecksByMonitor } from "../../../../../Hooks/v1/checkHooks.js";
 import { useResolveIncident } from "../../../../../Hooks/v1/checkHooks.js";
-import { Button, Typography, useTheme } from "@mui/material";
-import { lighten } from "@mui/material/styles";
+import { Typography } from "@/Components/v3/ui";
+import { Button } from "@/Components/v3/ui";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 
 const GetTooltip = (row) => {
 	const theme = useTheme();

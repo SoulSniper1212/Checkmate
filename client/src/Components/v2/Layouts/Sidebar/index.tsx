@@ -1,15 +1,13 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setCollapsed } from "@/Features/UI/uiSlice";
-import useMediaQuery from "@mui/material/useMediaQuery";
-import { useTheme } from "@mui/material/styles";
+import { useIsSmall } from "@/hooks/useMediaQuery";
 import { useTranslation } from "react-i18next";
 import { useNavigate, useLocation } from "react-router-dom";
 
 import { CollapseButton } from "@/Components/v2/Layouts/Sidebar/CollapseButton";
-import Stack from "@mui/material/Stack";
-import List from "@mui/material/List";
-import Divider from "@mui/material/Divider";
+import { Stack, Divider } from "@/Components/v3/ui";
+import { List } from "@/Components/v3/ui";
 import { Logo } from "@/Components/v2/Layouts/Sidebar/Logo";
 import { getMenu, getBottomMenu } from "@/Components/v2/Layouts/Sidebar/Menu";
 import { NavItem } from "@/Components/v2/Layouts/Sidebar/NavItem";
@@ -19,8 +17,7 @@ export const COLLAPSED_WIDTH = 64;
 export const EXPANDED_WIDTH = 250;
 
 export const SideBar = () => {
-	const theme = useTheme();
-	const isSmall = useMediaQuery(theme.breakpoints.down("md"));
+	const isSmall = useIsSmall();
 	const dispatch = useDispatch();
 	const collapsed = useSelector((state: any) => state.ui.sidebar.collapsed);
 	const { t } = useTranslation();
@@ -34,31 +31,15 @@ export const SideBar = () => {
 	}, [isSmall]);
 
 	return (
-		<Stack
-			component="aside"
-			position="sticky"
-			top={0}
-			minHeight={"100vh"}
-			maxHeight={"100vh"}
-			paddingTop={theme.spacing(6)}
-			paddingBottom={theme.spacing(6)}
-			gap={theme.spacing(6)}
-			borderRight={`1px solid ${theme.palette.primary.lowContrast}`}
-			width={collapsed ? COLLAPSED_WIDTH : EXPANDED_WIDTH}
-			sx={{
-				transition: "width 650ms cubic-bezier(0.36, -0.01, 0, 0.77)",
+		<aside
+			className="sticky top-0 h-screen border-r border-border bg-background py-6 flex flex-col gap-6 transition-all duration-700 ease-[cubic-bezier(0.36,-0.01,0,0.77)]"
+			style={{
+				width: collapsed ? COLLAPSED_WIDTH : EXPANDED_WIDTH
 			}}
 		>
 			<CollapseButton collapsed={collapsed} />
 			<Logo collapsed={collapsed} />
-			<List
-				component="nav"
-				disablePadding
-				sx={{
-					px: theme.spacing(6),
-					height: "100%",
-				}}
-			>
+			<nav className="px-6 h-full">
 				{menu.map((item) => {
 					const selected = location.pathname.startsWith(`/${item.path}`);
 					return (
@@ -71,14 +52,8 @@ export const SideBar = () => {
 						/>
 					);
 				})}
-			</List>
-			<List
-				component="nav"
-				disablePadding
-				sx={{
-					px: theme.spacing(6),
-				}}
-			>
+			</nav>
+			<nav className="px-6">
 				{bottomMenu.map((item) => {
 					const selected = location.pathname.startsWith(`/${item.path}`);
 
@@ -98,9 +73,9 @@ export const SideBar = () => {
 						/>
 					);
 				})}
-			</List>
-			<Divider sx={{ mt: "auto", borderColor: theme.palette.primary.lowContrast }} />
+			</nav>
+			<Divider className="mt-auto" />
 			<BottomControls />
-		</Stack>
+		</aside>
 	);
 };

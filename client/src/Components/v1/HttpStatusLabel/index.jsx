@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
-import { useTheme } from "@mui/material";
 import { BaseLabel } from "../Label/index.jsx";
+import { cn } from "@/lib/utils";
 
 /**
  * @component
@@ -26,35 +26,27 @@ const getRoundedStatusCode = (status) => {
 	return Math.floor(status / 100) * 100;
 };
 
-const HttpStatusLabel = ({ status, customStyles }) => {
-	const theme = useTheme();
+const HttpStatusLabel = ({ status, customStyles, className }) => {
 	const colors = {
 		400: {
-			color: theme.palette.warning.main,
-			borderColor: theme.palette.warning.lowContrast,
+			className: "text-yellow-600 border-yellow-400",
 		},
 		500: {
-			color: theme.palette.error.main,
-			borderColor: theme.palette.error.lowContrast,
+			className: "text-red-600 border-red-400",
 		},
 		default: {
-			color: theme.palette.primary.contrastText,
-			borderColor: theme.palette.primary.contrastText,
+			className: "text-foreground border-foreground",
 		},
 	};
 
 	const statusCode = handleStatusCode(status);
+	const config = colors[getRoundedStatusCode(statusCode)] || colors.default;
 
-	const { borderColor, color } =
-		colors[getRoundedStatusCode(statusCode)] || colors.default;
 	return (
 		<BaseLabel
 			label={String(statusCode)}
-			styles={{
-				color: color,
-				borderColor: borderColor,
-				...customStyles,
-			}}
+			className={cn(config.className, className)}
+			styles={customStyles}
 		/>
 	);
 };
@@ -62,6 +54,7 @@ const HttpStatusLabel = ({ status, customStyles }) => {
 HttpStatusLabel.propTypes = {
 	status: PropTypes.number,
 	customStyles: PropTypes.object,
+	className: PropTypes.string,
 };
 
 export { HttpStatusLabel };

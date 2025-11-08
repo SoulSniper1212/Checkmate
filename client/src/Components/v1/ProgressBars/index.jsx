@@ -1,9 +1,21 @@
-import { useTheme } from "@emotion/react";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 import PropTypes from "prop-types";
-import { Box, IconButton, LinearProgress, Stack, Typography } from "@mui/material";
-import CloseIcon from "@mui/icons-material/Close";
-import ErrorOutlineOutlinedIcon from "@mui/icons-material/ErrorOutlineOutlined";
+import { Box, Stack, Typography, IconButton } from "@/Components/v3/ui";
+import { LinearProgress } from "@/Components/v3/ui/mui-progress";
 import "./index.css";
+
+// Custom icon components
+const CloseIcon = () => (
+	<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+		<path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+	</svg>
+);
+
+const ErrorOutlineOutlinedIcon = () => (
+	<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+		<path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
+	</svg>
+);
 
 /**
  * @param {Object} props - The component props.
@@ -143,11 +155,8 @@ const ProgressUpload = ({ icon, label, size, progress = 0, onClick, error }) => 
 						<LinearProgress
 							variant="determinate"
 							value={progress}
-							sx={{
-								width: "100%",
-								height: "10px",
-								borderRadius: theme.shape.borderRadius,
-								maxWidth: "500px",
+							className="w-full h-2.5 rounded-md max-w-[500px]"
+							style={{
 								backgroundColor: theme.palette.primary.lowContrast,
 							}}
 						/>

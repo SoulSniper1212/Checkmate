@@ -1,9 +1,9 @@
 // Components
-import { Box } from "@mui/material";
+import { Box } from "@/Components/v3/ui";
 import DataTable from "@/Components/v1/Table/index.jsx";
 import Host from "@/Components/v1/Host/index.jsx";
 import { StatusLabel } from "@/Components/v1/Label/index.jsx";
-import { Stack } from "@mui/material";
+import { Stack } from "@/Components/v3/ui";
 import { InfrastructureMenu } from "../MonitorsTableMenu/index.jsx";
 import LoadingSpinner from "../../../../Uptime/Monitors/Components/LoadingSpinner/index.jsx";
 // Assets
@@ -11,7 +11,7 @@ import CPUChipIcon from "../../../../../../assets/icons/cpu-chip.svg?react";
 import CustomGauge from "@/Components/v1/Charts/CustomGauge/index.jsx";
 
 // Utils
-import { useTheme } from "@emotion/react";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 import { useMonitorUtils } from "../../../../../../Hooks/v1/useMonitorUtils.js";
 import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";

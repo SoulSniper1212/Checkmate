@@ -1,6 +1,6 @@
 import { Table, Pagination } from "@/Components/v2/DesignElements";
 import { StatusLabel } from "@/Components/v2/DesignElements";
-import Box from "@mui/material/Box";
+import { Box } from "@/Components/v3/ui";
 
 import type { Header } from "@/Components/v2/DesignElements/Table";
 import type { Check } from "@/Types/Check";

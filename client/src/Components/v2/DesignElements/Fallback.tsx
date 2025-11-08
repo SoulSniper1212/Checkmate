@@ -1,76 +1,35 @@
-import Box from "@mui/material/Box";
-import Stack from "@mui/material/Stack";
+import { Stack, Typography, Box } from "@/Components/v3/ui";
 import OutputAnimation from "@/assets/Animations/output.gif";
 import DarkmodeOutput from "@/assets/Animations/darkmodeOutput.gif";
-import Typography from "@mui/material/Typography";
 import { BulletPointCheck } from "@/Components/v2/DesignElements";
 import { Button } from "@/Components/v2/Inputs";
 
 import { useNavigate } from "react-router";
-import { useMediaQuery } from "@mui/material";
-import { useTheme } from "@mui/material/styles";
 import { useSelector } from "react-redux";
-
-import type { BoxProps } from "@mui/material";
 
 interface BaseFallbackProps extends BoxProps {
 	children: React.ReactNode;
 }
 
 export const BaseFallback: React.FC<BaseFallbackProps> = ({ children, ...props }) => {
-	const theme = useTheme();
 	const mode = useSelector((state: any) => state.ui.mode);
-	const isSmall = useMediaQuery(theme.breakpoints.down("md"));
 
 	return (
 		<Box
-			margin={isSmall ? "inherit" : "auto"}
-			marginTop={isSmall ? "33%" : "auto"}
-			width={{
-				sm: "90%",
-				md: "70%",
-				lg: "50%",
-				xl: "40%",
-			}}
-			padding={theme.spacing(16)}
-			bgcolor={theme.palette.primary.main}
-			position="relative"
-			border={1}
-			borderColor={theme.palette.primary.lowContrast}
-			borderRadius={theme.shape.borderRadius}
-			overflow="hidden"
-			sx={{
-				borderStyle: "dashed",
-			}}
+			className="mx-auto mt-auto md:mt-auto md:mx-auto w-[90%] md:w-[70%] lg:w-[50%] xl:w-[40%] p-16 relative border-2 border-border border-dashed rounded-lg overflow-hidden bg-background"
 			{...props}
 		>
 			<Stack
-				alignItems="center"
-				gap={theme.spacing(20)}
-				sx={{
-					width: "fit-content",
-					margin: "auto",
-					marginTop: "100px",
-				}}
+				className="items-center gap-20 w-fit mx-auto mt-[100px]"
 			>
-				<Box
-					component="img"
+				<img
 					src={mode === "light" ? OutputAnimation : DarkmodeOutput}
-					bgcolor="transparent"
+					className="bg-transparent w-full border-none rounded-lg z-10"
 					alt="Loading animation"
-					width="100%"
-					sx={{
-						zIndex: 1,
-						border: "none",
-						borderRadius: theme.spacing(8),
-					}}
 				/>
 
 				<Stack
-					gap={theme.spacing(4)}
-					alignItems="center"
-					maxWidth={"300px"}
-					zIndex={1}
+					className="gap-4 items-center max-w-[300px] z-10"
 				>
 					{children}
 				</Stack>
@@ -86,13 +45,11 @@ export const ErrorFallback = ({
 	title: string;
 	subtitle: string;
 }) => {
-	const theme = useTheme();
 	return (
 		<BaseFallback>
 			<Typography
 				variant="h1"
-				marginY={theme.spacing(4)}
-				color={theme.palette.primary.contrastTextTertiary}
+				className="my-4 text-muted-foreground"
 			>
 				{title}
 			</Typography>
@@ -114,27 +71,20 @@ export const EmptyFallback = ({
 	actionButtonText: string;
 	actionLink: string;
 }) => {
-	const theme = useTheme();
 	const navigate = useNavigate();
 	return (
 		<BaseFallback>
 			<Stack
-				gap={theme.spacing(10)}
-				zIndex={1}
-				alignItems="center"
+				className="gap-10 z-10 items-center"
 			>
 				<Typography
 					component="h1"
-					color={theme.palette.primary.contrastText}
+					className="text-foreground"
 				>
 					{title}
 				</Typography>
 				<Stack
-					sx={{
-						flexWrap: "wrap",
-						gap: theme.spacing(2),
-						maxWidth: { xs: "90%", md: "80%", lg: "75%" },
-					}}
+					className="flex-wrap gap-2 w-[90%] md:w-[80%] lg:w-[75%] max-w-full"
 				>
 					{bullets?.map((bullet: string, index: number) => (
 						<BulletPointCheck
@@ -145,8 +95,8 @@ export const EmptyFallback = ({
 				</Stack>
 				<Stack>
 					<Button
-						variant="contained"
-						color="accent"
+						muiVariant="contained"
+						color="primary"
 						onClick={() => navigate(actionLink)}
 					>
 						{actionButtonText}

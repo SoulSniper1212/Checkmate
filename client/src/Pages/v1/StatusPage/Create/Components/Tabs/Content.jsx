@@ -1,12 +1,16 @@
 // Components
-import { Stack, Typography } from "@mui/material";
-import { TabPanel } from "@mui/lab";
+import { Stack, Typography } from "@/Components/v3/ui";
 import MonitorList from "../MonitorList/index.jsx";
+
+// Simple TabPanel component to replace @mui/lab
+const TabPanel = ({ children, value, index }) => {
+	return value === index ? <div>{children}</div> : null;
+};
 import Search from "@/Components/v1/Inputs/Search/index.jsx";
 import Checkbox from "@/Components/v1/Inputs/Checkbox/index.jsx";
 // Utils
 import { useState } from "react";
-import { useTheme } from "@emotion/react";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 import { useTranslation } from "react-i18next";
 import ConfigStack from "./ConfigStack.jsx";
 const Content = ({
@@ -35,7 +39,7 @@ const Content = ({
 
 	return (
 		<TabPanel value={tabValue}>
-			<Stack gap={theme.spacing(10)}>
+			<Stack gap="2.5rem">
 				<ConfigStack
 					title={t("statusPageCreateTabsContent")}
 					description={t("statusPageCreateTabsContentDescription")}
@@ -57,11 +61,7 @@ const Content = ({
 						</Stack>
 						<Typography
 							component="span"
-							className="input-error"
-							color={theme.palette.error.main}
-							sx={{
-								opacity: 0.8,
-							}}
+							className="input-error /* TODO: Convert sx to Tailwind - opacity: 0.8 */"
 						>
 							{errors["monitors"]}
 						</Typography>

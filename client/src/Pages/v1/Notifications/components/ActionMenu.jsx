@@ -1,12 +1,10 @@
 // Components
-import Menu from "@mui/material/Menu";
-import IconButton from "@mui/material/IconButton";
-import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
-import MenuItem from "@mui/material/MenuItem";
+import { Menu, IconButton, MenuItem } from "@/Components/v3/ui";
+import { Settings } from "lucide-react";
 
 // Utils
 import { useState } from "react";
-import { useTheme } from "@emotion/react";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import { useTranslation } from "react-i18next";
@@ -49,7 +47,7 @@ const ActionMenu = ({ notification, onDelete }) => {
 				onClick={handleClick}
 				onMouseDown={(e) => e.stopPropagation()}
 			>
-				<SettingsOutlinedIcon />
+				<Settings />
 			</IconButton>
 
 			<Menu

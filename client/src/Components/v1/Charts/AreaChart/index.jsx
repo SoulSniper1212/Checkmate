@@ -63,7 +63,6 @@ import {
 } from "recharts";
 import { createGradient } from "../Utils/gradientUtils.jsx";
 import PropTypes from "prop-types";
-import { useTheme } from "@mui/material";
 import { useId } from "react";
 import { Fragment } from "react";
 
@@ -85,7 +84,6 @@ const CustomAreaChart = ({
 	customTooltip,
 	height = "100%",
 }) => {
-	const theme = useTheme();
 	const uniqueId = useId();
 
 	const AREA_COLORS = [
@@ -149,7 +147,7 @@ const CustomAreaChart = ({
 				/>
 
 				<CartesianGrid
-					stroke={theme.palette.primary.lowContrast}
+					stroke="#e2e8f0"
 					strokeWidth={1}
 					strokeOpacity={1}
 					fill="transparent"
@@ -180,7 +178,7 @@ const CustomAreaChart = ({
 				})}
 				{customTooltip ? (
 					<Tooltip
-						cursor={{ stroke: theme.palette.primary.lowContrast }}
+						cursor={{ stroke: "#e2e8f0" }}
 						content={customTooltip}
 						wrapperStyle={{ pointerEvents: "none" }}
 					/>

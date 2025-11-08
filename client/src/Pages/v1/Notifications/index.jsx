@@ -1,15 +1,12 @@
 // Components
-import Stack from "@mui/material/Stack";
-import Typography from "@mui/material/Typography";
+import { Stack, Typography, Button } from "@/Components/v3/ui";
 import Breadcrumbs from "@/Components/v1/Breadcrumbs/index.jsx";
-import Button from "@mui/material/Button";
 import DataTable from "@/Components/v1/Table/index.jsx";
 import ActionMenu from "./components/ActionMenu.jsx";
 import PageStateWrapper from "@/Components/v1/PageStateWrapper/index.jsx";
 
 // Utils
 import { useState } from "react";
-import { useTheme } from "@emotion/react";
 import { useNavigate } from "react-router-dom";
 import {
 	useGetNotificationsByTeamId,
@@ -19,7 +16,6 @@ import { useTranslation } from "react-i18next";
 
 const Notifications = () => {
 	const navigate = useNavigate();
-	const theme = useTheme();
 	const BREADCRUMBS = [{ name: "notifications", path: "/notifications" }];
 	const [updateTrigger, setUpdateTrigger] = useState(false);
 	const [notifications, isLoading, error] = useGetNotificationsByTeamId(updateTrigger);
@@ -83,15 +79,14 @@ const Notifications = () => {
 				type="notifications"
 				fallbackLink="/notifications/create"
 			>
-				<Stack gap={theme.spacing(10)}>
+				<Stack gap="40px">
 					<Breadcrumbs list={BREADCRUMBS} />
 					<Stack
 						direction="row"
 						justifyContent="flex-end"
 					>
 						<Button
-							variant="contained"
-							color="accent"
+							variant="default"
 							onClick={() => navigate("/notifications/create")}
 						>
 							{t("notifications.createButton")}
@@ -104,7 +99,7 @@ const Notifications = () => {
 							rowSX: {
 								cursor: "pointer",
 								"&:hover td": {
-									backgroundColor: theme.palette.tertiary.main,
+									backgroundColor: "#f3f4f6",
 									transition: "background-color .3s ease",
 								},
 							},

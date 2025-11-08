@@ -1,5 +1,8 @@
-import { Box, Button, Stack, Typography } from "@mui/material";
-import { useTheme } from "@emotion/react";
+import { Stack } from "@/Components/v3/ui";
+import { Button } from "@/Components/v3/ui";
+import { Typography } from "@/Components/v3/ui";
+import { Box } from "@/Components/v3/ui";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { clearAuthState } from "../../../Features/Auth/authSlice.js";
@@ -38,7 +41,7 @@ const NewPasswordConfirmed = () => {
 			<Box
 				className="background-pattern-svg"
 				sx={{
-					"& svg g g:last-of-type path": {
+					"& svg g g:last-of-type path svg g g:last-child path svg g g:last-child path": {
 						stroke: theme.palette.primary.lowContrast,
 					},
 				}}

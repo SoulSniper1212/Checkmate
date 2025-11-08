@@ -9,7 +9,7 @@
  * Apache License: https://www.apache.org/licenses/LICENSE-2.0
  */
 
-import { IconButton } from "@mui/material";
+import { IconButton } from "@/Components/v3/ui";
 import SunAndMoonIcon from "./SunAndMoonIcon.jsx";
 import { useDispatch, useSelector } from "react-redux";
 import { setMode } from "../../../Features/UI/uiSlice.js";
@@ -33,16 +33,12 @@ const ThemeSwitch = ({ width = 48, height = 48, color }) => {
 			aria-label="auto"
 			aria-live="polite"
 			onClick={toggleTheme}
-			sx={{
-				width,
-				height,
+			style={{
+				width: `${width}px`,
+				height: `${height}px`,
 				display: "flex",
 				alignItems: "center",
 				justifyContent: "center",
-				"& svg >:is(circle, g)": {
-					fill: color,
-					stroke: color,
-				},
 			}}
 		>
 			<SunAndMoonIcon />

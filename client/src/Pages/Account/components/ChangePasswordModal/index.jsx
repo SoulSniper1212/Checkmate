@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { Button, Stack } from "@mui/material";
+import { Stack, Button } from "@/Components/v3/ui";
 import { GenericDialog } from "@/Components/v1/Dialog/genericDialog";
 import TextInput from "@/Components/v1/Inputs/TextInput";
 import PasswordTooltip from "@/Pages/v1/Auth/components/PasswordTooltip";
-import { useTheme } from "@emotion/react";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 import { useTranslation } from "react-i18next";
 import { createToast } from "../../../../Utils/toastUtils";
 import { PasswordEndAdornment } from "@/Components/v1/Inputs/TextInput/Adornments";
@@ -63,7 +63,7 @@ const ChangePasswordModal = ({ isSaving, isLoading, changePassword }) => {
 	return (
 		<>
 			<Button
-				variant="contained"
+				muiVariant="contained"
 				color="error"
 				onClick={() => setIsChangePasswordOpen(true)}
 				disabled={isLoading || isSaving}
@@ -93,7 +93,7 @@ const ChangePasswordModal = ({ isSaving, isLoading, changePassword }) => {
 						onChange={onChange}
 						error={errors.password && errors.password[0] ? true : false}
 						endAdornment={<PasswordEndAdornment />}
-						sx={{ mb: theme.spacing(5) }}
+						className="mb-[var(--spacing-5)]"
 					/>
 				</PasswordTooltip>
 				<TextInput
@@ -109,17 +109,14 @@ const ChangePasswordModal = ({ isSaving, isLoading, changePassword }) => {
 					onChange={onChange}
 					error={errors.confirm && errors.confirm[0] ? true : false}
 					endAdornment={<PasswordEndAdornment />}
-					sx={{ mb: theme.spacing(5) }}
+					className="mb-[var(--spacing-5)]"
 				/>
 
 				<Stack
-					direction="row"
-					spacing={theme.spacing(10)}
-					mt={theme.spacing(8)}
-					justifyContent="flex-end"
+					className="flex-row gap-[var(--spacing-10)] mt-[var(--spacing-8)] justify-end"
 				>
 					<Button
-						variant="contained"
+						muiVariant="contained"
 						color="error"
 						onClick={closeChangePasswordModal}
 						disabled={isLoadingSubmit}
@@ -127,8 +124,8 @@ const ChangePasswordModal = ({ isSaving, isLoading, changePassword }) => {
 						{t("teamPanel.cancel")}
 					</Button>
 					<Button
-						variant="contained"
-						color="accent"
+						muiVariant="contained"
+						color="primary"
 						onClick={onsubmitChangePassword}
 						disabled={isLoadingSubmit || !isFormValid}
 					>

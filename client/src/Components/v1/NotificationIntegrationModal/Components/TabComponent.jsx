@@ -1,7 +1,8 @@
 import React from "react";
-import { Typography, Box, Button, CircularProgress } from "@mui/material";
+import { Typography, Box, Button } from "@/Components/v3/ui";
+import { CircularProgress } from "@/Components/v3/ui/mui-progress";
 import { useTranslation } from "react-i18next";
-import { useTheme } from "@emotion/react";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 import TextInput from "../../Inputs/TextInput/index.jsx";
 import Checkbox from "../../Inputs/Checkbox/index.jsx";
 

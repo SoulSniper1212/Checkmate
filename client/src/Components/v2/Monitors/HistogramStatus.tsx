@@ -1,6 +1,4 @@
-import Stack from "@mui/material/Stack";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
+import { Stack, Box, Typography } from "@/Components/v3/ui";
 import { BaseBox } from "@/Components/v2/DesignElements";
 import { ResponsiveContainer, BarChart, XAxis, Bar, Cell } from "recharts";
 import UptimeIcon from "@/assets/icons/uptime-icon.svg?react";
@@ -13,7 +11,6 @@ import { normalizeResponseTimes } from "@/Utils/v2/DataUtils";
 import { useState } from "react";
 import { formatDateWithTz } from "@/Utils/v2/TimeUtils";
 import { useSelector } from "react-redux";
-import { useTheme } from "@mui/material/styles";
 import { getResponseTimeColor } from "@/Utils/v2/MonitorUtils";
 
 const XLabel = ({
@@ -25,7 +22,6 @@ const XLabel = ({
 	p2: GroupedCheck;
 	range: string;
 }) => {
-	const theme = useTheme();
 	const uiTimezone = useSelector((state: any) => state.ui.timezone);
 	const dateFormat = range === "day" ? "MMM D, h:mm A" : "MMM D";
 	return (
@@ -36,7 +32,7 @@ const XLabel = ({
 				dy={-3}
 				textAnchor="start"
 				fontSize={11}
-				fill={theme.palette.primary.contrastTextTertiary}
+				fill="hsl(var(--muted-foreground))"
 			>
 				{formatDateWithTz(p1._id, dateFormat, uiTimezone)}
 			</text>
@@ -46,7 +42,7 @@ const XLabel = ({
 				dy={-3}
 				textAnchor="end"
 				fontSize={11}
-				fill={theme.palette.primary.contrastTextTertiary}
+				fill="hsl(var(--muted-foreground))"
 			>
 				{formatDateWithTz(p2._id, dateFormat, uiTimezone)}
 			</text>
@@ -60,42 +56,18 @@ type BaseChartProps = React.PropsWithChildren<{
 }>;
 
 export const BaseChart: React.FC<BaseChartProps> = ({ children, icon, title }) => {
-	const theme = useTheme();
-
 	return (
-		<BaseBox
-			sx={{
-				padding: theme.spacing(8),
-				display: "flex",
-				flex: 1,
-			}}
-		>
+		<BaseBox className="p-8 flex flex-1">
 			<Stack
-				gap={theme.spacing(8)}
+				gap={2}
 				flex={1}
 			>
 				<Stack
 					direction="row"
 					alignItems={"center"}
-					gap={theme.spacing(4)}
+					gap={1}
 				>
-					<BaseBox
-						sx={{
-							display: "flex",
-							alignItems: "center",
-							justifyContent: "center",
-							width: 34,
-							height: 34,
-							backgroundColor: theme.palette.tertiary.main,
-							"& svg": {
-								width: 20,
-								height: 20,
-								"& path": {
-									stroke: theme.palette.primary.contrastTextTertiary,
-								},
-							},
-						}}
-					>
+					<BaseBox className="flex items-center justify-center w-8 h-8 bg-secondary [&_svg]:w-5 [&_svg]:h-5 [&_svg_path]:stroke-muted-foreground">
 						{icon}
 					</BaseBox>
 					<Typography variant="h2">{title}</Typography>
@@ -120,7 +92,6 @@ export const HistogramStatus = ({
 	const uiTimezone = useSelector((state: any) => state.ui.timezone);
 
 	const icon = status === "up" ? <UptimeIcon /> : <IncidentsIcon />;
-	const theme = useTheme();
 	const [idx, setIdx] = useState<number | null>(null);
 	const dateFormat = range === "1d" || range === "2h" ? "MMM D, h A" : "MMM D";
 	const normalChecks = normalizeResponseTimes(checks, "avgResponseTime");
@@ -153,7 +124,7 @@ export const HistogramStatus = ({
 			icon={icon}
 			title={title}
 		>
-			<Stack gap={theme.spacing(8)}>
+			<Stack gap={2}>
 				<Stack
 					position="relative"
 					direction="row"
@@ -182,7 +153,7 @@ export const HistogramStatus = ({
 				>
 					<BarChart data={normalChecks}>
 						<XAxis
-							stroke={theme.palette.primary.lowContrast}
+							stroke="hsl(var(--border))"
 							height={15}
 							tick={false}
 							label={
@@ -200,12 +171,21 @@ export const HistogramStatus = ({
 						>
 							{normalChecks?.map((groupedCheck, idx) => {
 								const fillColor = getResponseTimeColor(groupedCheck.normalResponseTime);
+								// Map color names to CSS custom properties
+								const colorMap: { [key: string]: string } = {
+									primary: "hsl(var(--primary))",
+									success: "hsl(var(--success))",
+									warning: "hsl(var(--warning))",
+									destructive: "hsl(var(--destructive))",
+									secondary: "hsl(var(--secondary))",
+									muted: "hsl(var(--muted))"
+								};
 								return (
 									<Cell
 										onMouseEnter={() => setIdx(idx)}
 										onMouseLeave={() => setIdx(null)}
 										key={groupedCheck._id}
-										fill={theme.palette[fillColor].main}
+										fill={colorMap[fillColor] || "hsl(var(--primary))"}
 									/>
 								);
 							})}

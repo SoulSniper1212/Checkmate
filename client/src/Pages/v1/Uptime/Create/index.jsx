@@ -8,7 +8,7 @@ import {
 	Switch,
 	Tooltip,
 	Typography,
-} from "@mui/material";
+} from "@/Components/v3/ui";
 import Breadcrumbs from "@/Components/v1/Breadcrumbs/index.jsx";
 import TextInput from "@/Components/v1/Inputs/TextInput/index.jsx";
 import { HttpAdornment } from "@/Components/v1/Inputs/TextInput/Adornments/index.jsx";
@@ -23,15 +23,15 @@ import SkeletonLayout from "./skeleton.jsx";
 
 // Utils
 import PropTypes from "prop-types";
-import { useTheme } from "@emotion/react";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { monitorValidation } from "../../../../Validation/validation.js";
 import { createToast } from "../../../../Utils/toastUtils.jsx";
 import {
-	PauseOutlined as PauseOutlinedIcon,
-	PlayArrowOutlined as PlayArrowOutlinedIcon,
-} from "@mui/icons-material";
+	Pause as PauseOutlinedIcon,
+	Play as PlayArrowOutlinedIcon,
+} from "lucide-react";
 import { useMonitorUtils } from "../../../../Hooks/v1/useMonitorUtils.js";
 import { useGetNotificationsByTeamId } from "../../../../Hooks/v1/useNotifications.js";
 import { useParams } from "react-router-dom";
@@ -310,7 +310,7 @@ const UptimeCreate = ({ isClone = false }) => {
 	}
 
 	return (
-		<Stack gap={theme.spacing(10)}>
+		<Stack gap="2.5rem">
 			<Breadcrumbs list={CRUMBS} />
 
 			<Stack
@@ -318,12 +318,12 @@ const UptimeCreate = ({ isClone = false }) => {
 				onSubmit={onSubmit}
 				noValidate
 				spellCheck="false"
-				gap={theme.spacing(12)}
+				gap="3rem"
 				flex={1}
 			>
 				<Stack
 					direction="row"
-					gap={theme.spacing(12)}
+					gap="3rem"
 				>
 					<Box>
 						<Typography
@@ -334,7 +334,7 @@ const UptimeCreate = ({ isClone = false }) => {
 								component="span"
 								fontSize="inherit"
 								color={
-									!isCreate ? theme.palette.primary.contrastTextSecondary : undefined
+									!isCreate ? text-foreground : undefined
 								}
 							>
 								{!isCreate ? monitor.name : t("createYour") + " "}
@@ -344,7 +344,7 @@ const UptimeCreate = ({ isClone = false }) => {
 									component="span"
 									fontSize="inherit"
 									fontWeight="inherit"
-									color={theme.palette.primary.contrastTextSecondary}
+									color="text-foreground"
 								>
 									{t("monitor")}
 								</Typography>
@@ -355,7 +355,7 @@ const UptimeCreate = ({ isClone = false }) => {
 								direction="row"
 								alignItems="center"
 								height="fit-content"
-								gap={theme.spacing(2)}
+								gap="0.5rem"
 							>
 								<Tooltip
 									title={t(`statusMsg.${[determineState(monitor)]}`)}
@@ -386,16 +386,16 @@ const UptimeCreate = ({ isClone = false }) => {
 								<Typography
 									position="relative"
 									variant="body2"
-									ml={theme.spacing(6)}
-									mt={theme.spacing(1)}
+									ml="1.5rem"
+									mt="0.25rem"
 									sx={{
 										"&:before": {
 											position: "absolute",
 											content: `""`,
-											width: theme.spacing(2),
-											height: theme.spacing(2),
+											width: "0.5rem",
+											height: "0.5rem",
 											borderRadius: "50%",
-											backgroundColor: theme.palette.primary.contrastTextTertiary,
+											backgroundColor: text-foreground,
 											opacity: 0.8,
 											left: theme.spacing(-5),
 											top: "50%",
@@ -411,12 +411,7 @@ const UptimeCreate = ({ isClone = false }) => {
 					{!isCreate && (
 						<Box
 							justifyContent="space-between"
-							sx={{
-								alignSelf: "flex-end",
-								ml: "auto",
-								display: "flex",
-								gap: theme.spacing(2),
-							}}
+							className="/* TODO: Convert sx to Tailwind - alignSelf: flex-end, ml: auto, display: flex, gap: 0.5rem */"
 						>
 							<Button
 								variant="contained"
@@ -433,7 +428,7 @@ const UptimeCreate = ({ isClone = false }) => {
 								loading={isBusy}
 								variant="contained"
 								color="error"
-								sx={{ px: theme.spacing(8) }}
+								className="/* TODO: Convert sx to Tailwind - px: 2rem  */"
 								onClick={() => setIsOpen(true)}
 							>
 								{t("remove")}
@@ -454,8 +449,8 @@ const UptimeCreate = ({ isClone = false }) => {
 								{t("distributedUptimeCreateChecksDescription")}
 							</Typography>
 						</Box>
-						<Stack gap={theme.spacing(12)}>
-							<Stack gap={theme.spacing(6)}>
+						<Stack gap="3rem">
+							<Stack gap="1.5rem">
 								<Radio
 									name="type"
 									title={t("websiteMonitoring")}
@@ -466,7 +461,7 @@ const UptimeCreate = ({ isClone = false }) => {
 									onChange={onChange}
 								/>
 								{monitor.type === "http" ? (
-									<ButtonGroup sx={{ ml: theme.spacing(16) }}>
+									<ButtonGroup className="/* TODO: Convert sx to Tailwind - ml: 4rem  */">
 										<Button
 											variant="group"
 											filled={https.toString()}
@@ -527,7 +522,7 @@ const UptimeCreate = ({ isClone = false }) => {
 									<Typography
 										component="p"
 										className="input-error"
-										color={theme.palette.error.contrastText}
+										color={text-destructive-foreground}
 									>
 										{errors["type"]}
 									</Typography>
@@ -552,7 +547,7 @@ const UptimeCreate = ({ isClone = false }) => {
 								: t("distributedUptimeCreateSelectURL")}
 						</Typography>
 					</Box>
-					<Stack gap={theme.spacing(20)}>
+					<Stack gap="5rem">
 						<TextInput
 							id="monitor-url"
 							name="url"
@@ -621,7 +616,7 @@ const UptimeCreate = ({ isClone = false }) => {
 							{t("createMonitorPage.incidentConfigDescription")}
 						</Typography>
 					</Box>
-					<Stack gap={theme.spacing(20)}>
+					<Stack gap="5rem">
 						<TextInput
 							name="statusWindowSize"
 							label={t("createMonitorPage.incidentConfigStatusWindowLabel")}
@@ -670,13 +665,13 @@ const UptimeCreate = ({ isClone = false }) => {
 					</Box>
 					<Stack>
 						<FormControlLabel
-							sx={{ marginLeft: theme.spacing(0) }}
+							className="/* TODO: Convert sx to Tailwind - marginLeft: 0rem  */"
 							control={
 								<Switch
 									name="ignoreTlsErrors"
 									checked={monitor.ignoreTlsErrors}
 									onChange={onChange}
-									sx={{ mr: theme.spacing(2) }}
+									className="/* TODO: Convert sx to Tailwind - mr: 0.5rem  */"
 								/>
 							}
 							label={t("tlsErrorIgnored")}
@@ -692,7 +687,7 @@ const UptimeCreate = ({ isClone = false }) => {
 							{t("distributedUptimeCreateAdvancedSettings")}
 						</Typography>
 					</Box>
-					<Stack gap={theme.spacing(20)}>
+					<Stack gap="5rem">
 						<Select
 							name="interval"
 							label={t("checkFrequency")}
@@ -733,8 +728,8 @@ const UptimeCreate = ({ isClone = false }) => {
 									/>
 									<Typography
 										component="span"
-										color={theme.palette.primary.contrastTextTertiary}
-										opacity={0.8}
+										color="text-foreground"
+										opacity="0.8"
 									>
 										{t("uptimeCreate")}
 									</Typography>
@@ -753,8 +748,8 @@ const UptimeCreate = ({ isClone = false }) => {
 									/>
 									<Typography
 										component="span"
-										color={theme.palette.primary.contrastTextTertiary}
-										opacity={0.8}
+										color="text-foreground"
+										opacity="0.8"
 									>
 										{t("uptimeCreateJsonPath") + " "}
 										<Typography
@@ -782,7 +777,7 @@ const UptimeCreate = ({ isClone = false }) => {
 						color="accent"
 						disabled={!Object.values(errors).every((value) => value === undefined)}
 						loading={isBusy}
-						sx={{ px: theme.spacing(12) }}
+						className="/* TODO: Convert sx to Tailwind - px: 3rem  */"
 					>
 						{t("settingsSave")}
 					</Button>

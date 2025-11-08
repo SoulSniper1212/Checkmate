@@ -1,4 +1,4 @@
-import { Stack, Skeleton } from "@mui/material";
+import { Stack, Skeleton } from "@/Components/v3/ui";
 
 const SkeletonLayout = () => {
 	return (

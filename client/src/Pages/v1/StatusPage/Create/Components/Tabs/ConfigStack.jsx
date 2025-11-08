@@ -1,7 +1,7 @@
-import { Stack, Typography } from "@mui/material";
+import { Stack, Typography } from "@/Components/v3/ui";
 import ConfigBox from "@/Components/v1/ConfigBox/index.jsx";
 import PropTypes from "prop-types";
-import { useTheme } from "@emotion/react";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 
 // This can be used to add any extra/additional section/stacks on top of existing sections on the tab
 const ConfigStack = ({ title, description, children }) => {

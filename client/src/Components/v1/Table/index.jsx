@@ -1,16 +1,55 @@
 import {
-	Paper,
 	Table,
 	TableBody,
 	TableCell,
-	TableContainer,
 	TableHead,
 	TableRow,
-} from "@mui/material";
-import Tooltip from "@mui/material/Tooltip";
+} from "@/Components/v3/ui";
 import SkeletonLayout from "./skeleton.jsx";
 import PropTypes from "prop-types";
-import { useTheme } from "@emotion/react";
+
+// Custom Tooltip component
+const Tooltip = ({ title, children, followCursor = false, enterDelay = 500, enterNextDelay = 500, slotProps = {} }) => {
+	if (!title) return children;
+
+	return (
+		<div className="relative group">
+			{children}
+			{title && (
+				<div
+					className="absolute z-50 invisible group-hover:visible bg-gray-900 text-white text-sm rounded-lg px-3 py-2 whitespace-nowrap transition-opacity duration-200"
+					style={{
+						bottom: '100%',
+						left: '50%',
+						transform: 'translateX(-50%) translateY(-8px)',
+						opacity: slotProps?.tooltip?.sx?.background === 'unset' ? 0.9 : 1,
+						marginLeft: followCursor ? '50px' : '0'
+					}}
+				>
+					{title}
+					<div
+						className="absolute w-2 h-2 bg-gray-900 transform rotate-45"
+						style={{
+							bottom: '-4px',
+							left: '50%',
+							marginLeft: '-4px'
+						}}
+					/>
+				</div>
+			)}
+		</div>
+	);
+};
+
+// Custom TableContainer component
+const TableContainer = ({ component: Component = "div", children, className, ...props }) => {
+	const Container = Component;
+	return (
+		<Container className={`border border-gray-200 rounded-lg overflow-hidden ${className || ''}`} {...props}>
+			{children}
+		</Container>
+	);
+};
 
 /**
  * @typedef {Object} Header
@@ -46,7 +85,6 @@ const DataTable = ({
 		onRowClick: () => {},
 	},
 }) => {
-	const theme = useTheme();
 	if (!shouldRender) {
 		return <SkeletonLayout />;
 	}
@@ -56,33 +94,16 @@ const DataTable = ({
 	}
 
 	return (
-		<TableContainer component={Paper}>
-			<Table
-				stickyHeader
-				sx={{
-					"&.MuiTable-root  :is(.MuiTableHead-root, .MuiTableBody-root) :is(th, td)": {
-						paddingLeft: theme.spacing(8),
-					},
-					"& :is(th)": {
-						backgroundColor: theme.palette.secondary.main,
-						color: theme.palette.secondary.contrastText,
-						fontWeight: 600,
-					},
-					"& :is(td)": {
-						backgroundColor: theme.palette.primary.main,
-						color: theme.palette.primary.contrastTextSecondary,
-					},
-					"& .MuiTableBody-root .MuiTableRow-root:last-child .MuiTableCell-root": {
-						borderBottom: "none",
-					},
-				}}
-			>
-				<TableHead>
-					<TableRow>
+		<TableContainer component="div" className="bg-white">
+			<Table className="w-full">
+				<TableHead className="sticky top-0 z-10">
+					<TableRow className="bg-blue-600">
 						{headers.map((header, index) => (
 							<TableCell
 								key={header.id}
-								align={index === 0 ? "left" : "center"}
+								className={`px-8 py-4 text-white font-semibold ${
+									index === 0 ? 'text-left' : 'text-center'
+								}`}
 							>
 								{header.content}
 							</TableCell>
@@ -94,7 +115,7 @@ const DataTable = ({
 						<TableRow>
 							<TableCell
 								colSpan={headers.length}
-								align="center"
+								className="text-center py-8 text-gray-500"
 							>
 								{config.emptyView}
 							</TableCell>
@@ -105,9 +126,7 @@ const DataTable = ({
 							return (
 								<Tooltip
 									key={key}
-									followCursor
-									enterDelay={500}
-									enterNextDelay={500}
+									followCursor={false}
 									title={
 										typeof config.tooltipContent === "function"
 											? config.tooltipContent(row)
@@ -119,31 +138,24 @@ const DataTable = ({
 												background: "unset",
 											},
 										},
-										popper: {
-											modifiers: [
-												{
-													name: "offset",
-													options: {
-														offset: ({ popper }) => {
-															return [popper.width / 2 + 20, -popper.height / 8];
-														},
-													},
-												},
-											],
-										},
 									}}
 								>
 									<TableRow
-										sx={config?.rowSX ?? {}}
+										className={`hover:bg-gray-50 cursor-pointer ${
+											config?.rowSX ? '' : 'border-b border-gray-100'
+										}`}
+										style={config?.rowSX ?? {}}
 										onClick={config?.onRowClick ? () => config.onRowClick(row) : null}
 									>
 										{headers.map((header, index) => {
 											return (
 												<TableCell
-													align={index === 0 ? "left" : "center"}
+													className={`px-8 py-4 text-gray-800 ${
+														index === 0 ? 'text-left' : 'text-center'
+													}`}
 													key={header.id}
 													onClick={header.onClick ? (e) => header.onClick(e, row) : null}
-													sx={header.getCellSx ? header.getCellSx(row) : {}}
+													style={header.getCellSx ? header.getCellSx(row) : {}}
 												>
 													{header.render(row)}
 												</TableCell>

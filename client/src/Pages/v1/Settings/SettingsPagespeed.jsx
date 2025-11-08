@@ -1,12 +1,9 @@
-import Box from "@mui/material/Box";
-import Stack from "@mui/material/Stack";
-import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
+import { Box, Stack, Typography, Button } from "@/Components/v3/ui";
 import ConfigBox from "@/Components/v1/ConfigBox/index.jsx";
 import TextInput from "@/Components/v1/Inputs/TextInput/index.jsx";
 import { PasswordEndAdornment } from "@/Components/v1/Inputs/TextInput/Adornments/index.jsx";
 // Utils
-import { useTheme } from "@emotion/react";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 import { PropTypes } from "prop-types";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -52,7 +49,7 @@ const SettingsPagespeed = ({
 					{t("settingsPage.pageSpeedSettings.description")}
 				</Typography>
 			</Box>
-			<Stack gap={theme.spacing(20)}>
+			<Stack className="gap-[var(--spacing-20)]">
 				{(isApiKeySet === false || apiKeyHasBeenReset === true) && (
 					<TextInput
 						name="pagespeedApiKey"
@@ -77,9 +74,9 @@ const SettingsPagespeed = ({
 								});
 								setApiKeyHasBeenReset(true);
 							}}
-							variant="contained"
+							muiVariant="contained"
 							color="error"
-							sx={{ mt: theme.spacing(4) }}
+							className="mt-[var(--spacing-4)]"
 						>
 							{t("reset")}
 						</Button>

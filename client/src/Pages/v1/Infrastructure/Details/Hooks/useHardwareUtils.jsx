@@ -1,5 +1,5 @@
-import { Typography } from "@mui/material";
-import { useTheme } from "@emotion/react";
+import { Typography } from "@/Components/v3/ui";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 import { useTranslation } from "react-i18next";
 
 // Constants

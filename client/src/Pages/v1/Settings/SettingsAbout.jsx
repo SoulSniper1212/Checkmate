@@ -1,8 +1,7 @@
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
+import { Box, Typography } from "@/Components/v3/ui";
 import ConfigBox from "@/Components/v1/ConfigBox/index.jsx";
 // Utils
-import { useTheme } from "@emotion/react";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 import { useTranslation } from "react-i18next";
 import Link from "@/Components/v1/Link/index.jsx";
 
@@ -23,7 +22,7 @@ const SettingsAbout = () => {
 				<Typography component="h2">
 					{t("common.appName")} {__APP_VERSION__}
 				</Typography>
-				<Typography sx={{ mt: theme.spacing(2), mb: theme.spacing(6), opacity: 0.6 }}>
+				<Typography className="mt-[var(--spacing-2)] mb-[var(--spacing-6)] opacity-60">
 					{t("settingsPage.aboutSettings.labelDevelopedBy")}
 				</Typography>
 				<Link

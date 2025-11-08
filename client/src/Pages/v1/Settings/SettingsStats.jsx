@@ -1,13 +1,10 @@
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
-import Stack from "@mui/material/Stack";
+import { Box, Typography, Button, Stack } from "@/Components/v3/ui";
 import ConfigBox from "@/Components/v1/ConfigBox/index.jsx";
 import TextInput from "@/Components/v1/Inputs/TextInput/index.jsx";
 import Dialog from "@/Components/v1/Dialog/index.jsx";
 
 // Utils
-import { useTheme } from "@emotion/react";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 import { PropTypes } from "prop-types";
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
@@ -35,7 +32,7 @@ const SettingsStats = ({ isAdmin, HEADING_SX, handleChange, settingsData, errors
 					{t("settingsPage.statsSettings.description")}
 				</Typography>
 			</Box>
-			<Stack gap={theme.spacing(20)}>
+			<Stack className="gap-[var(--spacing-20)]">
 				<TextInput
 					name="checkTTL"
 					label={t("settingsPage.statsSettings.labelTTL")}
@@ -51,10 +48,10 @@ const SettingsStats = ({ isAdmin, HEADING_SX, handleChange, settingsData, errors
 						{t("settingsPage.statsSettings.clearAllStatsDescription")}
 					</Typography>
 					<Button
-						variant="contained"
+						muiVariant="contained"
 						color="error"
 						onClick={() => setIsOpen(true)}
-						sx={{ mt: theme.spacing(4) }}
+						className="mt-[var(--spacing-4)]"
 					>
 						{t("settingsPage.statsSettings.clearAllStatsButton")}
 					</Button>

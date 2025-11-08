@@ -1,45 +1,28 @@
-import IconButton from "@mui/material/IconButton";
+import { IconButton } from "@/Components/v3/ui";
 import ArrowRight from "../../ArrowRight/index.jsx";
 import ArrowLeft from "../../ArrowLeft/index.jsx";
-import { useTheme } from "@mui/material/styles";
 import { useDispatch } from "react-redux";
 import { toggleSidebar } from "../../../../Features/UI/uiSlice.js";
 import PropTypes from "prop-types";
 
 const CollapseButton = ({ collapsed }) => {
-	const theme = useTheme();
 	const dispatch = useDispatch();
 	const arrowIcon = collapsed ? (
 		<ArrowRight
-			height={theme.spacing(8)}
-			width={theme.spacing(8)}
-			color={theme.palette.primary.contrastTextSecondary}
+			height="var(--spacing-8)"
+			width="var(--spacing-8)"
+			color="var(--color-primary-contrast-text-secondary)"
 		/>
 	) : (
 		<ArrowLeft
-			height={theme.spacing(8)}
-			width={theme.spacing(8)}
-			color={theme.palette.primary.contrastTextSecondary}
+			height="var(--spacing-8)"
+			width="var(--spacing-8)"
+			color="var(--color-primary-contrast-text-secondary)"
 		/>
 	);
 	return (
 		<IconButton
-			sx={{
-				position: "absolute",
-				/* TODO 60 is a magic number. if logo chnges size this might break */
-				top: 60,
-				right: 0,
-				transform: `translate(50%, 0)`,
-				backgroundColor: theme.palette.tertiary.main,
-				border: `1px solid ${theme.palette.primary.lowContrast}`,
-				p: theme.spacing(2.5),
-
-				"&:focus": { outline: "none" },
-				"&:hover": {
-					backgroundColor: theme.palette.primary.lowContrast,
-					borderColor: theme.palette.primary.lowContrast,
-				},
-			}}
+			className="absolute top-[60px] right-0 translate-x-1/2 bg-[var(--color-tertiary-main)] border border-[var(--color-primary-low-contrast)] p-[var(--spacing-2-5)] focus:outline-none hover:bg-[var(--color-primary-low-contrast)] hover:border-[var(--color-primary-low-contrast)]"
 			onClick={() => {
 				dispatch(toggleSidebar());
 			}}

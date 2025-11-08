@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { useTheme } from "@emotion/react";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { IconButton, Menu, MenuItem } from "@mui/material";
+import { Menu, MenuItem, IconButton } from "@/Components/v3/ui";
 import { logger } from "../../../../../Utils/Logger.js";
-import Settings from "../../../../../assets/icons/settings-bold.svg?react";
+import { Settings } from "lucide-react";
 import PropTypes from "prop-types";
 import { networkService } from "../../../../../main.jsx";
 import { createToast } from "../../../../../Utils/toastUtils.jsx";

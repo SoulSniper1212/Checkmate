@@ -1,11 +1,10 @@
-import { Grid, Grid2 } from "@mui/material";
+import { Grid } from "@/Components/v3/ui";
 import Card from "../Card/index.jsx";
 
 const MonitorGrid = ({ shouldRender, monitors }) => {
 	return (
 		<Grid
-			container
-			spacing={12}
+			className="grid gap-[var(--spacing-12)]"
 		>
 			{monitors?.map((monitor) => (
 				<Card

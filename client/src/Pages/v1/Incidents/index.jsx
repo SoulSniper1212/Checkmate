@@ -1,14 +1,15 @@
 // Components
-import { Stack } from "@mui/material";
+import { Stack } from "@/Components/v3/ui";
 import Breadcrumbs from "@/Components/v1/Breadcrumbs/index.jsx";
 import GenericFallback from "@/Components/v1/GenericFallback/index.jsx";
 import IncidentTable from "./Components/IncidentTable/index.jsx";
 import OptionsHeader from "./Components/OptionsHeader/index.jsx";
 import StatusBoxes from "./Components/StatusBoxes/index.jsx";
-import { Box, Button } from "@mui/material";
+import { Box } from "@/Components/v3/ui";
+import { Button } from "@/Components/v3/ui";
 
 //Utils
-import { useTheme } from "@emotion/react";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 import { useFetchMonitorsByTeamId } from "../../../Hooks/v1/monitorHooks.js";
 import { useFetchChecksSummaryByTeamId } from "../../../Hooks/v1/checkHooks.js";
 import { useAcknowledgeChecks } from "../../../Hooks/v1/checkHooks.js";

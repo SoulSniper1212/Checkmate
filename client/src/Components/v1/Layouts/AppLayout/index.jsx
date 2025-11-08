@@ -1,22 +1,18 @@
-import Box from "@mui/material/Box";
+import { Box } from "@/Components/v3/ui";
 import PropTypes from "prop-types";
-import { useTheme } from "@emotion/react";
-import BackgroundSVG from "../../../../assets/Images/background.svg";
 import { useSelector } from "react-redux";
+import BackgroundSVG from "../../../../assets/Images/background.svg";
 
 const AppLayout = ({ children }) => {
-	const theme = useTheme();
 	const ui = useSelector((state) => state.ui);
 	return (
 		<Box
-			sx={{
-				minHeight: "100vh",
-				backgroundColor: theme.palette.primaryBackground.main,
+			className="min-h-screen bg-background text-foreground"
+			style={{
 				backgroundImage: ui?.mode === "dark" ? `url("${BackgroundSVG}")` : "none",
 				backgroundSize: "100% 100%",
 				backgroundPosition: "center",
 				backgroundRepeat: "no-repeat",
-				color: theme.palette.primary.contrastText,
 			}}
 		>
 			{children}

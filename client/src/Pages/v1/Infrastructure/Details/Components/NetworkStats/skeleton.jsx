@@ -7,7 +7,7 @@ import {
 	TableRow,
 	TableCell,
 	TableBody,
-} from "@mui/material";
+} from "@/Components/v3/ui";
 
 const SkeletonLayout = () => {
 	return (

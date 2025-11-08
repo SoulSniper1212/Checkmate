@@ -1,17 +1,13 @@
-import Stack from "@mui/material/Stack";
 import Status from "./status.jsx";
 import Skeleton from "./skeleton.jsx";
-import Button from "@mui/material/Button";
-import { Tooltip } from "@mui/material";
-import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
-import PauseOutlinedIcon from "@mui/icons-material/PauseOutlined";
-import PlayArrowOutlinedIcon from "@mui/icons-material/PlayArrowOutlined";
-import EmailIcon from "@mui/icons-material/Email";
+import { Button } from "@/Components/v3/ui/button";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/Components/v3/ui/tooltip";
+import { Settings, Pause, Play, Mail } from "lucide-react";
 
 // Utils
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
-import { useTheme } from "@mui/material/styles";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 import { usePauseMonitor } from "../../../Hooks/v1/monitorHooks.js";
 import { useSendTestEmail } from "../../../Hooks/v1/useSendTestEmail.js";
 import { useTranslation } from "react-i18next";
@@ -55,78 +51,68 @@ const MonitorDetailsControlHeader = ({
 	}
 
 	return (
-		<Stack
-			direction="row"
-			justifyContent="space-between"
-		>
-			<Status monitor={monitor} />
+		<TooltipProvider>
+			<div className="flex justify-between">
+				<Status monitor={monitor} />
 
-			<Stack
-				direction="row"
-				gap={theme.spacing(2)}
-			>
-				<Tooltip
-					key={monitor?._id}
-					placement="bottom"
-					title={tooltipTitle}
-				>
-					<span>
-						<Button
-							variant="contained"
-							color="secondary"
-							loading={isSending}
-							startIcon={<EmailIcon />}
-							disabled={isTestNotificationsDisabled}
-							onClick={() => {
-								testAllNotifications({ monitorId: monitor?._id });
-							}}
-							sx={{
-								whiteSpace: "nowrap",
-							}}
-						>
-							{t("sendTestNotifications")}
-						</Button>
-					</span>
-				</Tooltip>
-				<Button
-					variant="contained"
-					color="secondary"
-					onClick={(e) => {
-						navigate(`/incidents/${monitor?._id}`);
-					}}
-				>
-					{t("menu.incidents")}
-				</Button>
-				{isAdmin && (
+				<div className="flex gap-2">
+					<Tooltip>
+						<TooltipTrigger asChild>
+							<Button
+								variant="secondary"
+								disabled={isTestNotificationsDisabled || isSending}
+								onClick={() => {
+									testAllNotifications({ monitorId: monitor?._id });
+								}}
+								className="whitespace-nowrap"
+							>
+								<Mail className="mr-2 h-4 w-4" />
+								{t("sendTestNotifications")}
+							</Button>
+						</TooltipTrigger>
+						<TooltipContent>
+							<p>{tooltipTitle}</p>
+						</TooltipContent>
+					</Tooltip>
 					<Button
-						variant="contained"
-						color="secondary"
-						loading={isPausing}
-						startIcon={
-							monitor?.isActive ? <PauseOutlinedIcon /> : <PlayArrowOutlinedIcon />
-						}
-						onClick={() => {
-							pauseMonitor({
-								monitorId: monitor?._id,
-								triggerUpdate,
-							});
+						variant="secondary"
+						onClick={(e) => {
+							navigate(`/incidents/${monitor?._id}`);
 						}}
 					>
-						{monitor?.isActive ? "Pause" : "Resume"}
+						{t("menu.incidents")}
 					</Button>
-				)}
-				{isAdmin && (
-					<Button
-						variant="contained"
-						color="secondary"
-						startIcon={<SettingsOutlinedIcon />}
-						onClick={() => navigate(`/${path}/configure/${monitor._id}`)}
-					>
-						Configure
-					</Button>
-				)}
-			</Stack>
-		</Stack>
+					{isAdmin && (
+						<Button
+							variant="secondary"
+							disabled={isPausing}
+							onClick={() => {
+								pauseMonitor({
+									monitorId: monitor?._id,
+									triggerUpdate,
+								});
+							}}
+						>
+							{monitor?.isActive ? (
+								<Pause className="mr-2 h-4 w-4" />
+							) : (
+								<Play className="mr-2 h-4 w-4" />
+							)}
+							{monitor?.isActive ? "Pause" : "Resume"}
+						</Button>
+					)}
+					{isAdmin && (
+						<Button
+							variant="secondary"
+							onClick={() => navigate(`/${path}/configure/${monitor._id}`)}
+						>
+							<Settings className="mr-2 h-4 w-4" />
+							Configure
+						</Button>
+					)}
+				</div>
+			</div>
+		</TooltipProvider>
 	);
 };
 

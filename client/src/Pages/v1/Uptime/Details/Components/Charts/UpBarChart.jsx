@@ -1,5 +1,5 @@
 import { memo, useState } from "react";
-import { useTheme } from "@mui/material";
+import { useTheme } from "@/Components/v3/ui";
 import { ResponsiveContainer, BarChart, XAxis, Bar, Cell } from "recharts";
 import PropTypes from "prop-types";
 import CustomLabels from "./CustomLabels.jsx";

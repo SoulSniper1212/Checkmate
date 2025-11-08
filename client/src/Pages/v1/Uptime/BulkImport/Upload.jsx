@@ -1,6 +1,6 @@
-import { useTheme } from "@emotion/react";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 import { useState, useRef } from "react";
-import { Button, Typography } from "@mui/material";
+import { Typography, Button } from "@/Components/v3/ui";
 import { useTranslation } from "react-i18next";
 import PropTypes from "prop-types";
 
@@ -43,21 +43,19 @@ const UploadFile = ({ onFileSelect }) => {
 			/>
 			<Typography
 				component="h2"
-				mb={theme.spacing(1.5)}
-				sx={{ wordBreak: "break-all" }}
+				className="mb-[var(--spacing-1_5)] break-all"
 			>
 				{file?.name || t("bulkImport.noFileSelected")}
 			</Typography>
 			<Typography
 				component="div"
-				mb={theme.spacing(1.5)}
-				color={theme.palette.error.main}
+				className="mb-[var(--spacing-1_5)] text-destructive"
 			>
 				{error}
 			</Typography>
 			<Button
-				variant="contained"
-				color="accent"
+				muiVariant="contained"
+				color="primary"
 				onClick={handleSelectFile}
 			>
 				{t("bulkImport.selectFile")}

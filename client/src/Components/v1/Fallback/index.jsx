@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
-import { useTheme } from "@emotion/react";
-import { Box, Stack } from "@mui/material";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
+import { Stack } from "@/Components/v3/ui";
+import { Box } from "@/Components/v3/ui";
 import "./index.css";
 import FallbackTitle from "./FallbackTitle.jsx";
 import FallbackCheckList from "./FallbackCheckList.jsx";

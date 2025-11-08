@@ -1,5 +1,6 @@
-import { Stack, Box, Typography } from "@mui/material";
-import { useTheme } from "@emotion/react";
+import { Stack, Typography } from "@/Components/v3/ui";
+import { Box } from "@/Components/v3/ui";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 import LegendBox from "@/Components/v1/Charts/LegendBox/index.jsx";
 import SpeedometerIcon from "../../../../../../assets/icons/speedometer-icon.svg?react";
 import PropTypes from "prop-types";

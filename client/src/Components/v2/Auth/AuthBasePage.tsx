@@ -1,13 +1,7 @@
-import Stack from "@mui/material/Stack";
-import Box from "@mui/material/Box";
-import { HeaderAuth } from "@/Components/v2/Auth";
+import { Stack, Box, Typography } from "@/Components/v3/ui";
 import Logo from "@/assets/icons/checkmate-icon.svg?react";
 
-import type { StackProps } from "@mui/material/Stack";
-import { useTheme } from "@mui/material/styles";
-import { Typography } from "@mui/material";
-
-interface AuthBasePageProps extends StackProps {
+interface AuthBasePageProps extends React.HTMLAttributes<HTMLDivElement> {
 	title?: string;
 	subtitle?: string;
 	children: React.ReactNode;
@@ -19,23 +13,18 @@ export const AuthBasePage: React.FC<AuthBasePageProps> = ({
 	subtitle,
 	...props
 }) => {
-	const theme = useTheme();
 	return (
 		<Stack
-			gap={theme.spacing(10)}
-			minHeight="100vh"
+			gap={10}
+			className="min-h-screen"
 			{...props}
 		>
-			<HeaderAuth />
 			<Stack
-				alignItems="center"
-				margin="auto"
-				width="100%"
-				gap={theme.spacing(4)}
+				className="items-center mx-auto w-full"
+				gap={4}
 			>
 				<Box
-					width={{ xs: 60, sm: 70, md: 80 }}
-					mb={theme.spacing(10)}
+					className="w-16 sm:w-20 md:w-24 mb-10"
 				>
 					<Logo style={{ width: "100%", height: "100%" }} />
 				</Box>

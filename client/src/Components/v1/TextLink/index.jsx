@@ -1,27 +1,21 @@
-import Typography from "@mui/material/Typography";
-import Stack from "@mui/material/Stack";
-import Link from "@mui/material/Link";
+import { Typography, Stack } from "@/Components/v3/ui";
 import PropTypes from "prop-types";
-import { useTheme } from "@emotion/react";
 import { Link as RouterLink } from "react-router-dom";
 
 const TextLink = ({ text, linkText, href, target = "_self" }) => {
-	const theme = useTheme();
-
 	return (
 		<Stack
 			direction="row"
-			gap={theme.spacing(4)}
+			gap="16px"
 		>
 			<Typography>{text}</Typography>
-			<Link
-				color="accent"
+			<RouterLink
 				to={href}
-				component={RouterLink}
 				target={target}
+				className="text-blue-600 hover:text-blue-800 underline"
 			>
 				{linkText}
-			</Link>
+			</RouterLink>
 		</Stack>
 	);
 };

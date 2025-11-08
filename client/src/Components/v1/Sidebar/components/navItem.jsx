@@ -1,84 +1,48 @@
-import Tooltip from "@mui/material/Tooltip";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import { useTheme } from "@emotion/react";
+import { Tooltip } from "@/Components/v3/ui";
+import { ListItemButton, ListItemIcon } from "@/Components/v3/ui";
+import { Box } from "@/Components/v3/ui";
+import { Typography } from "@/Components/v3/ui";
 import PropTypes from "prop-types";
 
 const NavItem = ({ item, collapsed, selected, onClick }) => {
-	const theme = useTheme();
 	const iconStroke = selected
-		? theme.palette.primary.contrastText
-		: theme.palette.primary.contrastTextTertiary;
+		? "var(--color-primary-contrast-text)"
+		: "var(--color-primary-contrast-text-tertiary)";
 
-	const buttonBgColor = selected ? theme.palette.secondary.main : "transparent";
+	const buttonBgColor = selected ? "var(--color-secondary-main)" : "transparent";
 	const buttonBgHoverColor = selected
-		? theme.palette.secondary.main
-		: theme.palette.tertiary.main;
+		? "var(--color-secondary-main)"
+		: "var(--color-tertiary-main)";
 	const fontWeight = selected ? 600 : 400;
 	return (
 		<Tooltip
 			placement="right"
 			title={collapsed ? item.name : ""}
-			slotProps={{
-				popper: {
-					modifiers: [
-						{
-							name: "offset",
-							options: {
-								offset: [0, -16],
-							},
-						},
-					],
-				},
-			}}
 			disableInteractive
 		>
 			<ListItemButton
-				sx={{
-					backgroundColor: buttonBgColor,
-					"&:hover": {
-						backgroundColor: buttonBgHoverColor,
-					},
-					height: 37,
-					gap: theme.spacing(4),
-					borderRadius: theme.shape.borderRadius,
-					px: theme.spacing(4),
-					pl: theme.spacing(5),
+				className="bg-[--button-bg-color] hover:bg-[--button-bg-hover-color] h-[37px] gap-[var(--spacing-4)] rounded-[var(--border-radius)] px-[var(--spacing-4)] pl-[var(--spacing-5)]"
+				style={{
+					'--button-bg-color': buttonBgColor,
+					'--button-bg-hover-color': buttonBgHoverColor
 				}}
 				onClick={onClick}
 			>
 				<ListItemIcon
-					sx={{
-						minWidth: 0,
-						"& svg": {
-							height: 20,
-							width: 20,
-							opacity: 0.81,
-						},
-						"& svg path": {
-							stroke: iconStroke,
-						},
-					}}
+					className="min-w-0 [&_svg]:h-[20px] [&_svg]:w-[20px] [&_svg]:opacity-[0.81] [&_svg_path]:stroke-[--icon-stroke]"
+					style={{ '--icon-stroke': iconStroke }}
 				>
 					{item.icon}
 				</ListItemIcon>
 				<Box
-					sx={{
-						overflow: "hidden",
-						transition: "opacity 900ms ease",
-						opacity: collapsed ? 0 : 1,
-						whiteSpace: "nowrap",
-					}}
+					className="overflow-hidden transition-opacity duration-900 ease-in-out [--collapsed-opacity:0] opacity-[var(--collapsed-opacity)] whitespace-nowrap"
+					style={{ '--collapsed-opacity': collapsed ? 0 : 1 }}
 				>
 					<Typography
 						variant="body1"
-						color={theme.palette.primary.contrastText}
-						sx={{
-							fontWeight: fontWeight,
-							opacity: 0.9,
-						}}
+						color="var(--color-primary-contrast-text)"
+						className="font-[--font-weight] opacity-[0.9]"
+						style={{ '--font-weight': fontWeight }}
 					>
 						{item.name}
 					</Typography>

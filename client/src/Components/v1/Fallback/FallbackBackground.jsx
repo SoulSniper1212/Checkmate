@@ -1,5 +1,5 @@
-import { useTheme } from "@emotion/react";
-import Box from "@mui/material/Box";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
+import { Box } from "@/Components/v3/ui";
 import Background from "../../../assets/Images/background-grid.svg?react";
 import OutputAnimation from "../../../assets/Animations/output.gif";
 import DarkmodeOutput from "../../../assets/Animations/darkmodeOutput.gif";
@@ -25,7 +25,7 @@ const FallbackBackground = () => {
 			<Box
 				className="background-pattern-svg"
 				sx={{
-					"& svg g g:last-of-type path": {
+					"& svg g g:last-of-type path svg g g:last-child path svg g g:last-child path": {
 						stroke: theme.palette.primary.lowContrast,
 					},
 				}}

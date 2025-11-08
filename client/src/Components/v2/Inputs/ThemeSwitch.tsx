@@ -1,12 +1,9 @@
-import { useTheme } from "@mui/material/styles";
 import { useDispatch, useSelector } from "react-redux";
 import { setMode } from "@/Features/UI/uiSlice.js";
 import { useTranslation } from "react-i18next";
-import IconButton from "@mui/material/IconButton";
+import { IconButton } from "@/Components/v3/ui";
 
 const SunAndMoonIcon = () => {
-	const theme = useTheme();
-
 	return (
 		<svg
 			className="sun-and-moon"
@@ -38,12 +35,12 @@ const SunAndMoonIcon = () => {
 				cx="12"
 				cy="12"
 				r="6"
-				fill={theme.palette.primary.contrastTextSecondary}
+				fill="currentColor"
 				mask="url(#moon-mask)"
 			/>
 			<g
 				className="sun-beams"
-				stroke={theme.palette.primary.contrastTextSecondary}
+				stroke="currentColor"
 			>
 				<line
 					x1="12"
@@ -117,16 +114,13 @@ export const ThemeSwitch = ({
 		<IconButton
 			id="theme-toggle"
 			title={t("common.buttons.toggleTheme")}
-			className={`theme-${mode}`}
+			className={`theme-${mode} flex items-center justify-center`}
 			aria-label="auto"
 			aria-live="polite"
 			onClick={handleChange}
-			sx={{
-				width,
-				height,
-				display: "flex",
-				alignItems: "center",
-				justifyContent: "center",
+			style={{
+				width: `${width}px`,
+				height: `${height}px`,
 			}}
 		>
 			<SunAndMoonIcon />

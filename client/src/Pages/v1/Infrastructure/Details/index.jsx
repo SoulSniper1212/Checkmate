@@ -1,5 +1,5 @@
 // Components
-import { Stack, Typography, Tab } from "@mui/material";
+import { Stack, Typography } from "@/Components/v3/ui";
 import Breadcrumbs from "@/Components/v1/Breadcrumbs/index.jsx";
 import MonitorDetailsControlHeader from "@/Components/v1/MonitorDetailsControlHeader/index.jsx";
 import MonitorTimeFrameHeader from "@/Components/v1/MonitorTimeFrameHeader/index.jsx";
@@ -8,11 +8,10 @@ import GaugeBoxes from "./Components/GaugeBoxes/index.jsx";
 import AreaChartBoxes from "./Components/AreaChartBoxes/index.jsx";
 import GenericFallback from "@/Components/v1/GenericFallback/index.jsx";
 import NetworkStats from "./Components/NetworkStats/index.jsx";
-import CustomTabList from "@/Components/v1/Tab/index.jsx";
-import TabContext from "@mui/lab/TabContext";
+import { TabContextProvider, TabList, Tab, TabPanel } from "@/Components/v3/ui";
 
 // Utils
-import { useTheme } from "@emotion/react";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 import { useIsAdmin } from "../../../../Hooks/v1/useIsAdmin.js";
 import { useFetchHardwareMonitorById } from "../../../../Hooks/v1/monitorHooks.js";
 import { useState } from "react";
@@ -89,8 +88,8 @@ const InfrastructureDetails = () => {
 				monitor={monitor}
 				triggerUpdate={triggerUpdate}
 			/>
-			<TabContext value={tab}>
-				<CustomTabList
+			<TabContextProvider value={tab}>
+				<TabList
 					value={tab}
 					onChange={(e, v) => setTab(v)}
 				>
@@ -102,8 +101,8 @@ const InfrastructureDetails = () => {
 						label={t("network")}
 						value="network"
 					/>
-				</CustomTabList>
-				{tab === "details" && (
+				</TabList>
+				<TabPanel value={tab} index="details">
 					<>
 						<StatusBoxes
 							shouldRender={!isLoading}
@@ -124,8 +123,8 @@ const InfrastructureDetails = () => {
 							dateRange={dateRange}
 						/>
 					</>
-				)}
-				{tab === "network" && (
+				</TabPanel>
+				<TabPanel value={tab} index="network">
 					<NetworkStats
 						net={monitor?.stats?.aggregateData?.latestCheck?.net || []}
 						isLoading={isLoading}
@@ -133,8 +132,8 @@ const InfrastructureDetails = () => {
 						dateRange={dateRange}
 						setDateRange={setDateRange}
 					/>
-				)}
-			</TabContext>
+				</TabPanel>
+			</TabContextProvider>
 		</Stack>
 	);
 };

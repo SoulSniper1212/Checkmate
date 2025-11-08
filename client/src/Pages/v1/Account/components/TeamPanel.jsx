@@ -1,6 +1,5 @@
-import { useTheme } from "@emotion/react";
-import TabPanel from "@mui/lab/TabPanel";
-import { Button, ButtonGroup, Stack, Typography } from "@mui/material";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
+import { Stack, Typography, Button, ButtonGroup } from "@/Components/v3/ui";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import TextInput from "@/Components/v1/Inputs/TextInput/index.jsx";

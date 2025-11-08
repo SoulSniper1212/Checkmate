@@ -1,9 +1,9 @@
-import { useTheme } from "@emotion/react";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 import PropTypes from "prop-types";
 import FilterHeader from "@/Components/v1/FilterHeader/index.jsx";
 import { useMemo } from "react";
-import { Box, Button } from "@mui/material";
-import ClearIcon from "@mui/icons-material/Clear";
+import { Button, Box } from "@/Components/v3/ui";
+import { X } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
 /**
@@ -68,7 +68,7 @@ const Filter = ({
 				color={theme.palette.primary.contrastText}
 				onClick={handleReset}
 				variant="contained"
-				endIcon={<ClearIcon />}
+				endIcon={<X />}
 				sx={{
 					visibility: isFilterActive ? "visible" : "hidden",
 				}}

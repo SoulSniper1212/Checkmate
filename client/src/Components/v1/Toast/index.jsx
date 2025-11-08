@@ -1,81 +1,80 @@
-import Stack from "@mui/material/Stack";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
+import { Stack, IconButton, Typography, Button } from "@/Components/v3/ui";
+import { Info, AlertCircle, AlertTriangle, X } from "lucide-react";
 import ToastBody from "./body.jsx";
-import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
-import ErrorOutlineOutlinedIcon from "@mui/icons-material/ErrorOutlineOutlined";
-import WarningAmberOutlinedIcon from "@mui/icons-material/WarningAmberOutlined";
-import CloseIcon from "@mui/icons-material/Close";
-
-// Utils
-import { useTheme } from "@emotion/react";
 import PropTypes from "prop-types";
+import { cn } from "@/lib/utils";
 
 const icons = {
-	info: <InfoOutlinedIcon />,
-	error: <ErrorOutlineOutlinedIcon />,
-	warning: <WarningAmberOutlinedIcon />,
+	info: <Info className="h-5 w-5" />,
+	error: <AlertCircle className="h-5 w-5" />,
+	warning: <AlertTriangle className="h-5 w-5" />,
 };
 
-const Toast = ({ variant, title, body, onClick, hasDismiss, hasIcon }) => {
-	const theme = useTheme();
+const variantStyles = {
+	info: "bg-blue-50 border-blue-200 text-blue-800",
+	error: "bg-red-50 border-red-200 text-red-800",
+	warning: "bg-yellow-50 border-yellow-200 text-yellow-800",
+};
+
+const Toast = ({ variant, title, body, onClick, hasDismiss, hasIcon, className }) => {
 	const icon = icons[variant];
 
 	return (
 		<Stack
-			gap={theme.spacing(2)}
-			paddingTop={theme.spacing(4)}
-			paddingRight={theme.spacing(8)}
-			paddingBottom={theme.spacing(4)}
-			paddingLeft={theme.spacing(8)}
-			backgroundColor={theme.palette.alert.main}
-			border={`solid 1px ${theme.palette.alert.contrastText}`}
-			borderRadius={theme.shape.borderRadius}
+			className={cn(
+				"gap-2 p-4 border rounded-lg",
+				variantStyles[variant] || variantStyles.info,
+				className
+			)}
 		>
 			<Stack
 				direction="row"
-				gap={theme.spacing(8)}
+				gap="4"
 				justifyContent="space-between"
 				alignItems="center"
 			>
 				{hasIcon && icon}
 				{title && (
 					<Typography
-						fontWeight="700"
-						color={theme.palette.secondary.contrastText}
+						className="font-semibold"
 					>
 						{title}
 					</Typography>
 				)}
 				{title && (
-					<IconButton onClick={onClick}>
-						<CloseIcon />
+					<IconButton
+						variant="ghost"
+						size="sm"
+						onClick={onClick}
+						className="h-6 w-6"
+					>
+						<X className="h-4 w-4" />
 					</IconButton>
 				)}
 			</Stack>
 
 			<Stack
 				direction="row"
-				gap={theme.spacing(2)}
+				gap="2"
 				alignItems="center"
 			>
 				<ToastBody body={body} />
 				{!title && (
-					<IconButton onClick={onClick}>
-						<CloseIcon />
+					<IconButton
+						variant="ghost"
+						size="sm"
+						onClick={onClick}
+						className="h-6 w-6"
+					>
+						<X className="h-4 w-4" />
 					</IconButton>
 				)}
 			</Stack>
 			{hasDismiss && (
 				<Button
-					variant="text"
-					color="info"
+					variant="ghost"
 					onClick={onClick}
-					sx={{
-						fontWeight: "600",
-						width: "fit-content",
-					}}
+					className="font-semibold w-fit justify-start p-0 h-auto"
 				>
 					Dismiss
 				</Button>

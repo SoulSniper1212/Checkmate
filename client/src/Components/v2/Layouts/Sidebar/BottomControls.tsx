@@ -1,16 +1,11 @@
-import { useTheme } from "@mui/material/styles";
-
-import Stack from "@mui/material/Stack";
+import { Stack } from "@/Components/v3/ui";
 
 export const BottomControls = ({}) => {
-	const theme = useTheme();
 	return (
 		<Stack
 			direction="row"
 			height={50}
-			py={theme.spacing(4)}
-			px={theme.spacing(8)}
-			gap={theme.spacing(2)}
+			className="py-4 px-8 gap-2"
 		></Stack>
 	);
 };

@@ -1,16 +1,14 @@
 // Components
-import { Box, Stack, Typography } from "@mui/material";
-import CloudUploadIcon from "@mui/icons-material/CloudUpload";
+import { Box, Stack, Typography } from "@/Components/v3/ui";
+import { IconButton } from "@/Components/v3/ui";
+import { TextField } from "@/Components/v3/ui";
+import { CloudUpload, Image as ImageIcon } from "lucide-react";
 import Image from "../../Image/index.jsx";
-import TextField from "@mui/material/TextField";
-import IconButton from "@mui/material/IconButton";
 import ProgressUpload from "../../ProgressBars/index.jsx";
-import ImageIcon from "@mui/icons-material/Image";
 
 // Utils
 import PropTypes from "prop-types";
 import { useCallback, useState, useRef, useEffect } from "react";
-import { useTheme } from "@emotion/react";
 import { useTranslation } from "react-i18next";
 
 /**
@@ -35,7 +33,6 @@ const ImageUpload = ({
 	accept = ["jpg", "jpeg", "png"],
 	error,
 }) => {
-	const theme = useTheme();
 	const { t } = useTranslation();
 	const [uploadComplete, setUploadComplete] = useState(false);
 	const [completedFile, setCompletedFile] = useState(null);
@@ -110,40 +107,27 @@ const ImageUpload = ({
 						src={src}
 						width="250px"
 						height="250px"
-						sx={{ ...roundStyle }}
+						style={{ ...roundStyle }}
 					/>
 				</Stack>
 			) : (
 				<>
 					<Box
-						className="image-field-wrapper"
-						mt={theme.spacing(8)}
+						className="image-field-wrapper mt-8 relative h-fit border-2 border-dashed rounded-md transition-all duration-200 hover:border-blue-500 hover:bg-blue-500/5"
+						style={{
+							borderColor: isDragging ? "#3b82f6" : "#e2e8f0",
+							backgroundColor: isDragging ? "rgba(59, 130, 246, 0.05)" : "transparent",
+						}}
 						onDragEnter={() => setIsDragging(true)}
 						onDragLeave={() => setIsDragging(false)}
 						onDrop={() => setIsDragging(false)}
-						sx={{
-							position: "relative",
-							height: "fit-content",
-							border: "dashed",
-							borderRadius: theme.shape.borderRadius,
-							borderColor: isDragging
-								? theme.palette.primary.main
-								: theme.palette.primary.lowContrast,
-							backgroundColor: isDragging ? "hsl(215, 87%, 51%, 0.05)" : "transparent",
-							borderWidth: "2px",
-							transition: "0.2s",
-							"&:hover": {
-								borderColor: theme.palette.primary.main,
-								backgroundColor: "hsl(215, 87%, 51%, 0.05)",
-							},
-						}}
 					>
 						<TextField
 							type="file"
 							onChange={(e) => handleImageChange(e?.target?.files?.[0])}
-							sx={{
-								width: "100%",
-								"& .MuiInputBase-input[type='file']": {
+							className="w-full"
+							style={{
+								"& input[type='file']": {
 									opacity: 0,
 									cursor: "pointer",
 									maxWidth: "500px",
@@ -159,34 +143,22 @@ const ImageUpload = ({
 						<Stack
 							alignItems="center"
 							gap="4px"
-							sx={{
-								position: "absolute",
-								top: "50%",
-								left: "50%",
-								transform: "translate(-50%, -50%)",
-								zIndex: 0,
-								width: "100%",
-							}}
+							className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-0 w-full"
 						>
 							<IconButton
-								sx={{
-									pointerEvents: "none",
-									borderRadius: theme.shape.borderRadius,
-									border: `solid ${theme.shape.borderThick}px ${theme.palette.primary.lowContrast}`,
-									boxShadow: theme.shape.boxShadow,
-								}}
+								className="pointer-events-none rounded-md border border-slate-200 shadow-sm"
+								disabled
 							>
-								<CloudUploadIcon />
+								<CloudUpload />
 							</IconButton>
 							<Typography
 								component="h2"
-								color={theme.palette.primary.contrastTextTertiary}
+								className="text-slate-500"
 							>
 								<Typography
 									component="span"
 									fontSize="inherit"
-									color="info"
-									fontWeight={500}
+									className="text-blue-500 font-medium"
 								>
 									{t("ClickUpload")}
 								</Typography>{" "}
@@ -194,8 +166,7 @@ const ImageUpload = ({
 							</Typography>
 							<Typography
 								component="p"
-								color={theme.palette.primary.contrastTextTertiary}
-								sx={{ opacity: 0.6 }}
+								className="text-slate-500 opacity-60"
 							>
 								({t("MaxSize")}: {Math.round(maxSize / 1024 / 1024)}MB)
 							</Typography>
@@ -219,8 +190,7 @@ const ImageUpload = ({
 					)}
 					<Typography
 						component="p"
-						color={theme.palette.primary.contrastTextTertiary}
-						sx={{ opacity: 0.6 }}
+						className="text-slate-500 opacity-60"
 					>
 						{t("SupportedFormats")}: {accept.join(", ").toUpperCase()}
 					</Typography>

@@ -1,11 +1,9 @@
 // Components
-import { Stack } from "@mui/material";
+import { Stack } from "@/Components/v3/ui";
 import SkeletonLayout from "./skeleton.jsx";
 // Utils
-import { useTheme } from "@mui/material/styles";
 import PropTypes from "prop-types";
 const StatusBoxes = ({ shouldRender = true, flexWrap = "nowrap", children }) => {
-	const theme = useTheme();
 	if (!shouldRender) {
 		return (
 			<SkeletonLayout
@@ -19,7 +17,7 @@ const StatusBoxes = ({ shouldRender = true, flexWrap = "nowrap", children }) => 
 		<Stack
 			direction="row"
 			flexWrap={flexWrap}
-			gap={theme.spacing(8)}
+			gap="32px"
 			justifyContent="flex-start"
 			display="flex"
 		>

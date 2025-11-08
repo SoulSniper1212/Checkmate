@@ -1,21 +1,11 @@
-import Box from "@mui/material/Box";
-import { useTheme } from "@mui/material/styles";
-import type { SxProps } from "@mui/material/styles";
+import { Box } from "@/Components/v3/ui";
 
-type BaseBoxProps = React.PropsWithChildren<{ sx?: SxProps }>;
+type BaseBoxProps = React.PropsWithChildren<{ className?: string }>;
 
-export const BaseBox: React.FC<BaseBoxProps> = ({ children, sx }) => {
-	const theme = useTheme();
+export const BaseBox: React.FC<BaseBoxProps> = ({ children, className }) => {
 	return (
 		<Box
-			sx={{
-				backgroundColor: theme.palette.primary.main,
-				border: 1,
-				borderStyle: "solid",
-				borderColor: theme.palette.primary.lowContrast,
-				borderRadius: theme.shape.borderRadius,
-				...sx,
-			}}
+			className={`bg-background border border-border rounded-lg ${className || ""}`}
 		>
 			{children}
 		</Box>

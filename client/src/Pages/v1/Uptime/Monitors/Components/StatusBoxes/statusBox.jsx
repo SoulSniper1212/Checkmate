@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
-import { useTheme } from "@emotion/react";
-import { Box, Stack, Typography } from "@mui/material";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
+import { Stack, Typography } from "@/Components/v3/ui";
+import { Box } from "@/Components/v3/ui";
 import Arrow from "../../../../../../assets/icons/top-right-arrow.svg?react";
 import Background from "../../../../../../assets/Images/background-grid.svg?react";
 import ClockSnooze from "../../../../../../assets/icons/clock-snooze.svg?react";

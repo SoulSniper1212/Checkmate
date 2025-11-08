@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Box } from "@mui/material";
-import { useTheme } from "@emotion/react";
+import { Box } from "@/Components/v3/ui";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 
 /**
  * TabPanel component that displays content for the selected tab.

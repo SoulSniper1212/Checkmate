@@ -2,7 +2,7 @@ import { useEffect, useState, useCallback } from "react";
 import { networkService } from "../../../../../main.jsx";
 import { useSelector } from "react-redux";
 import { createToast } from "../../../../../Utils/toastUtils.jsx";
-import { useTheme } from "@emotion/react";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 import { useMonitorUtils } from "../../../../../Hooks/v1/useMonitorUtils.js";
 
 const useStatusPageFetch = (isCreate = false, url) => {

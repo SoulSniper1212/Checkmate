@@ -1,9 +1,9 @@
 import Background from "../../../../assets/Images/background-grid.svg?react";
-import Stack from "@mui/material/Stack";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
+import { Stack } from "@/Components/v3/ui";
+import { Box } from "@/Components/v3/ui";
+import { Typography } from "@/Components/v3/ui";
 import AuthHeader from "./AuthHeader.jsx";
-import { useTheme } from "@mui/material/styles";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 import Logo from "../../../../assets/icons/checkmate-icon.svg?react";
 import PropTypes from "prop-types";
 
@@ -27,7 +27,7 @@ const AuthPageWrapper = ({ children, heading, welcome }) => {
 					zIndex: 0,
 					width: "100%",
 					height: "100%",
-					"& svg g g:last-of-type path": {
+					"& svg g g:lastChild path": {
 						stroke: theme.palette.primary.lowContrast,
 					},
 				}}
@@ -43,7 +43,7 @@ const AuthPageWrapper = ({ children, heading, welcome }) => {
 					zIndex: 0,
 					width: "100%",
 					height: "100%",
-					"& svg g g:last-of-type path": {
+					"& svg g g:lastChild path": {
 						stroke: theme.palette.primary.lowContrast,
 					},
 				}}

@@ -1,12 +1,10 @@
 // Components
-import { TabContext } from "@mui/lab";
-import { Tab } from "@mui/material";
+import { TabContextProvider, TabList, Tab, TabPanel } from "@/Components/v3/ui";
 import Settings from "./Settings.jsx";
 import Content from "./Content.jsx";
 
 // Utils
 import PropTypes from "prop-types";
-import CustomTabList from "@/Components/v1/Tab/index.jsx";
 
 const Tabs = ({
 	isCreate,
@@ -29,8 +27,8 @@ const Tabs = ({
 	isLoading,
 }) => {
 	return (
-		<TabContext value={TAB_LIST[tab]}>
-			<CustomTabList
+		<TabContextProvider value={TAB_LIST[tab]}>
+			<TabList
 				onChange={(_, selected) => {
 					setTab(TAB_LIST.indexOf(selected));
 				}}
@@ -43,8 +41,8 @@ const Tabs = ({
 						value={tabLabel}
 					/>
 				))}
-			</CustomTabList>
-			{tab === 0 ? (
+			</TabList>
+			<TabPanel value={TAB_LIST[tab]} index={TAB_LIST[0]}>
 				<Settings
 					tabValue={TAB_LIST[0]}
 					form={form}
@@ -60,7 +58,8 @@ const Tabs = ({
 					isDeleting={isDeleting}
 					isLoading={isLoading}
 				/>
-			) : (
+			</TabPanel>
+			<TabPanel value={TAB_LIST[tab]} index={TAB_LIST[1]}>
 				<Content
 					tabValue={TAB_LIST[1]}
 					form={form}
@@ -70,8 +69,8 @@ const Tabs = ({
 					selectedMonitors={selectedMonitors}
 					setSelectedMonitors={setSelectedMonitors}
 				/>
-			)}
-		</TabContext>
+			</TabPanel>
+		</TabContextProvider>
 	);
 };
 

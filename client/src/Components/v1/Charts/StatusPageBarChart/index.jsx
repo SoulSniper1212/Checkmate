@@ -1,5 +1,4 @@
-import { useTheme } from "@emotion/react";
-import { Box, Stack, Tooltip, Typography } from "@mui/material";
+import { Box, Stack, Tooltip, Typography } from "@/Components/v3/ui";
 import { formatDateWithTz } from "../../../../Utils/timeUtils.js";
 import { useEffect, useState, forwardRef } from "react";
 import { useSelector } from "react-redux";
@@ -19,8 +18,6 @@ import PropTypes from "prop-types";
 
 const Bar = forwardRef(
 	({ width, height, backgroundColor, borderRadius, children, ...otherProps }, ref) => {
-		const theme = useTheme();
-
 		return (
 			<Box
 				ref={ref}
@@ -28,8 +25,8 @@ const Bar = forwardRef(
 				width={width}
 				height={height}
 				backgroundColor={backgroundColor}
-				sx={{
-					borderRadius: borderRadius || theme.spacing(1.5),
+				style={{
+					borderRadius: borderRadius || "6px",
 				}}
 				{...otherProps}
 			>
@@ -51,7 +48,6 @@ Bar.propTypes = {
 
 /* TODO add prop validation and jsdocs */
 const StatusPageBarChart = ({ checks = [] }) => {
-	const theme = useTheme();
 	const [animate, setAnimate] = useState(false);
 	const uiTimezone = useSelector((state) => state.ui.timezone);
 

@@ -7,10 +7,10 @@
  */
 
 // Components
-import { Box } from "@mui/material";
+import { Box } from "@/Components/v3/ui";
 
 // Utils
-import { useTheme } from "@emotion/react";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 import { useHardwareUtils } from "../../Hooks/useHardwareUtils.jsx";
 import PropTypes from "prop-types";
 

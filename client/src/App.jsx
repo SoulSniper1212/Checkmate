@@ -2,10 +2,7 @@ import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
-import { ThemeProvider } from "@emotion/react";
-import lightTheme from "./Utils/Theme/lightTheme";
-import darkTheme from "./Utils/Theme/darkTheme";
-import { CssBaseline, GlobalStyles } from "@mui/material";
+import { ThemeProvider } from "@/Utils/Theme/globalTheme.jsx";
 import { logger } from "./Utils/Logger"; // Import the logger
 import { networkService } from "./main";
 import { Routes } from "./Routes";
@@ -23,8 +20,7 @@ function App() {
 	}, []);
 
 	return (
-		<ThemeProvider theme={mode === "light" ? lightTheme : darkTheme}>
-			<CssBaseline />
+		<ThemeProvider>
 			<AppLayout>
 				<Routes />
 			</AppLayout>

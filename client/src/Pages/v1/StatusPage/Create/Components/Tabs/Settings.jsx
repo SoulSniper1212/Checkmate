@@ -1,7 +1,11 @@
 // Components
-import { Stack, Typography } from "@mui/material";
-import { TabPanel } from "@mui/lab";
+import { Stack, Typography } from "@/Components/v3/ui";
 import ConfigBox from "@/Components/v1/ConfigBox/index.jsx";
+
+// Simple TabPanel component to replace @mui/lab
+const TabPanel = ({ children, value, index }) => {
+	return value === index ? <div>{children}</div> : null;
+};
 import Checkbox from "@/Components/v1/Inputs/Checkbox/index.jsx";
 import TextInput from "@/Components/v1/Inputs/TextInput/index.jsx";
 import Search from "@/Components/v1/Inputs/Search/index.jsx";
@@ -10,7 +14,7 @@ import ColorPicker from "@/Components/v1/Inputs/ColorPicker/index.jsx";
 import Progress from "../Progress/index.jsx";
 
 // Utils
-import { useTheme } from "@emotion/react";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 import timezones from "../../../../../../Utils/timezones.json";
 import PropTypes from "prop-types";
 import { useTranslation } from "react-i18next";
@@ -51,7 +55,7 @@ const TabSettings = ({
 
 	return (
 		<TabPanel value={tabValue}>
-			<Stack gap={theme.spacing(10)}>
+			<Stack gap="2.5rem">
 				<ConfigBox>
 					<Stack>
 						<Typography
@@ -62,7 +66,7 @@ const TabSettings = ({
 						</Typography>
 						<Typography component="p">{t("statusPageCreateSettings")}</Typography>
 					</Stack>
-					<Stack gap={theme.spacing(18)}>
+					<Stack gap="4.5rem">
 						<Checkbox
 							id="publish"
 							name="isPublished"
@@ -73,7 +77,7 @@ const TabSettings = ({
 					</Stack>
 				</ConfigBox>
 				<ConfigBox>
-					<Stack gap={theme.spacing(6)}>
+					<Stack gap="1.5rem">
 						<Typography
 							component="h2"
 							variant="h2"
@@ -84,7 +88,7 @@ const TabSettings = ({
 							{t("statusPageCreateBasicInfoDescription")}
 						</Typography>
 					</Stack>
-					<Stack gap={theme.spacing(18)}>
+					<Stack gap="4.5rem">
 						<TextInput
 							id="companyName"
 							name="companyName"
@@ -109,7 +113,7 @@ const TabSettings = ({
 					</Stack>
 				</ConfigBox>
 				<ConfigBox>
-					<Stack gap={theme.spacing(6)}>
+					<Stack gap="1.5rem">
 						<Typography
 							component="h2"
 							variant="h2"
@@ -120,7 +124,7 @@ const TabSettings = ({
 							{t("statusPageCreateSelectTimeZoneDescription")}
 						</Typography>
 					</Stack>
-					<Stack gap={theme.spacing(6)}>
+					<Stack gap="1.5rem">
 						<Search
 							id="timezone"
 							label={t("settingsDisplayTimezone")}
@@ -136,7 +140,7 @@ const TabSettings = ({
 					</Stack>
 				</ConfigBox>
 				<ConfigBox>
-					<Stack gap={theme.spacing(6)}>
+					<Stack gap="1.5rem">
 						<Typography
 							component="h2"
 							variant="h2"
@@ -147,7 +151,7 @@ const TabSettings = ({
 							{t("statusPageCreateAppearanceDescription")}
 						</Typography>
 					</Stack>
-					<Stack gap={theme.spacing(6)}>
+					<Stack gap="1.5rem">
 						<ImageUpload
 							src={form?.logo?.src}
 							onChange={handleImageChange}

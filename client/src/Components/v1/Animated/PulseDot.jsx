@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { Box, Stack, useTheme } from "@mui/material";
+import { Box, Stack, useTheme } from "@/Components/v3/ui";
 // import useUtils from "../../Pages/Uptime/utils";
 
 /**

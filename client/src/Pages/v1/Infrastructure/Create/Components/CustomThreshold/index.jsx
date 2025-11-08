@@ -1,7 +1,7 @@
-import { Box, Stack, Typography } from "@mui/material";
+import { Box, Stack, Typography } from "@/Components/v3/ui";
 import TextInput from "@/Components/v1/Inputs/TextInput/index.jsx";
 import Checkbox from "@/Components/v1/Inputs/Checkbox/index.jsx";
-import { useTheme } from "@emotion/react";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 import PropTypes from "prop-types";
 
 /**
@@ -62,14 +62,10 @@ export const CustomThreshold = ({
 	const theme = useTheme();
 	return (
 		<Stack
-			direction={{ sm: "column", md: "row" }}
-			spacing={theme.spacing(2)}
+			className="flex-col md:flex-row gap-[var(--spacing-2)]"
 		>
 			<Box
-				sx={{
-					width: { md: "45%", lg: "25%", xl: "20%" },
-				}}
-				justifyContent="flex-start"
+				className="w-[45%] md:w-[25%] xl:w-[20%] justify-start"
 			>
 				<Checkbox
 					id={checkboxId}
@@ -80,12 +76,7 @@ export const CustomThreshold = ({
 				/>
 			</Box>
 			<Stack
-				direction={"row"}
-				sx={{
-					justifyContent: "flex-start",
-				}}
-				alignItems="center"
-				spacing={theme.spacing(4)}
+				className="flex-row justify-start items-center gap-[var(--spacing-4)]"
 			>
 				<TextInput
 					maxWidth="var(--env-var-width-4)"
@@ -101,7 +92,7 @@ export const CustomThreshold = ({
 
 				<Typography
 					component="p"
-					m={theme.spacing(3)}
+					className="m-[var(--spacing-3)]"
 				>
 					{alertUnit}
 				</Typography>

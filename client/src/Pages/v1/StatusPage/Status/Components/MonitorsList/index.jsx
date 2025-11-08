@@ -1,11 +1,12 @@
 // Components
-import { Stack, Box } from "@mui/material";
+import { Stack } from "@/Components/v3/ui";
+import { Box } from "@/Components/v3/ui";
 import Host from "@/Components/v1/Host/index.jsx";
 import StatusPageBarChart from "@/Components/v1/Charts/StatusPageBarChart/index.jsx";
 import { StatusLabel } from "@/Components/v1/Label/index.jsx";
 
 //Utils
-import { useTheme } from "@mui/material/styles";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 import { useMonitorUtils } from "../../../../../../Hooks/v1/useMonitorUtils.js";
 import PropTypes from "prop-types";
 

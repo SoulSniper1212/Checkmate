@@ -1,5 +1,4 @@
-import { Stack, Typography } from "@mui/material";
-import { useTheme } from "@emotion/react";
+import { Stack, Typography } from "@/Components/v3/ui";
 import IconBox from "../../IconBox/index.jsx";
 import EmptyView from "./EmptyView.jsx";
 import PropTypes from "prop-types";
@@ -16,7 +15,6 @@ const ChartBox = ({
 	noDataMessage,
 	isEmpty = false,
 }) => {
-	const theme = useTheme();
 	if (isEmpty) {
 		return (
 			<EmptyView
@@ -30,57 +28,49 @@ const ChartBox = ({
 		<Stack
 			flex={1}
 			direction="row"
-			sx={{
-				backgroundColor: theme.palette.primary.main,
-
-				border: 1,
-				borderStyle: "solid",
-				borderColor: theme.palette.primary.lowContrast,
-				borderRadius: 2,
-				borderTopRightRadius: borderRadiusRight,
-				borderBottomRightRadius: borderRadiusRight,
-			}}
+			className="bg-slate-900 border border-slate-700 rounded-t-sm rounded-r-sm"
 		>
 			<Stack
 				flex={1}
-				sx={{
-					padding: theme.spacing(8),
-					justifyContent,
-					gap: theme.spacing(8),
+				className="p-8 justify-between gap-8"
+				style={{
 					height,
 					minWidth: 250,
-					"& h2": {
-						color: theme.palette.primary.contrastTextSecondary,
-						fontSize: 15,
-						fontWeight: 500,
-					},
-					"& .MuiBox-root:not(.area-tooltip) p": {
-						color: theme.palette.primary.contrastTextTertiary,
-						fontSize: 13,
-					},
-					"& .MuiBox-root > span": {
-						color: theme.palette.primary.contrastText,
-						fontSize: 20,
-						"& span": {
-							opacity: 0.8,
-							marginLeft: 2,
-							fontSize: 15,
-						},
-					},
-
-					"& tspan, & text": {
-						fill: theme.palette.primary.contrastTextTertiary,
-					},
-					"& path": {
-						transition: "fill 300ms ease, stroke-width 400ms ease",
-					},
 				}}
 			>
+				<style jsx>{`
+					:global(.chart-box h2) {
+						color: #94a3b8;
+						font-size: 15px;
+						font-weight: 500;
+					}
+					:global(.chart-box :not(.area-tooltip) p) {
+						color: #64748b;
+						font-size: 13px;
+					}
+					:global(.chart-box > span) {
+						color: #f1f5f9;
+						font-size: 20px;
+					}
+					:global(.chart-box > span span) {
+						opacity: 0.8;
+						margin-left: 2px;
+						font-size: 15px;
+					}
+					:global(.chart-box tspan),
+					:global(.chart-box text) {
+						fill: #64748b;
+					}
+					:global(.chart-box path) {
+						transition: fill 300ms ease, stroke-width 400ms ease;
+					}
+				`}</style>
 				<Stack
 					alignSelf="flex-start"
 					direction="row"
 					alignItems="center"
-					gap={theme.spacing(6)}
+					gap="24px"
+					className="chart-box"
 				>
 					{icon && <IconBox>{icon}</IconBox>}
 					{header && <Typography component="h2">{header}</Typography>}

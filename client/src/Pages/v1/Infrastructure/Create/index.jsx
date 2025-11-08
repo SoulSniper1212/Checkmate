@@ -5,7 +5,7 @@ import FieldWrapper from "@/Components/v1/Inputs/FieldWrapper/index.jsx";
 import Link from "@/Components/v1/Link/index.jsx";
 import Select from "@/Components/v1/Inputs/Select/index.jsx";
 import TextInput from "@/Components/v1/Inputs/TextInput/index.jsx";
-import { Box, Stack, Typography, Button, ButtonGroup } from "@mui/material";
+import { Stack, Typography, Button, ButtonGroup, Box } from "@/Components/v3/ui";
 import { HttpAdornment } from "@/Components/v1/Inputs/TextInput/Adornments/index.jsx";
 import MonitorStatusHeader from "./Components/MonitorStatusHeader.jsx";
 import MonitorActionButtons from "./Components/MonitorActionButtons.jsx";
@@ -15,7 +15,7 @@ import NotificationsConfig from "@/Components/v1/NotificationConfig/index.jsx";
 import { useGetNotificationsByTeamId } from "../../../../Hooks/v1/useNotifications.js";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { useTheme } from "@emotion/react";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 import { useTranslation } from "react-i18next";
 import {
 	useDeleteMonitor,

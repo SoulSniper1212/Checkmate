@@ -1,9 +1,9 @@
 import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
-import { useTheme } from "@mui/material";
+import { useTheme } from "@/Components/v3/ui";
 import { Text } from "recharts";
 import { formatDateWithTz } from "../../../../Utils/timeUtils.js";
-import { Box, Stack, Typography } from "@mui/material";
+import { Box, Stack, Typography } from "@/Components/v3/ui";
 import { tickDateFormatLookup, tooltipDateFormatLookup } from "./chartUtilFunctions.js";
 /**
  * Custom tick component for rendering time with timezone.

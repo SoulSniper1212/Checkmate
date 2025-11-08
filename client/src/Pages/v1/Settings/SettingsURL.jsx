@@ -1,11 +1,9 @@
-import Box from "@mui/material/Box";
-import Stack from "@mui/material/Stack";
-import Typography from "@mui/material/Typography";
+import { Box, Stack, Typography } from "@/Components/v3/ui";
 import ConfigBox from "@/Components/v1/ConfigBox/index.jsx";
 import Select from "@/Components/v1/Inputs/Select/index.jsx";
 
 // Utils
-import { useTheme } from "@emotion/react";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 import { PropTypes } from "prop-types";
 import { useTranslation } from "react-i18next";
 
@@ -25,7 +23,7 @@ const SettingsURL = ({ HEADING_SX, handleChange, showURL = false }) => {
 					{t("settingsPage.urlSettings.description")}
 				</Typography>
 			</Box>
-			<Stack gap={theme.spacing(20)}>
+			<Stack className="gap-[var(--spacing-20)]">
 				<Select
 					name="showURL"
 					label={t("settingsPage.urlSettings.label")}

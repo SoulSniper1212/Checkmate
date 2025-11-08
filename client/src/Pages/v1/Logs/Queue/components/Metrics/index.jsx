@@ -1,8 +1,8 @@
-import Stack from "@mui/material/Stack";
+import { Stack } from "@/Components/v3/ui";
 import StatBox from "@/Components/v1/StatBox/index.jsx";
 import StatusBoxes from "@/Components/v1/StatusBoxes/index.jsx";
 import { useTranslation } from "react-i18next";
-import { useTheme } from "@emotion/react";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 
 const camelToTitle = (str) => {
 	return str

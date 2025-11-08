@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { useTheme } from "@mui/material";
+import { useTheme } from "@/Components/v3/ui";
 import { ResponsiveContainer, RadialBarChart, RadialBar, Cell } from "recharts";
 import { useTranslation } from "react-i18next";
 

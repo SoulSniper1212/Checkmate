@@ -1,20 +1,17 @@
-import Stack from "@mui/material/Stack";
+import { Stack, RadioGroup, FormControl, Typography } from "@/Components/v3/ui";
 import { TextInput } from "@/Components/v2/Inputs/TextInput";
 import { AutoCompleteInput } from "@/Components/v2/Inputs/AutoComplete";
 import { ConfigBox, BasePage } from "@/Components/v2/DesignElements";
-import RadioGroup from "@mui/material/RadioGroup";
-import FormControl from "@mui/material/FormControl";
 import { RadioWithDescription } from "@/Components/v2/Inputs/RadioInput";
 import { Button } from "@/Components/v2/Inputs";
-import DeleteOutlineRoundedIcon from "@mui/icons-material/DeleteOutlineRounded";
-import { Typography } from "@mui/material";
+import { Trash2 } from "lucide-react";
 import humanInterval from "human-interval";
 
 import { useTranslation } from "react-i18next";
 import { useForm, Controller, useWatch } from "react-hook-form";
 import { z } from "zod";
 import { monitorSchema } from "@/Validation/v2/zod";
-import { useTheme } from "@mui/material/styles";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useGet, usePost } from "@/Hooks/v2/UseApi";
 import type { ApiResponse } from "@/Hooks/v2/UseApi";
@@ -81,7 +78,7 @@ const UptimeCreatePage = () => {
 								<FormControl error={!!errors.type}>
 									<RadioGroup
 										{...field}
-										sx={{ gap: theme.spacing(6) }}
+										className="gap-6"
 									>
 										<RadioWithDescription
 											value="http"
@@ -109,7 +106,7 @@ const UptimeCreatePage = () => {
 					title={t("settingsGeneralSettings")}
 					subtitle={t(`uptimeGeneralInstructions.${selectedType}`)}
 					rightContent={
-						<Stack gap={theme.spacing(8)}>
+						<div className="flex flex-col gap-8">
 							<Controller
 								name="url"
 								control={control}
@@ -138,7 +135,7 @@ const UptimeCreatePage = () => {
 									/>
 								)}
 							/>
-						</Stack>
+						</div>
 					}
 				/>
 				<ConfigBox
@@ -169,7 +166,7 @@ const UptimeCreatePage = () => {
 					title={t("notificationConfig.title")}
 					subtitle={t("notificationConfig.description")}
 					rightContent={
-						<Stack>
+						<div className="flex flex-col">
 							<Controller
 								name="notificationChannels"
 								control={control}
@@ -188,9 +185,8 @@ const UptimeCreatePage = () => {
 									/>
 								)}
 							/>
-							<Stack
-								gap={theme.spacing(2)}
-								mt={theme.spacing(2)}
+							<div
+								className="flex flex-col gap-2 mt-2"
 							>
 								{notificationChannels.map((notificationId) => {
 									const option = notificationOptions.find(
@@ -198,27 +194,25 @@ const UptimeCreatePage = () => {
 									);
 									if (!option) return null;
 									return (
-										<Stack
-											width={"100%"}
-											justifyContent={"space-between"}
-											direction="row"
+										<div
+											className="flex justify-between items-center w-full"
 											key={notificationId}
 										>
 											<Typography>{option.name}</Typography>
-											<DeleteOutlineRoundedIcon
+											<Trash2
 												onClick={() => {
 													const updated = notificationChannels.filter(
 														(id) => id !== notificationId
 													);
 													setValue("notificationChannels", updated);
 												}}
-												sx={{ cursor: "pointer" }}
+												className="cursor-pointer"
 											/>
-										</Stack>
+										</div>
 									);
 								})}
-							</Stack>
-						</Stack>
+							</div>
+						</div>
 					}
 				/>
 				<ConfigBox
@@ -241,9 +235,8 @@ const UptimeCreatePage = () => {
 						/>
 					}
 				/>
-				<Stack
-					direction="row"
-					justifyContent="flex-end"
+				<div
+					className="flex justify-end"
 				>
 					<Button
 						loading={loading}
@@ -253,7 +246,7 @@ const UptimeCreatePage = () => {
 					>
 						{t("settingsSave")}
 					</Button>
-				</Stack>
+				</div>
 			</BasePage>
 		</form>
 	);

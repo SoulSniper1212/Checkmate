@@ -1,8 +1,8 @@
 // Components
-import { Box, Stack } from "@mui/material";
+import { Box, Stack } from "@/Components/v3/ui";
 import DataTable from "@/Components/v1/Table/index.jsx";
-import ArrowDownwardRoundedIcon from "@mui/icons-material/ArrowDownwardRounded";
-import ArrowUpwardRoundedIcon from "@mui/icons-material/ArrowUpwardRounded";
+import { ArrowDown } from "lucide-react";
+import { ArrowUp } from "lucide-react";
 import Host from "@/Components/v1/Host/index.jsx";
 import { StatusLabel } from "@/Components/v1/Label/index.jsx";
 import BarChart from "@/Components/v1/Charts/BarChart/index.jsx";
@@ -12,7 +12,7 @@ import LoadingSpinner from "../LoadingSpinner/index.jsx";
 import TableSkeleton from "@/Components/v1/Table/skeleton.jsx";
 
 // Utils
-import { useTheme } from "@emotion/react";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 import { useMonitorUtils } from "../../../../../../Hooks/v1/useMonitorUtils.js";
 import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
@@ -79,7 +79,7 @@ const UptimeDataTable = ({
 			id: "name",
 			content: (
 				<Stack
-					gap={theme.spacing(4)}
+					gap="1rem"
 					alignItems="center"
 					direction="row"
 					onClick={() => handleSort("name")}
@@ -92,9 +92,9 @@ const UptimeDataTable = ({
 						}}
 					>
 						{sort?.order === "asc" ? (
-							<ArrowUpwardRoundedIcon />
+							<ArrowUpIcon />
 						) : (
-							<ArrowDownwardRoundedIcon />
+							<ArrowDownIcon />
 						)}
 					</Stack>
 				</Stack>
@@ -114,7 +114,7 @@ const UptimeDataTable = ({
 			content: (
 				<Stack
 					direction="row"
-					gap={theme.spacing(4)}
+					gap="1rem"
 					alignItems="center"
 					display={"inline-flex"}
 					onClick={() => handleSort("status")}
@@ -128,9 +128,9 @@ const UptimeDataTable = ({
 						}}
 					>
 						{sort?.order === "asc" ? (
-							<ArrowUpwardRoundedIcon fontSize="18px" />
+							<ArrowUpIcon fontSize="18px" />
 						) : (
-							<ArrowDownwardRoundedIcon fontSize="18px" />
+							<ArrowDownIcon fontSize="18px" />
 						)}
 					</Stack>
 				</Stack>
@@ -195,7 +195,7 @@ const UptimeDataTable = ({
 					rowSX: {
 						cursor: "pointer",
 						"&:hover td": {
-							backgroundColor: theme.palette.tertiary.main,
+							backgroundColor: text-foreground,
 							transition: "background-color .3s ease",
 						},
 					},

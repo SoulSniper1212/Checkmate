@@ -11,14 +11,13 @@ import {
 	ResponsiveContainer,
 	Text,
 } from "recharts";
-import Typography from "@mui/material/Typography";
+import { Typography } from "@/Components/v3/ui";
 
 import {
 	formatDateWithTz,
 	tickDateFormatLookup,
 	tooltipDateFormatLookup,
 } from "@/Utils/v2/TimeUtils";
-import { useTheme } from "@mui/material/styles";
 import type { GroupedCheck } from "@/Types/Check";
 import { useSelector } from "react-redux";
 
@@ -31,14 +30,13 @@ type XTickProps = {
 
 const XTick: React.FC<XTickProps> = ({ x, y, payload, range }) => {
 	const format = tickDateFormatLookup(range);
-	const theme = useTheme();
 	const uiTimezone = useSelector((state: any) => state.ui.timezone);
 	return (
 		<Text
 			x={x}
 			y={y + 10}
 			textAnchor="middle"
-			fill={theme.palette.primary.contrastTextTertiary}
+			fill="hsl(var(--muted-foreground))"
 			fontSize={11}
 			fontWeight={400}
 		>
@@ -52,7 +50,6 @@ type ResponseTimeToolTipProps = {
 	payload?: any[];
 	label?: string;
 	range: string;
-	theme: any;
 	uiTimezone: string;
 };
 
@@ -61,7 +58,6 @@ const ResponseTimeToolTip: React.FC<ResponseTimeToolTipProps> = ({
 	payload,
 	label,
 	range,
-	theme,
 	uiTimezone,
 }) => {
 	if (!label) return null;
@@ -71,9 +67,9 @@ const ResponseTimeToolTip: React.FC<ResponseTimeToolTipProps> = ({
 	const format = tooltipDateFormatLookup(range);
 	const responseTime = Math.floor(payload?.[0]?.payload?.avgResponseTime || 0);
 	return (
-		<BaseBox sx={{ py: theme.spacing(2), px: theme.spacing(4) }}>
-			<Typography>{formatDateWithTz(label, format, uiTimezone)}</Typography>
-			<Typography>Response time: {responseTime} ms</Typography>
+		<BaseBox className="p-4 border border-border bg-background shadow-lg rounded-lg">
+			<Typography className="text-sm">{formatDateWithTz(label, format, uiTimezone)}</Typography>
+			<Typography className="text-sm font-medium">Response time: {responseTime} ms</Typography>
 		</BaseBox>
 	);
 };
@@ -85,7 +81,6 @@ export const ChartResponseTime = ({
 	checks: GroupedCheck[];
 	range: string;
 }) => {
-	const theme = useTheme();
 	const uiTimezone = useSelector((state: any) => state.ui.timezone);
 	const normalized = normalizeResponseTimes<GroupedCheck, "avgResponseTime">(
 		checks,
@@ -102,7 +97,7 @@ export const ChartResponseTime = ({
 			>
 				<AreaChart data={normalized?.slice().reverse()}>
 					<CartesianGrid
-						stroke={theme.palette.primary.lowContrast}
+						stroke="hsl(var(--border))"
 						strokeWidth={1}
 						strokeOpacity={1}
 						fill="transparent"
@@ -118,12 +113,12 @@ export const ChartResponseTime = ({
 						>
 							<stop
 								offset="0%"
-								stopColor={theme.palette.accent.main}
+								stopColor="hsl(var(--primary))"
 								stopOpacity={0.8}
 							/>
 							<stop
 								offset="100%"
-								stopColor={theme.palette.accent.light}
+								stopColor="hsl(var(--primary))"
 								stopOpacity={0}
 							/>
 						</linearGradient>
@@ -145,7 +140,6 @@ export const ChartResponseTime = ({
 							<ResponseTimeToolTip
 								{...props}
 								range={range}
-								theme={theme}
 								uiTimezone={uiTimezone}
 							/>
 						)}
@@ -153,7 +147,7 @@ export const ChartResponseTime = ({
 					<Area
 						type="monotone"
 						dataKey="normalResponseTime"
-						stroke={theme.palette.accent.main}
+						stroke="hsl(var(--primary))"
 						fill="url(#colorUv)"
 					/>
 				</AreaChart>

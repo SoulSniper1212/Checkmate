@@ -1,20 +1,16 @@
-import Stack from "@mui/material/Stack";
+import { Stack, RadioGroup, FormControl, Typography } from "@/Components/v3/ui";
 import { TextInput } from "@/Components/v2/Inputs/TextInput";
 import { AutoCompleteInput } from "@/Components/v2/Inputs/AutoComplete";
 import { ConfigBox, BasePage } from "@/Components/v2/DesignElements";
-import RadioGroup from "@mui/material/RadioGroup";
-import FormControl from "@mui/material/FormControl";
 import { RadioWithDescription } from "@/Components/v2/Inputs/RadioInput";
 import { Button } from "@/Components/v2/Inputs";
-import DeleteOutlineRoundedIcon from "@mui/icons-material/DeleteOutlineRounded";
-import { Typography } from "@mui/material";
+import { Trash2 } from "lucide-react";
 
 import { useTranslation } from "react-i18next";
 import { monitorSchema } from "@/Validation/v2/zod";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, Controller, useWatch, type SubmitHandler } from "react-hook-form";
-import { useTheme } from "@mui/material/styles";
 import { useInitForm } from "@/Hooks/v2/useInitMonitorForm";
 
 type FormValues = z.infer<typeof monitorSchema>;
@@ -31,7 +27,6 @@ export const UptimeForm = ({
 	loading: boolean;
 }) => {
 	const { t } = useTranslation();
-	const theme = useTheme();
 	const { defaults } = useInitForm({ initialData: initialData });
 	const {
 		handleSubmit,
@@ -69,7 +64,7 @@ export const UptimeForm = ({
 							<FormControl error={!!errors.type}>
 								<RadioGroup
 									{...field}
-									sx={{ gap: theme.spacing(6) }}
+									className="gap-6"
 								>
 									<RadioWithDescription
 										value="http"
@@ -97,7 +92,7 @@ export const UptimeForm = ({
 				title={t("settingsGeneralSettings")}
 				subtitle={t(`uptimeGeneralInstructions.${selectedType}`)}
 				rightContent={
-					<Stack gap={theme.spacing(8)}>
+					<Stack gap="8">
 						<Controller
 							name="url"
 							control={control}
@@ -177,8 +172,8 @@ export const UptimeForm = ({
 							)}
 						/>
 						<Stack
-							gap={theme.spacing(2)}
-							mt={theme.spacing(2)}
+							gap="2"
+							className="mt-2"
 						>
 							{notificationChannels.map((notificationId) => {
 								const option = notificationOptions.find(
@@ -186,23 +181,21 @@ export const UptimeForm = ({
 								);
 								if (!option) return null;
 								return (
-									<Stack
-										width={"100%"}
-										justifyContent={"space-between"}
-										direction="row"
+									<div
+										className="w-full flex justify-between items-center"
 										key={notificationId}
 									>
 										<Typography>{option.name}</Typography>
-										<DeleteOutlineRoundedIcon
+										<Trash2
 											onClick={() => {
 												const updated = notificationChannels.filter(
 													(id) => id !== notificationId
 												);
 												setValue("notificationChannels", updated);
 											}}
-											sx={{ cursor: "pointer" }}
+											className="cursor-pointer"
 										/>
-									</Stack>
+									</div>
 								);
 							})}
 						</Stack>
@@ -229,19 +222,15 @@ export const UptimeForm = ({
 					/>
 				}
 			/>
-			<Stack
-				direction="row"
-				justifyContent="flex-end"
-			>
+			<div className="flex justify-end">
 				<Button
 					loading={loading}
 					type="submit"
-					variant="contained"
-					color="accent"
+					variant="default"
 				>
 					{t("settingsSave")}
 				</Button>
-			</Stack>
+			</div>
 		</BasePage>
 	);
 };

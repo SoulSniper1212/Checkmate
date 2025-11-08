@@ -1,8 +1,8 @@
 // React, Redux, Router
-import { useTheme } from "@emotion/react";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 import { useState } from "react";
 // MUI
-import { Box, Stack, Typography, Button, Link } from "@mui/material";
+import { Stack, Typography, Link, Button, Box } from "@/Components/v3/ui";
 
 //Components
 import { createToast } from "../../../../Utils/toastUtils.jsx";
@@ -50,8 +50,7 @@ const BulkImport = () => {
 			<Breadcrumbs list={crumbs} />
 			<Stack
 				component="form"
-				gap={theme.spacing(12)}
-				mt={theme.spacing(6)}
+				className="gap-[var(--spacing-12)] mt-[var(--spacing-6)]"
 			>
 				<Typography
 					component="h1"
@@ -89,19 +88,18 @@ const BulkImport = () => {
 							/>
 						</Typography>
 					</Box>
-					<Stack gap={theme.spacing(12)}>
-						<Stack gap={theme.spacing(6)}>
+					<Stack className="gap-[var(--spacing-12)]">
+						<Stack className="gap-[var(--spacing-6)]">
 							<UploadFile onFileSelect={(file) => setSelectedFile(file)} />
 						</Stack>
 					</Stack>
 				</ConfigBox>
 				<Stack
-					direction="row"
-					justifyContent="flex-end"
+					className="flex-row justify-end"
 				>
 					<Button
-						variant="contained"
-						color="accent"
+						muiVariant="contained"
+						color="primary"
 						onClick={handleSubmit}
 						disabled={hookLoading}
 						loading={hookLoading}

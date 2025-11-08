@@ -2,9 +2,8 @@ import { useState } from "react";
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { Box, Tab, useTheme } from "@mui/material";
-import CustomTabList from "@/Components/v1/Tab/index.jsx";
-import TabContext from "@mui/lab/TabContext";
+import { Box, TabList, Tab, TabPanel, TabContextProvider } from "@/Components/v3/ui";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 import ProfilePanel from "./components/ProfilePanel.jsx";
 import PasswordPanel from "./components/PasswordPanel.jsx";
 import TeamPanel from "./components/TeamPanel.jsx";
@@ -67,8 +66,8 @@ const Account = ({ open = "profile" }) => {
 			px={theme.spacing(20)}
 			py={theme.spacing(12)}
 		>
-			<TabContext value={tab}>
-				<CustomTabList
+			<TabContextProvider value={tab}>
+				<TabList
 					value={tab}
 					onChange={handleTabChange}
 					aria-label="account tabs"
@@ -83,11 +82,21 @@ const Account = ({ open = "profile" }) => {
 							tabIndex={index}
 						/>
 					))}
-				</CustomTabList>
-				<ProfilePanel />
-				{user.role.includes("superadmin") && <PasswordPanel />}
-				{!hideTeams && <TeamPanel />}
-			</TabContext>
+				</TabList>
+				<TabPanel value={tab} index="profile">
+					<ProfilePanel />
+				</TabPanel>
+				{user.role.includes("superadmin") && (
+					<TabPanel value={tab} index="password">
+						<PasswordPanel />
+					</TabPanel>
+				)}
+				{!hideTeams && (
+					<TabPanel value={tab} index="team">
+						<TeamPanel />
+					</TabPanel>
+				)}
+			</TabContextProvider>
 		</Box>
 	);
 };

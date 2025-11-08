@@ -1,10 +1,17 @@
 /* TODO I basically copied and pasted this component from the actionsMenu. Check how we can make it reusable */
 
 import { useRef, useState } from "react";
-import { useTheme } from "@emotion/react";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 import { useNavigate } from "react-router-dom";
 import { createToast } from "../../../../../../Utils/toastUtils.jsx";
-import { IconButton, Menu, MenuItem } from "@mui/material";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/Components/v3/ui/dropdown-menu";
+import { IconButton } from "@/Components/v3/ui";
 import Settings from "../../../../../../assets/icons/settings-bold.svg?react";
 import PropTypes from "prop-types";
 import Dialog from "@/Components/v1/Dialog/index.jsx";

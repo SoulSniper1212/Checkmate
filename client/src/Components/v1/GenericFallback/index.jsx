@@ -1,5 +1,6 @@
-import { useTheme } from "@emotion/react";
-import { Box, Stack } from "@mui/material";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
+import { Stack } from "@/Components/v3/ui";
+import { Box } from "@/Components/v3/ui";
 import OutputAnimation from "../../../assets/Animations/output.gif";
 import DarkmodeOutput from "../../../assets/Animations/darkmodeOutput.gif";
 import Background from "../../../assets/Images/background-grid.svg?react";
@@ -51,7 +52,7 @@ const GenericFallback = ({ children }) => {
 				/>
 				<Box
 					sx={{
-						"& svg g g:last-of-type path": {
+						"& svg g g:last-of-type path svg g g:last-child path svg g g:last-child path": {
 							stroke: theme.palette.primary.lowContrast,
 						},
 						position: "absolute",

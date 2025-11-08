@@ -1,12 +1,10 @@
 // Components
-import Stack from "@mui/material/Stack";
+import { Stack, Typography } from "@/Components/v3/ui";
 import PulseDot from "../Animated/PulseDot.jsx";
-import Typography from "@mui/material/Typography";
 import Dot from "../Dot/index.jsx";
 // Utils
 import { formatDurationRounded } from "../../../Utils/timeUtils.js";
 import PropTypes from "prop-types";
-import { useTheme } from "@emotion/react";
 import { useMonitorUtils } from "../../../Hooks/v1/useMonitorUtils.js";
 import { formatMonitorUrl } from "../../../Utils/utils.js";
 /**
@@ -22,16 +20,13 @@ import { formatMonitorUrl } from "../../../Utils/utils.js";
  * @returns {JSX.Element} The rendered component
  */
 const Status = ({ monitor }) => {
-	const theme = useTheme();
 	const { statusColor, determineState } = useMonitorUtils();
 
 	return (
 		<Stack>
 			<Typography variant="monitorName">{monitor?.name}</Typography>
 			<Stack
-				direction="row"
-				alignItems={"center"}
-				gap={theme.spacing(4)}
+				className="flex-row items-center gap-4"
 			>
 				<PulseDot color={statusColor[determineState(monitor)]} />
 				<Typography variant="monitorUrl">{formatMonitorUrl(monitor?.url)}</Typography>

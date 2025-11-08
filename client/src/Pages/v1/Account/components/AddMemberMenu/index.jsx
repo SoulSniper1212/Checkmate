@@ -1,62 +1,39 @@
 import { useState } from "react";
-import Button from "@mui/material/Button";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
-import { useTheme } from "@emotion/react";
-import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import { Button, DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/Components/v3/ui";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 import { useTranslation } from "react-i18next";
 import Proptypes from "prop-types";
 
+// Custom arrow icon
+const ArrowDropDownIcon = () => (
+	<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+		<path d="M7 10l5 5 5-5z"/>
+	</svg>
+);
+
 const AddMemberMenu = ({ handleInviteOpen, handleIsRegisterOpen }) => {
-	const [anchorEl, setAnchorEl] = useState(null);
-	const open = Boolean(anchorEl);
 	const { t } = useTranslation();
-	const theme = useTheme();
-	const handleClick = (event) => {
-		setAnchorEl(event.currentTarget);
-	};
-	const handleClose = () => {
-		setAnchorEl(null);
-	};
 
 	return (
-		<>
-			<Button
-				variant="contained"
-				color="accent"
-				endIcon={<ArrowDropDownIcon sx={{ color: theme.palette.secondary.light }} />}
-				onClick={handleClick}
-			>
-				{t("teamPanel.addTeamMember.addMemberMenu")}
-			</Button>
-			<Menu
-				anchorEl={anchorEl}
-				open={open}
-				onClose={handleClose}
-				sx={{
-					"& .MuiPaper-root": {
-						minWidth: anchorEl?.offsetWidth || "auto",
-					},
-				}}
-			>
-				<MenuItem
-					onClick={() => {
-						handleClose();
-						handleInviteOpen();
-					}}
+		<DropdownMenu>
+			<DropdownMenuTrigger asChild>
+				<Button
+					variant="default"
+					className="flex items-center gap-2"
 				>
+					{t("teamPanel.addTeamMember.addMemberMenu")}
+					<ArrowDropDownIcon />
+				</Button>
+			</DropdownMenuTrigger>
+			<DropdownMenuContent>
+				<DropdownMenuItem onClick={handleInviteOpen}>
 					{t("teamPanel.inviteTeamMember")}
-				</MenuItem>
-				<MenuItem
-					onClick={() => {
-						handleClose();
-						handleIsRegisterOpen(true);
-					}}
-				>
+				</DropdownMenuItem>
+				<DropdownMenuItem onClick={() => handleIsRegisterOpen(true)}>
 					{t("teamPanel.register")}
-				</MenuItem>
-			</Menu>
-		</>
+				</DropdownMenuItem>
+			</DropdownMenuContent>
+		</DropdownMenu>
 	);
 };
 

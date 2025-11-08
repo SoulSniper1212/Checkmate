@@ -1,7 +1,13 @@
 import PropTypes from "prop-types";
-import { useTheme } from "@emotion/react";
-import { MenuItem, Select as MuiSelect, Stack, Typography } from "@mui/material";
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
+import {
+  Select as ShadcnSelect,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue
+} from "@/Components/v3/ui/select";
+import { ChevronDown } from "lucide-react";
 import FieldWrapper from "../FieldWrapper/index.jsx";
 
 import "./index.css";
@@ -64,16 +70,9 @@ const Select = ({
 	const theme = useTheme();
 	const itemStyles = {
 		fontSize: "var(--env-var-font-size-medium)",
-		color: theme.palette.primary.contrastTextTertiary,
-		borderRadius: theme.shape.borderRadius,
-		margin: theme.spacing(2),
-	};
-
-	const responsiveMaxWidth = {
-		xs: `${maxWidth * 0.5}px`,
-		sm: `${maxWidth * 0.75}px`,
-		md: `${maxWidth * 0.9}px`,
-		lg: `${maxWidth}px`,
+		color: "var(--muted-foreground)",
+		borderRadius: "var(--radius)",
+		margin: "0.5rem",
 	};
 
 	return (
@@ -88,82 +87,40 @@ const Select = ({
 				...fieldWrapperSx,
 			}}
 		>
-			<MuiSelect
-				className="select-component"
+			<ShadcnSelect
 				value={value}
-				onChange={onChange}
-				onBlur={onBlur}
-				displayEmpty
-				error={error}
+				onValueChange={onChange}
 				name={name}
-				inputProps={{ id: id }}
-				IconComponent={KeyboardArrowDownIcon}
-				MenuProps={{ disableScrollLock: true }}
-				sx={{
-					fontSize: 13,
-					minWidth: "125px",
-					...(maxWidth && { maxWidth: responsiveMaxWidth }),
-					"& fieldset": {
-						borderRadius: theme.shape.borderRadius,
-						borderColor: theme.palette.primary.lowContrast,
-					},
-					"&:not(.Mui-focused):hover fieldset": {
-						borderColor: theme.palette.primary.lowContrast,
-					},
-					"& svg path": {
-						fill: theme.palette.primary.contrastTextTertiary,
-					},
-					"& .MuiSelect-select": {
-						padding: "0",
-						minHeight: "34px",
-						display: "flex",
-						alignItems: "center",
-						lineHeight: 1,
-					},
-					...sx,
-				}}
-				renderValue={(selected) => {
-					const selectedItem = items.find((item) => item._id === selected);
-					const displayName = selectedItem ? selectedItem.name : placeholder;
-					return (
-						<Typography
-							sx={{
-								overflow: "hidden",
-								textOverflow: "ellipsis",
-								whiteSpace: "nowrap",
-							}}
-							title={displayName}
-						>
-							{displayName}
-						</Typography>
-					);
-				}}
+				disabled={error}
 			>
-				{placeholder && (
-					<MenuItem
-						className="select-placeholder"
-						value="0"
-						sx={{
-							display: isHidden ? "none" : "flex",
-							visibility: isHidden ? "none" : "visible",
-							...itemStyles,
-						}}
-					>
-						{placeholder}
-					</MenuItem>
-				)}
-				{items.map((item) => (
-					<MenuItem
-						value={item._id}
-						key={`${id}-${item._id}`}
-						sx={{
-							...itemStyles,
-						}}
-					>
-						{item.name}
-					</MenuItem>
-				))}
-			</MuiSelect>
+				<SelectTrigger
+					className="select-component"
+					style={{
+						fontSize: "13px",
+						minWidth: "125px",
+						maxWidth: maxWidth ? `${maxWidth}px` : undefined,
+						...sx,
+					}}
+				>
+					<SelectValue placeholder={placeholder} />
+					<ChevronDown className="h-4 w-4 opacity-50" />
+				</SelectTrigger>
+				<SelectContent>
+					{placeholder && !isHidden && (
+						<SelectItem value="0" className="select-placeholder">
+							{placeholder}
+						</SelectItem>
+					)}
+					{items.map((item) => (
+						<SelectItem
+							value={String(item._id)}
+							key={`${id}-${item._id}`}
+						>
+							{item.name}
+						</SelectItem>
+					))}
+				</SelectContent>
+			</ShadcnSelect>
 		</FieldWrapper>
 	);
 };

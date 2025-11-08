@@ -1,12 +1,14 @@
 // Components
-import { Stack, Button, Typography } from "@mui/material";
+import { Stack } from "@/Components/v3/ui";
+import { Button } from "@/Components/v3/ui";
+import { Typography } from "@/Components/v3/ui";
 import Tabs from "./Components/Tabs/index.jsx";
 import GenericFallback from "@/Components/v1/GenericFallback/index.jsx";
 import SkeletonLayout from "./Components/Skeleton/index.jsx";
 import Dialog from "@/Components/v1/Dialog/index.jsx";
 import Breadcrumbs from "@/Components/v1/Breadcrumbs/index.jsx";
 //Utils
-import { useTheme } from "@emotion/react";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 import { useState, useEffect, useRef, useCallback } from "react";
 import { statusPageValidation } from "../../../../Validation/validation.js";
 import { buildErrors } from "../../../../Validation/error.js";

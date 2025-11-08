@@ -1,12 +1,11 @@
 // Components
-import Stack from "@mui/material/Stack";
-import Button from "@mui/material/Button";
+import { Stack, Button } from "@/Components/v3/ui";
 import TextInput from "@/Components/v1/Inputs/TextInput/index.jsx";
 import { PasswordEndAdornment } from "@/Components/v1/Inputs/TextInput/Adornments/index.jsx";
 import TextLink from "@/Components/v1/TextLink/index.jsx";
 import AuthPageWrapper from "../components/AuthPageWrapper.jsx";
 // Utils
-import { useTheme } from "@mui/material/styles";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 import { useTranslation } from "react-i18next";
 import useLoginForm from "./hooks/useLoginForm.jsx";
 import useValidateLoginForm from "./hooks/useValidateLoginForm.jsx";

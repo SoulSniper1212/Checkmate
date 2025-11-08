@@ -1,7 +1,7 @@
 import GenericFallback from "../GenericFallback/index.jsx";
 import Fallback from "../Fallback/index.jsx";
-import { Typography } from "@mui/material";
-import { useTheme } from "@emotion/react";
+import { Typography } from "@/Components/v3/ui";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 import { useTranslation } from "react-i18next";
 import { useIsAdmin } from "../../../Hooks/v1/useIsAdmin.js";
 import PropTypes from "prop-types";

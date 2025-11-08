@@ -1,13 +1,12 @@
-import { useTheme } from "@emotion/react";
-import { Box, Stack, Tooltip, Typography } from "@mui/material";
-import { formatDateWithTz } from "../../../../Utils/timeUtils.js";
-import { useEffect, useState } from "react";
-import "./index.css";
+import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
+import { Tooltip } from "@/Components/v3/ui";
+import { Box, Stack, Typography } from "@/Components/v3/ui";
+import { formatDateWithTz } from "../../../../Utils/timeUtils.js";
+import "./index.css";
 
 /* TODO add prop validation and jsdocs */
 const BarChart = ({ checks = [] }) => {
-	const theme = useTheme();
 	const [animate, setAnimate] = useState(false);
 	const uiTimezone = useSelector((state) => state.ui.timezone);
 
@@ -29,13 +28,11 @@ const BarChart = ({ checks = [] }) => {
 		<Stack
 			direction="row"
 			flexWrap="nowrap"
-			gap={theme.spacing(1.5)}
+			gap="6px"
 			height="50px"
 			width="fit-content"
 			onClick={(event) => event.stopPropagation()}
-			sx={{
-				cursor: "default",
-			}}
+			className="cursor-default"
 		>
 			{checks.map((check, index) =>
 				check === "placeholder" ? (
@@ -45,12 +42,9 @@ const BarChart = ({ checks = [] }) => {
 					<Box
 						key={`${check}-${index}`}
 						position="relative"
-						width={theme.spacing(4.5)}
+						width="18px"
 						height="100%"
-						backgroundColor={theme.palette.primary.lowContrast}
-						sx={{
-							borderRadius: theme.spacing(1.5),
-						}}
+						className="bg-slate-200 rounded-lg"
 					/>
 				) : (
 					<Tooltip
@@ -63,28 +57,24 @@ const BarChart = ({ checks = [] }) => {
 										uiTimezone
 									)}
 								</Typography>
-								<Box mt={theme.spacing(2)}>
+								<Box className="mt-2">
 									<Box
 										display="inline-block"
-										width={theme.spacing(4)}
-										height={theme.spacing(4)}
-										backgroundColor={
-											check.status
-												? theme.palette.success.lowContrast
-												: theme.palette.error.lowContrast
-										}
-										sx={{ borderRadius: "50%" }}
+										width="16px"
+										height="16px"
+										className={check.status ? "bg-green-200" : "bg-red-200"}
+										style={{ borderRadius: "50%" }}
 									/>
 									<Stack
 										display="inline-flex"
 										direction="row"
 										justifyContent="space-between"
-										ml={theme.spacing(2)}
-										gap={theme.spacing(12)}
+										ml="8px"
+										gap="48px"
 									>
 										<Typography
 											component="span"
-											sx={{ opacity: 0.8 }}
+											className="opacity-80"
 										>
 											Response Time
 										</Typography>
@@ -92,7 +82,7 @@ const BarChart = ({ checks = [] }) => {
 											{check.originalResponseTime}
 											<Typography
 												component="span"
-												sx={{ opacity: 0.8 }}
+												className="opacity-80"
 											>
 												{" "}
 												ms
@@ -104,69 +94,21 @@ const BarChart = ({ checks = [] }) => {
 						}
 						placement="top"
 						key={`check-${check?._id}`}
-						slotProps={{
-							popper: {
-								className: "bar-tooltip",
-								modifiers: [
-									{
-										name: "offset",
-										options: {
-											offset: [0, -10],
-										},
-									},
-								],
-								sx: {
-									"& .MuiTooltip-tooltip": {
-										backgroundColor: theme.palette.secondary.main,
-										border: 1,
-										borderColor: theme.palette.primary.lowContrast,
-										borderRadius: theme.shape.borderRadius,
-										boxShadow: theme.shape.boxShadow,
-										px: theme.spacing(4),
-										py: theme.spacing(3),
-									},
-									"& .MuiTooltip-tooltip p": {
-										/* TODO Font size should point to theme */
-										fontSize: 12,
-										color: theme.palette.secondary.contrastText,
-										fontWeight: 500,
-									},
-									"& .MuiTooltip-tooltip span": {
-										/* TODO Font size should point to theme */
-										fontSize: 11,
-										color: theme.palette.secondary.contrastText,
-										fontWeight: 600,
-									},
-								},
-							},
-						}}
 					>
 						<Box
 							position="relative"
 							width="9px"
 							height="100%"
-							backgroundColor={theme.palette.primary.lowContrast} // CAIO_REVIEW
-							sx={{
-								borderRadius: theme.spacing(1.5),
-								/* 
-								TODO this doesn't seem to be used
-								"&:hover > .MuiBox-root": {
-									filter: "brightness(0.8)",
-								}, */
-							}}
+							className="bg-slate-200 rounded-lg"
 						>
 							<Box
 								position="absolute"
 								bottom={0}
 								width="100%"
 								height={`${animate ? check.responseTime : 0}%`}
-								backgroundColor={
-									check.status
-										? theme.palette.success.lowContrast
-										: theme.palette.error.lowContrast
-								}
-								sx={{
-									borderRadius: theme.spacing(1.5),
+								className={check.status ? "bg-green-200" : "bg-red-200"}
+								style={{
+									borderRadius: "6px",
 									transition: "height 600ms cubic-bezier(0.4, 0, 0.2, 1)",
 								}}
 							/>

@@ -1,5 +1,4 @@
-import Stack from "@mui/material/Stack";
-import Typography from "@mui/material/Typography";
+import { Stack, Typography, Button } from "@/Components/v3/ui";
 import Breadcrumbs from "@/Components/v1/Breadcrumbs/index.jsx";
 import SettingsTimeZone from "./SettingsTimeZone.jsx";
 import SettingsUI from "./SettingsUI.jsx";
@@ -9,11 +8,10 @@ import SettingsDemoMonitors from "./SettingsDemoMonitors.jsx";
 import SettingsAbout from "./SettingsAbout.jsx";
 import SettingsEmail from "./SettingsEmail.jsx";
 import SettingsGlobalThresholds from "./SettingsGlobalThresholds.jsx";
-import Button from "@mui/material/Button";
 // Utils
 import { settingsValidation } from "../../../Validation/validation.js";
 import { useState } from "react";
-import { useTheme } from "@emotion/react";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 import { useTranslation } from "react-i18next";
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -70,7 +68,7 @@ const Settings = () => {
 	// Setup
 	const isAdmin = useIsAdmin();
 	const theme = useTheme();
-	const HEADING_SX = { mt: theme.spacing(2), mb: theme.spacing(2) };
+	const HEADING_SX = { marginTop: "var(--spacing-2)", marginBottom: "var(--spacing-2)" };
 	const { t } = useTranslation();
 	const dispatch = useDispatch();
 	// Handlers
@@ -163,7 +161,7 @@ const Settings = () => {
 	};
 
 	return (
-		<Stack gap={theme.spacing(10)}>
+		<Stack className="gap-[var(--spacing-10)]">
 			<Breadcrumbs list={BREADCRUMBS} />
 			<Typography variant="h1">{t("settingsPage.title")}</Typography>
 			<SettingsTimeZone
@@ -226,35 +224,16 @@ const Settings = () => {
 
 			<SettingsAbout />
 			<Stack
-				direction="row"
-				justifyContent="flex-end"
-				sx={{
-					position: "sticky",
-					bottom: 0,
-					boxShadow: theme.shape.boxShadow,
-					zIndex: 1000,
-					mt: 3,
-					backgroundColor: theme.palette.primary.main,
-					display: "flex",
-					justifyContent: "flex-end",
-					pb: theme.spacing(4),
-					pr: theme.spacing(15),
-					pl: theme.spacing(5),
-					pt: theme.spacing(4),
-					border: 1,
-					borderStyle: "solid",
-					borderColor: theme.palette.primary.lowContrast,
-					borderRadius: theme.spacing(2),
-				}}
+				className="sticky bottom-0 shadow-lg z-[1000] mt-3 flex justify-end bg-primary pb-[var(--spacing-4)] pr-[var(--spacing-15)] pl-[var(--spacing-5)] pt-[var(--spacing-4)] border border-primary-low-contrast rounded-[var(--spacing-2)]"
 			>
 				<Button
 					loading={
 						isSaving || isDeletingMonitorStats || isSettingsLoading || isDeletingMonitors
 					}
 					disabled={Object.keys(errors).length > 0}
-					variant="contained"
-					color="accent"
-					sx={{ px: theme.spacing(12), py: theme.spacing(8) }}
+					muiVariant="contained"
+					color="primary"
+					className="px-[var(--spacing-12)] py-[var(--spacing-8)]"
 					onClick={handleSave}
 				>
 					{t("settingsPage.saveButtonLabel")}

@@ -1,18 +1,18 @@
 import * as React from "react";
-import Box from "@mui/material/Box";
-import Container from "@mui/material/Container";
-import IconButton from "@mui/material/IconButton";
-import Link from "@mui/material/Link";
-import Stack from "@mui/material/Stack";
-import Typography from "@mui/material/Typography";
+import { Box } from "@/Components/v3/ui";
+import { Container } from "@/Components/v3/ui";
+import { IconButton } from "@/Components/v3/ui";
+import { Link } from "@/Components/v3/ui";
+import { Stack } from "@/Components/v3/ui";
+import { Typography } from "@/Components/v3/ui";
 import { FaFacebook, FaLinkedin, FaGithub, FaTwitter, FaEnvelope } from "react-icons/fa";
 
 function Copyright() {
 	return (
-		<Typography sx={{ color: "text.secondary", mt: 1 }}>
+		<Typography className="text-muted-foreground mt-1">
 			{"Copyright © "}
 			<Link
-				color="text.secondary"
+				className="text-muted-foreground hover:text-foreground"
 				href="https://prism.uprock.com/"
 			>
 				UpRock
@@ -26,37 +26,23 @@ function Copyright() {
 export default function Footer() {
 	return (
 		<Container
-			sx={{
-				display: "flex",
-				flexDirection: "column",
-				alignItems: "center",
-				gap: { xs: 4, sm: 8 },
-				py: { xs: 24, sm: 24 },
-				px: { xs: 12, sm: 12 },
-				textAlign: { sm: "center", md: "left" },
-			}}
+			className="flex flex-col items-center gap-4 sm:gap-8 py-24 px-12 text-center md:text-left"
 		>
 			<Box
-				sx={{
-					display: "flex",
-					justifyContent: "space-between",
-					pt: { xs: 4, sm: 8 },
-					width: "100%",
-					borderColor: "divider",
-				}}
+				className="flex justify-between pt-4 sm:pt-8 w-full border-t"
 			>
 				<div>
 					<Link
-						color="text.secondary"
+						className="text-muted-foreground hover:text-foreground"
 						href="https://uprock.com/privacy-policy"
 					>
 						Privacy Policy
 					</Link>
-					<Typography sx={{ display: "inline", mx: 0.5, opacity: 0.5 }}>
-						&nbsp;•&nbsp;
+					<Typography className="inline-block mx-2 opacity-50">
+						•
 					</Typography>
 					<Link
-						color="text.secondary"
+						className="text-muted-foreground hover:text-foreground"
 						href="https://uprock.com/terms-of-use"
 					>
 						Terms of Service
@@ -66,51 +52,50 @@ export default function Footer() {
 				<Stack
 					direction="row"
 					spacing={1}
-					useFlexGap
-					sx={{ justifyContent: "left", color: "text.secondary" }}
+					className="justify-start text-muted-foreground"
 				>
 					<IconButton
-						color="inherit"
-						size="small"
+						variant="ghost"
+						size="sm"
 						href="mailto:prism@uprock.com?subject=Interested%20in%20UpRock%20Prism"
 						aria-label="Contact Us"
-						sx={{ alignSelf: "center" }}
+						className="self-center"
 					>
 						<FaEnvelope />
 					</IconButton>
 					<IconButton
-						color="inherit"
-						size="small"
+						variant="ghost"
+						size="sm"
 						href="https://facebook.com/uprockcom"
 						aria-label="Facebook"
-						sx={{ alignSelf: "center" }}
+						className="self-center"
 					>
 						<FaFacebook />
 					</IconButton>
 					<IconButton
-						color="inherit"
-						size="small"
+						variant="ghost"
+						size="sm"
 						href="https://x.com/uprockcom"
 						aria-label="X"
-						sx={{ alignSelf: "center" }}
+						className="self-center"
 					>
 						<FaTwitter />
 					</IconButton>
 					<IconButton
-						color="inherit"
-						size="small"
+						variant="ghost"
+						size="sm"
 						href="https://www.linkedin.com/company/uprock/"
 						aria-label="LinkedIn"
-						sx={{ alignSelf: "center" }}
+						className="self-center"
 					>
 						<FaLinkedin />
 					</IconButton>
 					<IconButton
-						color="inherit"
-						size="small"
+						variant="ghost"
+						size="sm"
 						href="https://github.com/uprockcom"
 						aria-label="GitHub"
-						sx={{ alignSelf: "center" }}
+						className="self-center"
 					>
 						<FaGithub />
 					</IconButton>
@@ -118,44 +103,33 @@ export default function Footer() {
 			</Box>
 
 			<Box
-				sx={{
-					display: "flex",
-					flexDirection: "column",
-					alignItems: "center",
-					mt: 4,
-				}}
+				className="flex flex-col items-center mt-4"
 			>
 				<Typography
 					variant="h2"
-					sx={{ color: "text.secondary" }}
+					className="text-muted-foreground"
 				>
 					Made with ❤️ by&nbsp;
 					<Link
 						href="https://uprock.com"
-						color="inherit"
-						sx={{ mx: 0.5 }}
+						className="text-foreground hover:text-primary mx-1"
 					>
 						UpRock&nbsp;
 					</Link>
 					&&nbsp;
 					<Link
 						href="https://bluewavelabs.ca"
-						color="inherit"
-						sx={{ mx: 0.5 }}
+						className="text-foreground hover:text-primary mx-1"
 					>
 						Bluewave Labs
 					</Link>
 				</Typography>
 				<Box
-					sx={{
-						display: "flex",
-						alignItems: "center",
-						mt: 2,
-					}}
+					className="flex items-center mt-2"
 				>
 					<Typography
 						variant="h2"
-						sx={{ color: "text.secondary", mr: 1 }}
+						className="text-muted-foreground mr-1"
 					>
 						Built on&nbsp;
 					</Typography>

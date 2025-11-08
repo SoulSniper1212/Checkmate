@@ -1,17 +1,13 @@
-import Box from "@mui/material/Box";
-import Stack from "@mui/material/Stack";
-import Typography from "@mui/material/Typography";
+import { Box, Stack, Typography } from "@/Components/v3/ui";
 import ConfigBox from "@/Components/v1/ConfigBox/index.jsx";
 import Select from "@/Components/v1/Inputs/Select/index.jsx";
 
 // Utils
-import { useTheme } from "@emotion/react";
 import { PropTypes } from "prop-types";
 import { useTranslation } from "react-i18next";
 
 const SettingsUI = ({ HEADING_SX, handleChange, mode, language }) => {
 	const { t, i18n } = useTranslation();
-	const theme = useTheme();
 	const languages = Object.keys(i18n.options.resources || {});
 	return (
 		<ConfigBox>
@@ -26,7 +22,7 @@ const SettingsUI = ({ HEADING_SX, handleChange, mode, language }) => {
 					{t("settingsPage.uiSettings.description")}
 				</Typography>
 			</Box>
-			<Stack gap={theme.spacing(20)}>
+			<Stack gap="80px">
 				<Select
 					name="mode"
 					label={t("settingsPage.uiSettings.labelTheme")}

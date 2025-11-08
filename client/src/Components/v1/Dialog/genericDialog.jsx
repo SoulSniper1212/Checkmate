@@ -1,8 +1,30 @@
 import { useId } from "react";
 import PropTypes from "prop-types";
-import { Modal, Stack, Typography } from "@mui/material";
+import { Stack, Typography } from "@/Components/v3/ui";
 
-const GenericDialog = ({ title, description, open, onClose, theme, children, width }) => {
+// Custom Modal component to replace MUI Modal
+const Modal = ({ open, onClose, onClick, children, "aria-labelledby": ariaLabelledBy, "aria-describedby": ariaDescribedBy }) => {
+	if (!open) return null;
+
+	return (
+		<div
+			className="fixed inset-0 z-50 flex items-center justify-center"
+			style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)' }}
+			onClick={onClose}
+			aria-labelledby={ariaLabelledBy}
+			aria-describedby={ariaDescribedBy}
+		>
+			<div
+				onClick={onClick}
+				style={{ outline: 'none' }}
+			>
+				{children}
+			</div>
+		</div>
+	);
+};
+
+const GenericDialog = ({ title, description, open, onClose, children, width }) => {
 	const titleId = useId();
 	const descriptionId = useId();
 	const ariaDescribedBy = description?.length > 0 ? descriptionId : "";
@@ -15,40 +37,22 @@ const GenericDialog = ({ title, description, open, onClose, theme, children, wid
 			onClick={(e) => e.stopPropagation()}
 		>
 			<Stack
-				gap={theme.spacing(2)}
+				gap="8px"
 				width={width}
-				sx={{
-					position: "absolute",
-					top: "50%",
-					left: "50%",
-					transform: "translate(-50%, -50%)",
-					minWidth: 400,
-					bgcolor: theme.palette.primary.main,
-					border: 1,
-					borderColor: theme.palette.primary.lowContrast,
-					borderRadius: theme.shape.borderRadius,
-					boxShadow: 24,
-					p: theme.spacing(15),
-					"&:focus": {
-						outline: "none",
-					},
-				}}
+				className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 min-w-[400px] bg-white border border-gray-200 rounded-lg shadow-2xl p-[60px] focus:outline-none"
 			>
 				<Typography
 					id={titleId}
 					component="h2"
 					fontSize={16}
-					color={theme.palette.primary.contrastText}
-					fontWeight={600}
-					marginBottom={theme.spacing(4)}
+					className="text-gray-900 font-semibold mb-4"
 				>
 					{title}
 				</Typography>
 				{description && (
 					<Typography
 						id={descriptionId}
-						color={theme.palette.primary.contrastTextTertiary}
-						marginBottom={theme.spacing(4)}
+						className="text-gray-600 mb-4"
 					>
 						{description}
 					</Typography>
@@ -64,7 +68,6 @@ GenericDialog.propTypes = {
 	description: PropTypes.string,
 	open: PropTypes.bool.isRequired,
 	onClose: PropTypes.func.isRequired,
-	theme: PropTypes.object.isRequired,
 	children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node])
 		.isRequired,
 	width: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.object]),

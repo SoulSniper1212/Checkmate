@@ -1,6 +1,5 @@
 import { Routes, Route } from "react-router";
-import { ThemeProvider } from "@emotion/react";
-import { lightTheme, darkTheme } from "@/Utils/Theme/v2/theme";
+import { ThemeProvider } from "@/Utils/Theme/globalTheme.jsx";
 
 import AuthLoginV2 from "@/Pages/v2/Auth/Login";
 import AuthRegisterV2 from "@/Pages/v2/Auth/Register";
@@ -9,11 +8,9 @@ import UptimeCreatePage from "@/Pages/v2/Uptime/Create";
 import UptimeDetailsPage from "@/Pages/v2/Uptime/Details";
 import RootLayout from "@/Components/v2/Layouts/RootLayout";
 
-const V2Routes = ({ mode = "light" }) => {
-	const v2Theme = mode === "light" ? lightTheme : darkTheme;
-
+const V2Routes = () => {
 	return (
-		<ThemeProvider theme={v2Theme}>
+		<ThemeProvider>
 			<Routes>
 				<Route
 					path="login"

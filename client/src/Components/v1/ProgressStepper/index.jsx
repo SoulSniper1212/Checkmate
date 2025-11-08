@@ -1,7 +1,7 @@
 import React from "react";
-import { Step, Stepper, StepLabel, Typography } from "@mui/material";
-import RadioButtonCheckedIcon from "@mui/icons-material/RadioButtonChecked";
-import CheckCircle from "@mui/icons-material/CheckCircle";
+import { Step, Stepper, StepLabel, Typography } from "@/Components/v3/ui";
+import { Circle } from "lucide-react";
+import { CheckCircle } from "lucide-react";
 import PropTypes from "prop-types";
 
 const CustomStepIcon = (props) => {
@@ -9,7 +9,7 @@ const CustomStepIcon = (props) => {
 	return completed ? (
 		<CheckCircle color="accent" />
 	) : (
-		<RadioButtonCheckedIcon color={active ? "accent" : "disabled"} />
+		<Circle color={active ? "accent" : "disabled"} fill={active ? "currentColor" : "none"} />
 	);
 };
 

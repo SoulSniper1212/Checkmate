@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
-import { FormControlLabel, Radio as MUIRadio, Typography } from "@mui/material";
-import { useTheme } from "@emotion/react";
+import { FormControlLabel, Typography } from "@/Components/v3/ui";
+import { Radio as MUIRadio } from "@/Components/v3/ui";
 import RadioChecked from "../../../../assets/icons/radio-checked.svg?react";
 import "./index.css";
 
@@ -35,8 +35,6 @@ const Radio = ({
 	onChange,
 	labelSpacing,
 }) => {
-	const theme = useTheme();
-
 	return (
 		<FormControlLabel
 			className="custom-radio-button"
@@ -48,15 +46,10 @@ const Radio = ({
 					id={id}
 					size={size}
 					checkedIcon={<RadioChecked />}
-					sx={{
+					className="w-4 h-4 mt-2 border-slate-400 border-2"
+					style={{
 						color: "transparent",
-						width: 16,
-						height: 16,
-						boxShadow: `inset 0 0 0 1px ${theme.palette.secondary.main}`,
-						"&:not(.Mui-checked)": {
-							boxShadow: `inset 0 0 0 1px ${theme.palette.primary.contrastText}70`, // Use theme text color for the outline
-						},
-						mt: theme.spacing(0.5),
+						boxShadow: "inset 0 0 0 1px #64748b",
 					}}
 				/>
 			}
@@ -65,33 +58,25 @@ const Radio = ({
 				<>
 					<Typography
 						component="p"
-						mb={
-							labelSpacing !== undefined ? theme.spacing(labelSpacing) : theme.spacing(2)
-						}
+						mb={labelSpacing !== undefined ? `${labelSpacing * 4}px` : "8px"}
 					>
 						{title}
 					</Typography>
 					<Typography
 						component="h6"
-						mt={theme.spacing(1)}
-						color={theme.palette.primary.contrastTextSecondary}
+						mt="4px"
+						className="text-slate-400"
 					>
 						{desc}
 					</Typography>
 				</>
 			}
 			labelPlacement="end"
-			sx={{
-				alignItems: "flex-start",
-				p: theme.spacing(2.5),
-				m: theme.spacing(-2.5),
-				borderRadius: theme.shape.borderRadius,
-				"&:hover": {
-					backgroundColor: theme.palette.tertiary.main,
-				},
+			className="items-start p-0 m-0 rounded-md hover:bg-slate-800 -m-5 p-5"
+			style={{
 				"& .MuiButtonBase-root": {
 					p: 0,
-					mr: theme.spacing(6),
+					marginRight: "24px",
 				},
 			}}
 		/>

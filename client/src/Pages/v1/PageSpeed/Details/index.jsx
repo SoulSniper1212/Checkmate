@@ -1,5 +1,5 @@
 // Components
-import { Stack, Typography } from "@mui/material";
+import { Stack, Typography } from "@/Components/v3/ui";
 import Breadcrumbs from "@/Components/v1/Breadcrumbs/index.jsx";
 import MonitorTimeFrameHeader from "@/Components/v1/MonitorTimeFrameHeader/index.jsx";
 import PageSpeedStatusBoxes from "./Components/PageSpeedStatusBoxes/index.jsx";
@@ -8,7 +8,7 @@ import PageSpeedAreaChart from "./Components/PageSpeedAreaChart/index.jsx";
 import PerformanceReport from "./Components/PerformanceReport/index.jsx";
 import GenericFallback from "@/Components/v1/GenericFallback/index.jsx";
 // Utils
-import { useTheme } from "@emotion/react";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 import { useIsAdmin } from "../../../../Hooks/v1/useIsAdmin.js";
 import { useParams } from "react-router-dom";
 import { useFetchStatsByMonitorId } from "../../../../Hooks/v1/monitorHooks.js";

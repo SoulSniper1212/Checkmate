@@ -1,8 +1,8 @@
 // Components
-import { Stack } from "@mui/material";
+import { Stack } from "@/Components/v3/ui";
 
 // Utils
-import { useTheme } from "@emotion/react";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 
 const Container = ({ children, direction, backgroundColor, sx }) => {
 	const theme = useTheme();

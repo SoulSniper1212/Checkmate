@@ -2,8 +2,8 @@ import "./check.css";
 import PropTypes from "prop-types";
 import CheckGrey from "../../../assets/icons/check.svg?react";
 import CheckOutlined from "../../../assets/icons/check-outlined.svg?react";
-import { Box, Stack, Typography } from "@mui/material";
-import { useTheme } from "@emotion/react";
+import { Box, Stack, Typography } from "@/Components/v3/ui";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 
 /**
  * `Check` is a functional React component that displays a check icon and a label.

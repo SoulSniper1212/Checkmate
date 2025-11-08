@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Search from "@/Components/v1/Inputs/Search/index.jsx";
-import { Box } from "@mui/material";
+import { Box } from "@/Components/v3/ui";
 import useDebounce from "../../Hooks/useDebounce.jsx";
 import { useEffect, useRef } from "react";
 import PropTypes from "prop-types";

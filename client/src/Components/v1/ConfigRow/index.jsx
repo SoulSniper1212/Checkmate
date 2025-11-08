@@ -1,6 +1,6 @@
-import { Box, Stack, Typography } from "@mui/material";
+import { Box, Stack, Typography } from "@/Components/v3/ui";
 import PropTypes from "prop-types";
-import { useTheme } from "@emotion/react";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 import ConfigBox from "../ConfigBox/index.jsx";
 
 /**

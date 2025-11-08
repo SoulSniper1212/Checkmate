@@ -1,8 +1,7 @@
 import PropTypes from "prop-types";
 import NotFoundSvg from "../../../assets/Images/sushi_404.svg";
-import { Button, Stack, Typography } from "@mui/material";
+import { Button, Stack, Typography } from "@/Components/v3/ui";
 import { useNavigate } from "react-router-dom";
-import { useTheme } from "@emotion/react";
 import { useTranslation } from "react-i18next";
 
 /**
@@ -32,7 +31,6 @@ const DefaultValue = {
  */
 const NotFound = ({ title = DefaultValue.title, desc = DefaultValue.desc }) => {
 	const navigate = useNavigate();
-	const theme = useTheme();
 	const { t } = useTranslation();
 
 	return (
@@ -41,7 +39,7 @@ const NotFound = ({ title = DefaultValue.title, desc = DefaultValue.desc }) => {
 			justifyContent="center"
 		>
 			<Stack
-				gap={theme.spacing(2)}
+				gap="8px"
 				alignItems="center"
 			>
 				<img
@@ -52,15 +50,14 @@ const NotFound = ({ title = DefaultValue.title, desc = DefaultValue.desc }) => {
 				<Typography
 					component="h1"
 					variant="h1"
-					fontSize={16}
+					className="text-4xl font-bold"
 				>
 					{title}
 				</Typography>
 				<Typography variant="body1">{desc}</Typography>
 				<Button
-					variant="contained"
-					color="accent"
-					sx={{ mt: theme.spacing(10) }}
+					variant="default"
+					className="mt-10"
 					onClick={() => navigate("/")}
 				>
 					{t("notFoundButton")}

@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
-import { Stack } from "@mui/material";
+import { Stack } from "@/Components/v3/ui";
 import StatusBox from "./StatusBox.jsx";
-import { useTheme } from "@emotion/react";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 import { useTranslation } from "react-i18next";
 import SkeletonLayout from "./skeleton.jsx";
 

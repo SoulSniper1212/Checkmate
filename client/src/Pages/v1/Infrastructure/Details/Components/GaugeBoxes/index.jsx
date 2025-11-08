@@ -1,12 +1,12 @@
 // Components
-import { Stack } from "@mui/material";
+import { Stack } from "@/Components/v3/ui";
 import Gauge from "./Gauge.jsx";
 import SkeletonLayout from "./skeleton.jsx";
 import PropTypes from "prop-types";
 
 // Utils
 import { useHardwareUtils } from "../../Hooks/useHardwareUtils.jsx";
-import { useTheme } from "@emotion/react";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 import { useTranslation } from "react-i18next";
 
 const Gauges = ({ isLoading = false, monitor }) => {

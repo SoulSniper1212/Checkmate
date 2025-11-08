@@ -1,10 +1,9 @@
-import { useTheme } from "@emotion/react";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 import { useEffect, useState, useMemo } from "react";
-import Stack from "@mui/material/Stack";
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, Stack } from "@/Components/v3/ui";
+import { CircularProgress } from "@/Components/v3/ui/mui-progress";
 import PropTypes from "prop-types";
 import "./index.css";
-import CircularProgress from "@mui/material/CircularProgress";
 
 const MINIMUM_VALUE = 0;
 const MAXIMUM_VALUE = 100;
@@ -72,15 +71,15 @@ const CustomGauge = ({
 
 	if (isLoading) {
 		return (
-			<Stack
-				className="radial-chart"
-				width={radius}
-				height={radius}
-				alignItems="center"
-				justifyContent="center"
+			<div
+				className="radial-chart flex items-center justify-center"
+				style={{
+					width: typeof radius === 'number' ? `${radius}px` : radius,
+					height: typeof radius === 'number' ? `${radius}px` : radius,
+				}}
 			>
 				<CircularProgress color="accent" />
-			</Stack>
+			</div>
 		);
 	}
 

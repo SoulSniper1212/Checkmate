@@ -16,12 +16,14 @@ import PageStateWrapper from "@/Components/v1/PageStateWrapper/index.jsx";
 
 import MonitorCountHeader from "@/Components/v1/MonitorCountHeader/index.jsx";
 
-// MUI Components
-import { Stack, Box, Button } from "@mui/material";
+// Components
+import { Stack } from "@/Components/v3/ui";
+import { Button } from "@/Components/v3/ui";
+import { Box } from "@/Components/v3/ui";
 // Utils
 import { useState, useCallback, useEffect } from "react";
 import { useIsAdmin } from "../../../../Hooks/v1/useIsAdmin.js";
-import { useTheme } from "@emotion/react";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { setRowsPerPage } from "../../../../Features/UI/uiSlice.js";

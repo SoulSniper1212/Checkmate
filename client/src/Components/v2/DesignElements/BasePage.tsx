@@ -1,23 +1,21 @@
-import Stack from "@mui/material/Stack";
+import { Stack } from "@/Components/v3/ui";
 import { ErrorFallback, EmptyFallback } from "./Fallback";
-
-import type { StackProps } from "@mui/material/Stack";
-import { useTheme } from "@mui/material/styles";
 import { useTranslation } from "react-i18next";
-interface BasePageProps extends StackProps {
+
+interface BasePageProps {
 	children: React.ReactNode;
+	className?: string;
 }
 
 export const BasePage: React.FC<BasePageProps> = ({
 	children,
+	className,
 	...props
-}: {
-	children: React.ReactNode;
-}) => {
-	const theme = useTheme();
+}: BasePageProps) => {
 	return (
 		<Stack
-			spacing={theme.spacing(10)}
+			gap={10}
+			className={className}
 			{...props}
 		>
 			{children}
@@ -25,13 +23,14 @@ export const BasePage: React.FC<BasePageProps> = ({
 	);
 };
 
-interface BasePageWithStatesProps extends StackProps {
+interface BasePageWithStatesProps {
 	loading: boolean;
 	error: any;
 	items: any[];
 	page: string;
 	actionLink?: string;
 	children: React.ReactNode;
+	className?: string;
 }
 
 const isEmpty = (items: any[]) => {
@@ -47,6 +46,7 @@ export const BasePageWithStates: React.FC<BasePageWithStatesProps> = ({
 	page,
 	actionLink,
 	children,
+	className,
 	...props
 }: BasePageWithStatesProps) => {
 	const { t } = useTranslation();
@@ -76,5 +76,5 @@ export const BasePageWithStates: React.FC<BasePageWithStatesProps> = ({
 		);
 	}
 
-	return <BasePage {...props}>{children}</BasePage>;
+	return <BasePage className={className} {...props}>{children}</BasePage>;
 };

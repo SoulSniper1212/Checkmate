@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
-import { FormControlLabel, Checkbox as MuiCheckbox } from "@mui/material";
-import { useTheme } from "@emotion/react";
+import { Checkbox as ShadcnCheckbox } from "@/Components/v3/ui/checkbox";
+import { Label } from "@/Components/v3/ui/label";
 import CheckboxOutline from "../../../../assets/icons/checkbox-outline.svg?react";
 import CheckboxFilled from "../../../../assets/icons/checkbox-filled.svg?react";
 
@@ -55,51 +55,30 @@ const Checkbox = ({
 }) => {
 	/* TODO move sizes to theme */
 	const sizes = { small: "14px", medium: "16px", large: "18px" };
-	const theme = useTheme();
 	return (
-		<FormControlLabel
-			className="checkbox-wrapper"
-			control={
-				<MuiCheckbox
-					checked={isDisabled ? false : isChecked}
-					name={name}
-					value={value}
-					onChange={onChange}
-					icon={<CheckboxOutline />}
-					checkedIcon={<CheckboxFilled />}
-					inputProps={{
-						"aria-label": "controlled checkbox",
-						id: id,
-					}}
-					sx={{
-						"&:hover": { backgroundColor: "transparent" },
-						"& svg": { width: sizes[size], height: sizes[size] },
-					}}
-				/>
-			}
-			label={label}
-			disabled={isDisabled}
-			sx={{
-				borderRadius: theme.shape.borderRadius,
-				p: theme.spacing(2.5),
-				"& .MuiButtonBase-root": {
-					width: theme.spacing(10),
-					p: 0,
-					mr: theme.spacing(6),
-				},
-				"&:not(:has(.Mui-disabled)):hover": {
-					backgroundColor: theme.palette.tertiary.main,
-				},
-				"& span.MuiTypography-root": {
-					fontSize: 13,
-					color: theme.palette.primary.contrastTextTertiary,
-				},
-				".MuiFormControlLabel-label.Mui-disabled": {
-					color: theme.palette.primary.contrastTextTertiary,
-					opacity: 0.25,
-				},
-			}}
-		/>
+		<div className="checkbox-wrapper flex items-center space-x-2 p-2.5 rounded-md hover:bg-accent/50 transition-colors">
+			<ShadcnCheckbox
+				id={id}
+				checked={isDisabled ? false : isChecked}
+				onCheckedChange={onChange}
+				disabled={isDisabled}
+				className="data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground"
+				style={{
+					width: sizes[size],
+					height: sizes[size]
+				}}
+			/>
+			<Label
+				htmlFor={id}
+				className={`text-sm cursor-pointer ${
+					isDisabled
+						? "text-muted-foreground opacity-25"
+						: "text-muted-foreground"
+				}`}
+			>
+				{label}
+			</Label>
+		</div>
 	);
 };
 

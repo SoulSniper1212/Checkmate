@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
-import { Stack } from "@mui/material";
+import { Stack } from "@/Components/v3/ui";
 import StatusBox from "./statusBox.jsx";
-import { useTheme } from "@emotion/react";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 import { useTranslation } from "react-i18next";
 import SkeletonLayout from "./skeleton.jsx";
 
@@ -11,9 +11,7 @@ const StatusBoxes = ({ shouldRender, monitorsSummary }) => {
 	if (!shouldRender) return <SkeletonLayout shouldRender={shouldRender} />;
 	return (
 		<Stack
-			gap={theme.spacing(8)}
-			direction="row"
-			justifyContent="space-between"
+			className="gap-[var(--spacing-8)] flex-row justify-between"
 		>
 			<StatusBox
 				title={t("monitorStatus.up")}

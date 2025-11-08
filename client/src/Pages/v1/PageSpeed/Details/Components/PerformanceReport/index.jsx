@@ -1,8 +1,8 @@
 import ChartBox from "@/Components/v1/Charts/ChartBox/index.jsx";
 import PerformanceIcon from "../../../../../../assets/icons/performance-report.svg?react";
 import PieChart from "../Charts/PieChart.jsx";
-import { Typography } from "@mui/material";
-import { useTheme } from "@emotion/react";
+import { Typography } from "@/Components/v3/ui";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 import PieChartLegend from "../Charts/PieChartLegend.jsx";
 import SkeletonLayout from "./skeleton.jsx";
 import { useTranslation } from "react-i18next";

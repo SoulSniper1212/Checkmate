@@ -1,25 +1,13 @@
-import Stack from "@mui/material/Stack";
-import Typography from "@mui/material/Typography";
-import Box from "@mui/material/Box";
+import { Stack, Typography, Box } from "@/Components/v3/ui";
 import { BaseBox } from "@/Components/v2/DesignElements";
 import Background from "@/assets/Images/background-grid.svg?react";
 import { useTranslation } from "react-i18next";
 
-import { useTheme } from "@mui/material/styles";
-
 type StatusBoxProps = React.PropsWithChildren<{}>;
 
 export const BGBox: React.FC<StatusBoxProps> = ({ children }) => {
-	const theme = useTheme();
 	return (
-		<BaseBox
-			sx={{
-				overflow: "hidden",
-				position: "relative",
-				flex: 1,
-				padding: theme.spacing(8),
-			}}
-		>
+		<BaseBox className="overflow-hidden relative flex-1 p-8">
 			<Box
 				position="absolute"
 				top="-10%"
@@ -41,20 +29,18 @@ const StatusBox = ({
 	n: number;
 	color: string | undefined;
 }) => {
-	const theme = useTheme();
 	return (
 		<BGBox>
-			<Stack spacing={theme.spacing(8)}>
+			<Stack gap={2}>
 				<Typography
 					variant={"h2"}
-					textTransform="uppercase"
-					color={theme.palette.primary.contrastTextTertiary}
+					className="uppercase text-muted-foreground"
 				>
 					{label}
 				</Typography>
 				<Typography
 					variant="h1"
-					color={color}
+					style={{ color }}
 				>
 					{n}
 				</Typography>
@@ -64,37 +50,34 @@ const StatusBox = ({
 };
 
 export const UpStatusBox = ({ n }: { n: number }) => {
-	const theme = useTheme();
 	const { t } = useTranslation();
 	return (
 		<StatusBox
 			label={t("monitorStatus.up")}
 			n={n}
-			color={theme.palette.success.lowContrast}
+			color="hsl(var(--success))"
 		/>
 	);
 };
 
 export const DownStatusBox = ({ n }: { n: number }) => {
-	const theme = useTheme();
 	const { t } = useTranslation();
 	return (
 		<StatusBox
 			label={t("monitorStatus.down")}
 			n={n}
-			color={theme.palette.error.lowContrast}
+			color="hsl(var(--destructive))"
 		/>
 	);
 };
 
 export const PausedStatusBox = ({ n }: { n: number }) => {
-	const theme = useTheme();
 	const { t } = useTranslation();
 	return (
 		<StatusBox
 			label={t("monitorStatus.paused")}
 			n={n}
-			color={theme.palette.warning.lowContrast}
+			color="hsl(var(--warning))"
 		/>
 	);
 };

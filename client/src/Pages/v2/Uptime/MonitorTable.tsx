@@ -1,5 +1,4 @@
-import Stack from "@mui/material/Stack";
-import Typography from "@mui/material/Typography";
+import { Stack, Typography } from "@/Components/v3/ui";
 import { Table } from "@/Components/v2/DesignElements";
 import { HistogramResponseTime } from "@/Components/v2/Monitors/HistogramResponseTime";
 import type { Header } from "@/Components/v2/DesignElements/Table";
@@ -7,8 +6,7 @@ import { ActionsMenu } from "@/Components/v2/ActionsMenu";
 import { StatusLabel } from "@/Components/v2/DesignElements";
 
 import { useTranslation } from "react-i18next";
-import { useMediaQuery } from "@mui/material";
-import { useTheme } from "@mui/material/styles";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 import { useNavigate } from "react-router-dom";
 import { usePatch } from "@/Hooks/v2/UseApi";
 import type { ApiResponse } from "@/Hooks/v2/UseApi";
@@ -25,7 +23,7 @@ export const MonitorTable = ({
 }) => {
 	const { t } = useTranslation();
 	const theme = useTheme();
-	const isSmall = useMediaQuery(theme.breakpoints.down("md"));
+	const isSmall = typeof window !== 'undefined' && window.innerWidth < 768;
 	const navigate = useNavigate();
 	const {
 		patch,
@@ -82,7 +80,7 @@ export const MonitorTable = ({
 			},
 			{
 				id: 7,
-				label: <Typography color={theme.palette.error.main}>Remove</Typography>,
+				label: <Typography className="text-destructive">Remove</Typography>,
 				action: () => {
 					console.log("Open delete");
 				},

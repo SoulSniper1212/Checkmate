@@ -1,6 +1,5 @@
-import { Stack, Typography } from "@mui/material";
+import { Stack, Typography } from "@/Components/v3/ui";
 import PropTypes from "prop-types";
-import { useTheme } from "@emotion/react";
 
 const DEFAULT_GAP = 6;
 const FieldWrapper = ({
@@ -13,19 +12,18 @@ const FieldWrapper = ({
 	labelSx = {},
 	sx = {},
 }) => {
-	const theme = useTheme();
 	return (
 		<Stack
-			gap={gap ?? theme.spacing(DEFAULT_GAP)}
+			gap={gap ?? "24px"}
 			sx={sx}
 		>
 			{label && (
 				<Typography
 					component={labelVariant}
-					color={theme.palette.primary.contrastTextSecondary}
+					className="text-slate-400"
 					fontWeight={labelFontWeight}
 					sx={{
-						...(labelMb !== undefined && { mb: theme.spacing(labelMb) }),
+						...(labelMb !== undefined && { mb: `${labelMb * 4}px` }),
 						...labelSx,
 					}}
 				>

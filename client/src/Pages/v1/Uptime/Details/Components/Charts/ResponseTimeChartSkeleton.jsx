@@ -1,4 +1,4 @@
-import { Skeleton } from "@mui/material";
+import { Skeleton } from "@/Components/v3/ui";
 const ResponseTimeChartSkeleton = () => {
 	return (
 		<Skeleton

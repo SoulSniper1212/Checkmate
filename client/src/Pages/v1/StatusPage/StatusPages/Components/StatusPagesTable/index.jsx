@@ -1,9 +1,9 @@
 import DataTable from "@/Components/v1/Table/index.jsx";
-import { useTheme } from "@emotion/react";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 import { useNavigate } from "react-router-dom";
 import { StatusLabel } from "@/Components/v1/Label/index.jsx";
-import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
-import { Stack, Typography } from "@mui/material";
+import { ExternalLink } from "lucide-react";
+import { Stack, Typography } from "@/Components/v3/ui";
 import { useTranslation } from "react-i18next";
 const StatusPagesTable = ({ data }) => {
 	const theme = useTheme();
@@ -34,9 +34,9 @@ const StatusPagesTable = ({ data }) => {
 						direction="row"
 						alignItems="center"
 						justifyContent="center"
-						gap={theme.spacing(2)}
-						paddingLeft={theme.spacing(2)}
-						paddingRight={theme.spacing(2)}
+						gap="0.5rem"
+						paddingLeft="0.5rem"
+						paddingRight="0.5rem"
 						sx={{
 							...(row.isPublished && {
 								display: "inline-flex",
@@ -48,7 +48,7 @@ const StatusPagesTable = ({ data }) => {
 						}}
 					>
 						<Typography>{content}</Typography>
-						{row.isPublished && <ArrowOutwardIcon />}
+						{row.isPublished && <ExternalLink />}
 					</Stack>
 				);
 			},
@@ -85,7 +85,7 @@ const StatusPagesTable = ({ data }) => {
 				rowSX: {
 					cursor: "pointer",
 					"&:hover td": {
-						backgroundColor: theme.palette.tertiary.main,
+						backgroundColor: text-foreground,
 						transition: "background-color .3s ease",
 					},
 				},

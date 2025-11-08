@@ -1,6 +1,9 @@
-import { Box, Button, Stack, Typography } from "@mui/material";
+import { Stack } from "@/Components/v3/ui";
+import { Button } from "@/Components/v3/ui";
+import { Box } from "@/Components/v3/ui";
+import { Typography } from "@/Components/v3/ui";
 import { useEffect, useState } from "react";
-import { useTheme } from "@emotion/react";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { createToast } from "../../../Utils/toastUtils.jsx";
@@ -87,70 +90,50 @@ const CheckEmail = () => {
 	};
 
 	return (
-		<Stack
-			className="check-email-page auth"
-			overflow="hidden"
-			sx={{
-				"& h1": {
-					color: theme.palette.primary.main,
-					fontWeight: 600,
-					fontSize: 22,
-				},
-				/* TODO font size from theme */
-				"& p": { color: theme.palette.primary.contrastTextSecondary, fontSize: 13.5 },
-				"& span": { fontSize: "inherit" },
-			}}
-		>
-			<Box
+		<div className="check-email-page auth overflow-hidden" style={{
+			"& h1": {
+				color: theme.palette?.primary?.main,
+				fontWeight: 600,
+				fontSize: 22,
+			},
+			"& p": { color: theme.palette?.primary?.contrastTextSecondary, fontSize: 13.5 },
+			"& span": { fontSize: "inherit" },
+		}}>
+			<div
 				className="background-pattern-svg"
-				sx={{
-					"& svg g g:last-of-type path": {
-						stroke: theme.palette.primary.lowContrast,
+				style={{
+					"& svg g g:last-of-type path svg g g:last-child path svg g g:last-child path": {
+						stroke: theme.palette?.primary?.lowContrast,
 					},
 				}}
 			>
 				<Background style={{ width: "100%" }} />
-			</Box>
-			<Stack
-				direction="row"
-				alignItems="center"
-				px={theme.spacing(12)}
-				gap={theme.spacing(4)}
-			>
-				<Logo style={{ borderRadius: theme.shape.borderRadius }} />
-				<Typography sx={{ userSelect: "none" }}>{t("common.appName")}</Typography>
-			</Stack>
-			<Stack
-				width="100%"
-				maxWidth={600}
-				flex={1}
-				justifyContent="center"
-				px={{ xs: theme.spacing(12), lg: theme.spacing(20) }}
-				pb={theme.spacing(20)}
-				mx="auto"
-				sx={{
-					"& > .MuiStack-root": {
-						border: 1,
-						borderRadius: theme.spacing(5),
-						borderColor: theme.palette.primary.lowContrast,
-						backgroundColor: theme.palette.primary.main,
-						padding: {
-							xs: theme.spacing(12),
-							sm: theme.spacing(20),
-						},
-					},
-				}}
-			>
-				<Stack
-					gap={{ xs: theme.spacing(8), sm: theme.spacing(10) }}
-					alignItems="center"
-					textAlign="center"
-				>
-					<Box>
-						<Stack
-							direction="row"
-							justifyContent="center"
-						>
+			</div>
+			<div className="flex items-center" style={{
+				paddingLeft: theme.spacing ? theme.spacing(12) : "48px",
+				paddingRight: theme.spacing ? theme.spacing(12) : "48px",
+				gap: theme.spacing ? theme.spacing(4) : "16px",
+			}}>
+				<Logo style={{ borderRadius: theme.shape?.borderRadius || "8px" }} />
+				<Typography style={{ userSelect: "none" }}>{t("common.appName")}</Typography>
+			</div>
+			<div className="flex-1 flex justify-center mx-auto" style={{
+				width: "100%",
+				maxWidth: 600,
+				paddingLeft: theme.spacing ? theme.spacing(12) : "48px",
+				paddingRight: theme.spacing ? theme.spacing(20) : "80px",
+				paddingBottom: theme.spacing ? theme.spacing(20) : "80px",
+				"& > div": {
+					border: "1px solid",
+					borderRadius: theme.spacing ? theme.spacing(5) : "20px",
+					borderColor: theme.palette?.primary?.lowContrast,
+					backgroundColor: theme.palette?.primary?.main,
+					padding: theme.spacing ? theme.spacing(12) : "48px",
+				},
+			}}>
+				<div className="flex flex-col items-center text-center gap-10">
+					<div>
+						<div className="flex justify-center">
 							<IconBox
 								height={48}
 								width={48}
@@ -158,11 +141,11 @@ const CheckEmail = () => {
 								borderRadius={12}
 								svgWidth={24}
 								svgHeight={24}
-								mb={theme.spacing(4)}
+								mb={theme.spacing ? theme.spacing(4) : "16px"}
 							>
 								<EmailIcon alt={t("auth.forgotPassword.imageAlts.email")} />
 							</IconBox>
-						</Stack>
+						</div>
 						<Typography component="h1">{t("auth.forgotPassword.heading")}</Typography>
 						<Typography>
 							<Trans
@@ -179,19 +162,15 @@ const CheckEmail = () => {
 								}}
 							/>
 						</Typography>
-					</Box>
+					</div>
 					<Button
-						variant="contained"
-						color="accent"
+						variant="default"
 						onClick={openMail}
-						sx={{
-							width: "100%",
-							maxWidth: 400,
-						}}
+						className="w-full max-w-md"
 					>
 						{t("auth.forgotPassword.buttons.openEmail")}
 					</Button>
-					<Typography sx={{ alignSelf: "center", mt: theme.spacing(6) }}>
+					<Typography style={{ alignSelf: "center", marginTop: theme.spacing ? theme.spacing(6) : "24px" }}>
 						<Trans
 							i18nKey="auth.forgotPassword.links.resend"
 							components={{
@@ -199,8 +178,8 @@ const CheckEmail = () => {
 									<Typography
 										component="span"
 										onClick={resendToken}
-										sx={{
-											color: theme.palette.accent.main,
+										style={{
+											color: theme.palette?.accent?.main,
 											userSelect: "none",
 											pointerEvents: disabled ? "none" : "auto",
 											cursor: disabled ? "default" : "pointer",
@@ -211,11 +190,13 @@ const CheckEmail = () => {
 							}}
 						/>
 					</Typography>
-				</Stack>
-			</Stack>
-			<Box
-				textAlign="center"
-				p={theme.spacing(12)}
+				</div>
+			</div>
+			<div
+				className="text-center"
+				style={{
+					padding: theme.spacing ? theme.spacing(12) : "48px",
+				}}
 			>
 				<Typography display="inline-block">
 					<Trans
@@ -224,17 +205,19 @@ const CheckEmail = () => {
 							a: (
 								<Typography
 									component="span"
-									color={theme.palette.accent.main}
-									ml={theme.spacing(2)}
+									style={{
+										color: theme.palette?.accent?.main,
+										marginLeft: theme.spacing ? theme.spacing(2) : "8px",
+										userSelect: "none",
+									}}
 									onClick={handleNavigate}
-									sx={{ userSelect: "none" }}
 								/>
 							),
 						}}
 					/>
 				</Typography>
-			</Box>
-		</Stack>
+			</div>
+		</div>
 	);
 };
 

@@ -1,6 +1,7 @@
-import { Button, Box } from "@mui/material";
+import { Button } from "@/Components/v3/ui";
+import { Box } from "@/Components/v3/ui";
 import ProgressUpload from "@/Components/v1/ProgressBars/index.jsx";
-import ImageIcon from "@mui/icons-material/Image";
+import { Image } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { formatBytes } from "../../../../../../Utils/fileUtils.js";
 const Progress = ({ isLoading, progressValue, logo, logoType, removeLogo, errors }) => {
@@ -24,7 +25,7 @@ const Progress = ({ isLoading, progressValue, logo, logoType, removeLogo, errors
 				alignSelf="center"
 			>
 				<Button
-					variant="contained"
+					muiVariant="contained"
 					color="secondary"
 					onClick={removeLogo}
 				>

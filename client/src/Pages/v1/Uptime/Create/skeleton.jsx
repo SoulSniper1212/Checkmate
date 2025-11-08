@@ -1,5 +1,6 @@
-import { Box, Skeleton, Stack } from "@mui/material";
-import { useTheme } from "@emotion/react";
+import { Skeleton, Stack } from "@/Components/v3/ui";
+import { Box } from "@/Components/v3/ui";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 
 /**
  * Renders a skeleton layout.

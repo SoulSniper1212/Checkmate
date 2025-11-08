@@ -1,9 +1,9 @@
-import Stack from "@mui/material/Stack";
+import { Stack } from "@/Components/v3/ui";
 import DataTable from "@/Components/v1/Table/index.jsx";
-import Typography from "@mui/material/Typography";
+import { Typography } from "@/Components/v3/ui";
 // Utils
 import PropTypes from "prop-types";
-import { useTheme } from "@emotion/react";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 import { useNavigate } from "react-router-dom";
 import { TypeToPathMap } from "../../../../../../Utils/monitorUtils.js";
 import { useTranslation } from "react-i18next";
@@ -16,18 +16,21 @@ const JobTable = ({ jobs = [] }) => {
 	const buildSx = (row) => {
 		if (row.lockedAt) {
 			return {
-				color: `${theme.palette.success.main} !important`,
+				color: "rgb(34 197 94) !important",
+				backgroundColor: "rgb(255 255 255) !important",
 			};
 		}
 		if (!row.active) {
 			return {
-				color: `${theme.palette.warning.main} !important`,
+				color: "rgb(202 138 4) !important",
+				backgroundColor: "rgb(255 255 255) !important",
 			};
 		}
 
 		if (row.failCount > 0 && row.lastFailedAt >= row.lastFinishedAt) {
 			return {
-				color: `${theme.palette.error.main} !important`,
+				color: "rgb(220 38 38) !important",
+				backgroundColor: "rgb(254 242 242) !important",
 			};
 		}
 
@@ -100,7 +103,7 @@ const JobTable = ({ jobs = [] }) => {
 	const headers = headersData.map((header) => createHeader(header));
 
 	return (
-		<Stack gap={theme.spacing(2)}>
+		<Stack gap="0.5rem">
 			<Typography variant="h2">{t("queuePage.jobTable.title")}</Typography>
 			<DataTable
 				headers={headers}
@@ -113,7 +116,7 @@ const JobTable = ({ jobs = [] }) => {
 					rowSX: {
 						cursor: "pointer",
 						"&:hover td": {
-							backgroundColor: theme.palette.tertiary.main,
+							backgroundColor: text-foreground,
 							transition: "background-color .3s ease",
 						},
 					},

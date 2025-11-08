@@ -1,8 +1,6 @@
 import { RowContainer } from "../StandardContainer/index.jsx";
-import { Stack, Typography } from "@mui/material";
+import { Stack, Typography } from "@/Components/v3/ui";
 import Image from "../Image/index.jsx";
-
-import { useTheme } from "@mui/material/styles";
 
 const InfoBox = ({
 	img,
@@ -12,26 +10,25 @@ const InfoBox = ({
 	headingLevel = 2,
 	subHeading,
 	subHeadingLevel = "",
-	sx,
+	className,
 }) => {
-	const theme = useTheme();
 	return (
-		<RowContainer sx={{ ...sx }}>
+		<RowContainer className={className}>
 			{img && (
 				<Image
 					src={img}
 					height={"30px"}
 					width={"30px"}
 					alt={alt}
-					sx={{ marginRight: theme.spacing(8) }}
+					className="mr-8"
 				/>
 			)}
 			{Icon && (
-				<Icon sx={{ width: "30px", height: "30px", marginRight: theme.spacing(8) }} />
+				<Icon className="w-[30px] h-[30px] mr-8" />
 			)}
 			<Stack>
 				<Typography variant={`h${headingLevel}`}>{heading}</Typography>
-				<Typography variant={subHeadingLevel ? `h${subHeadingLevel}` : "body1"}>
+				<Typography variant={subHeadingLevel ? `h${subHeadingLevel}` : "p"}>
 					{subHeading}
 				</Typography>
 			</Stack>

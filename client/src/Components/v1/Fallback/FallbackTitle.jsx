@@ -1,15 +1,14 @@
-import { useTheme } from "@mui/material/styles";
-import { Typography } from "@mui/material";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
+import { Typography } from "@/Components/v3/ui";
 import PropTypes from "prop-types";
 
 const FallbackTitle = ({ title }) => {
 	const theme = useTheme();
 	return (
 		<Typography
-			alignSelf="center"
-			component="h1"
-			marginY={theme.spacing(4)}
-			color={theme.palette.primary.contrastText}
+			variant="h1"
+			className="self-center my-4"
+			style={{ color: theme.palette.primary.contrastText }}
 		>
 			{title}
 		</Typography>

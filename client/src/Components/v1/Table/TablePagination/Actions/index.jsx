@@ -1,8 +1,7 @@
 import PropTypes from "prop-types";
-import { Box, Button } from "@mui/material";
+import { Box, Button } from "@/Components/v3/ui";
 import LeftArrow from "../../../ArrowLeft/index.jsx";
 import RightArrow from "../../../ArrowRight/index.jsx";
-import { useTheme } from "@emotion/react";
 
 TablePaginationActions.propTypes = {
 	count: PropTypes.number.isRequired,
@@ -38,10 +37,8 @@ function TablePaginationActions({ count, page, rowsPerPage, onPageChange }) {
 		onPageChange(event, Math.max(0, Math.ceil(count / rowsPerPage) - 1));
 	};
 
-	const theme = useTheme();
-
 	return (
-		<Box sx={{ flexShrink: 0, ml: "24px", display: "flex", gap: theme.spacing(2) }}>
+		<Box className="flex-shrink-0 ml-6 flex gap-2">
 			<Button
 				variant="group"
 				onClick={handleFirstPageButtonClick}

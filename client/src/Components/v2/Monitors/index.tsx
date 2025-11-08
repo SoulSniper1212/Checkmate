@@ -1,1 +1,9 @@
 export { HeaderCreate } from "./HeaderCreate";
+export { HeaderControls } from "./HeaderControls";
+export { HeaderRange } from "./HeaderRange";
+export { MonitorStatus } from "./MonitorStatus";
+export { ChartResponseTime } from "./ChartResponseTime";
+export { ChartAvgResponse } from "./ChartAvgResponse";
+export { HistogramStatus } from "./HistogramStatus";
+export { HistogramResponseTime } from "./HistogramResponseTime";
+export { HistogramResponseTimeTooltip } from "./HistogramResponseTimeTooltip";

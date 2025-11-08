@@ -1,4 +1,4 @@
-import { Typography } from "@mui/material";
+import { Typography } from "@/Components/v3/ui";
 import PropTypes from "prop-types";
 
 /**

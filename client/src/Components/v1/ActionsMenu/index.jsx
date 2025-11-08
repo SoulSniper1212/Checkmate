@@ -1,13 +1,10 @@
 // Components
-import IconButton from "@mui/material/IconButton";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
+import { IconButton, Menu, MenuItem } from "@/Components/v3/ui";
 import Settings from "../../../assets/icons/settings-bold.svg?react";
 import Dialog from "../Dialog/index.jsx";
 
 // Utils
 import { useState } from "react";
-import { useTheme } from "@emotion/react";
 import { useNavigate } from "react-router-dom";
 import { createToast } from "../../../Utils/toastUtils.jsx";
 
@@ -24,7 +21,6 @@ const ActionsMenu = ({
 	const [anchorEl, setAnchorEl] = useState(null);
 	const [actions, setActions] = useState({});
 	const [isOpen, setIsOpen] = useState(false);
-	const theme = useTheme();
 	const [pauseMonitor, isPausing, error] = usePauseMonitor();
 	const [deleteMonitor, isDeleting] = useDeleteMonitor();
 
@@ -74,40 +70,17 @@ const ActionsMenu = ({
 					event.stopPropagation();
 					openMenu(event, monitor._id, monitor.type === "ping" ? null : monitor.url);
 				}}
-				sx={{
-					"&:focus": {
-						outline: "none",
-					},
-					"& svg path": {
-						stroke: theme.palette.primary.contrastTextTertiary,
-					},
-				}}
+				className="focus:outline-none [&_svg_path]:stroke-gray-500"
 			>
 				<Settings />
 			</IconButton>
 
 			<Menu
-				className="actions-menu"
+				className="actions-menu [&_ul]:p-2.5 [&_ul]:bg-white [&_li]:m-0 [&_li]:text-gray-700"
 				anchorEl={anchorEl}
 				open={Boolean(anchorEl)}
 				onClose={(e) => closeMenu(e)}
 				disableScrollLock
-				slotProps={{
-					paper: {
-						sx: {
-							"& ul": {
-								p: theme.spacing(2.5),
-								backgroundColor: theme.palette.primary.main,
-							},
-							"& li": { m: 0, color: theme.palette.primary.contrastTextSecondary },
-							/* 
-							This should not be set automatically on the last of type
-							"& li:last-of-type": {
-								color: theme.palette.error.main,
-							}, */
-						},
-					},
-				}}
 			>
 				{actions.url !== null ? (
 					<MenuItem
@@ -178,7 +151,7 @@ const ActionsMenu = ({
 							e.stopPropagation();
 							openRemove(e);
 						}}
-						sx={{ "&.MuiButtonBase-root": { color: theme.palette.error.main } }}
+						className="text-red-600"
 					>
 						Remove
 					</MenuItem>
@@ -186,7 +159,6 @@ const ActionsMenu = ({
 			</Menu>
 			<Dialog
 				open={isOpen}
-				theme={theme}
 				title="Do you really want to delete this monitor?"
 				description="Once deleted, this monitor cannot be retrieved."
 				/* Do we need stop propagation? */

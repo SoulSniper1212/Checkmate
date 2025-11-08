@@ -1,13 +1,12 @@
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
+import { Box } from "@/Components/v3/ui";
+import { Typography } from "@/Components/v3/ui";
 import ConfigBox from "@/Components/v1/ConfigBox/index.jsx";
 import TextInput from "@/Components/v1/Inputs/TextInput/index.jsx";
-import Button from "@mui/material/Button";
-import Stack from "@mui/material/Stack";
-import { Switch } from "@mui/material";
+import { Button } from "@/Components/v3/ui/button";
+import { Switch } from "@/Components/v3/ui/switch";
 import TextLink from "@/Components/v1/TextLink/index.jsx";
 // Utils
-import { useTheme } from "@emotion/react";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 import { PropTypes } from "prop-types";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -115,7 +114,7 @@ const SettingsEmail = ({
 				</Typography>
 			</Box>
 			<Box>
-				<Stack gap={theme.spacing(10)}>
+				<div className="flex flex-col gap-10">
 					<Box>
 						<TextInput
 							label={t("settingsPage.emailSettings.labelHost")}
@@ -179,9 +178,8 @@ const SettingsEmail = ({
 									});
 									setEmailPasswordHasBeenReset(true);
 								}}
-								variant="contained"
-								color="error"
-								sx={{ mt: theme.spacing(4) }}
+								variant="destructive"
+								className="mt-4"
 							>
 								{t("reset")}
 							</Button>
@@ -303,16 +301,14 @@ const SettingsEmail = ({
 							systemEmailAddress &&
 							systemEmailPassword && (
 								<Button
-									variant="contained"
-									color="accent"
-									loading={isSending}
 									onClick={handleSendTestEmail}
+									disabled={isSending}
 								>
 									{t("settingsPage.emailSettings.buttonSendTestEmail")}
 								</Button>
 							)}
 					</Box>
-				</Stack>
+				</div>
 			</Box>
 		</ConfigBox>
 	);

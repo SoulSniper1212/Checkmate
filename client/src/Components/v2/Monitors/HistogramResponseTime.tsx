@@ -1,6 +1,4 @@
-import Stack from "@mui/material/Stack";
-import Box from "@mui/material/Box";
-import { useTheme } from "@mui/material/styles";
+import { Stack, Box } from "@/Components/v3/ui";
 import type { Check } from "@/Types/Check";
 import { HistogramResponseTimeTooltip } from "@/Components/v2/Monitors/HistogramResponseTimeTooltip";
 import { normalizeResponseTimes } from "@/Utils/v2/DataUtils";
@@ -19,19 +17,15 @@ export const HistogramResponseTime = ({ checks }: { checks: Check[] }) => {
 		data = normalChecks;
 	}
 
-	const theme = useTheme();
-
 	return (
 		<Stack
 			direction="row"
 			flexWrap="nowrap"
-			gap={theme.spacing(1.5)}
+			gap={1.5}
 			height="50px"
 			width="fit-content"
 			onClick={(event) => event.stopPropagation()}
-			sx={{
-				cursor: "default",
-			}}
+			className="cursor-default"
 		>
 			{data.map((check, index) => {
 				if (check === "placeholder") {
@@ -39,12 +33,7 @@ export const HistogramResponseTime = ({ checks }: { checks: Check[] }) => {
 						<Box
 							key={`${check}-${index}`}
 							position="relative"
-							width={theme.spacing(4.5)}
-							height="100%"
-							bgcolor={theme.palette.primary.lowContrast}
-							sx={{
-								borderRadius: theme.spacing(1.5),
-							}}
+							className="w-[18px] h-full bg-border rounded-[6px]"
 						/>
 					);
 				} else {
@@ -55,26 +44,15 @@ export const HistogramResponseTime = ({ checks }: { checks: Check[] }) => {
 						>
 							<Box
 								position="relative"
-								width="9px"
-								height="100%"
-								bgcolor={theme.palette.primary.lowContrast}
-								sx={{
-									borderRadius: theme.spacing(1.5),
-								}}
+								className="w-[9px] h-full bg-border rounded-[6px]"
 							>
 								<Box
 									position="absolute"
 									bottom={0}
-									width="100%"
-									height={`${check.normalResponseTime}%`}
-									bgcolor={
-										check.status
-											? theme.palette.success.lowContrast
-											: theme.palette.error.lowContrast
-									}
-									sx={{
-										borderRadius: theme.spacing(1.5),
-										transition: "height 600ms cubic-bezier(0.4, 0, 0.2, 1)",
+									className="w-full transition-all duration-600 ease-out rounded-[6px]"
+									style={{
+										height: `${check.normalResponseTime}%`,
+										backgroundColor: check.status ? "hsl(var(--success))" : "hsl(var(--destructive))"
 									}}
 								/>
 							</Box>

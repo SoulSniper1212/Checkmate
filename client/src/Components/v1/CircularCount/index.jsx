@@ -1,6 +1,6 @@
-import { Box } from "@mui/material";
+import { Box } from "@/Components/v3/ui";
 import PropTypes from "prop-types";
-import { useTheme } from "@emotion/react";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 const CircularCount = ({ count }) => {
 	const theme = useTheme();
 	return (

@@ -1,12 +1,11 @@
 // Components
-import Stack from "@mui/material/Stack";
-import Typography from "@mui/material/Typography";
+import { Stack, Typography } from "@/Components/v3/ui";
 import Logo from "../../../../assets/icons/checkmate-icon.svg?react";
 import LanguageSelector from "../../../../Components/LanguageSelector.jsx";
 import ThemeSwitch from "@/Components/v1/ThemeSwitch/index.jsx";
 
 // Utils
-import { useTheme } from "@mui/material/styles";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 import { useTranslation } from "react-i18next";
 
 const AuthHeader = ({ hideLogo = false }) => {
@@ -16,28 +15,20 @@ const AuthHeader = ({ hideLogo = false }) => {
 
 	return (
 		<Stack
-			direction="row"
-			alignItems="center"
-			justifyContent="space-between"
-			px={theme.spacing(12)}
-			gap={theme.spacing(4)}
+			className="flex-row items-center justify-between px-[var(--spacing-12)] gap-[var(--spacing-4)]"
 		>
 			<Stack
-				direction="row"
-				alignItems="center"
-				gap={theme.spacing(4)}
+				className="flex-row items-center gap-[var(--spacing-4)]"
 			>
 				{!hideLogo && (
 					<>
 						<Logo style={{ borderRadius: theme.shape.borderRadius }} />
-						<Typography sx={{ userSelect: "none" }}>{t("common.appName")}</Typography>
+						<Typography className="select-none">{t("common.appName")}</Typography>
 					</>
 				)}
 			</Stack>
 			<Stack
-				direction="row"
-				spacing={theme.spacing(2)}
-				alignItems="center"
+				className="flex-row gap-[var(--spacing-2)] items-center"
 			>
 				<LanguageSelector />
 				<ThemeSwitch />

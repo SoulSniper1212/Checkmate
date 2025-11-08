@@ -1,10 +1,10 @@
-import Stack from "@mui/material/Stack";
-import Box from "@mui/material/Box";
+import { Stack } from "@/Components/v3/ui";
+import { Box } from "@/Components/v3/ui";
 import Gauges from "./components/gauges/index.jsx";
-import Button from "@mui/material/Button";
+import { Button } from "@/Components/v3/ui";
 import StatBox from "@/Components/v1/StatBox/index.jsx";
 import StatusBoxes from "@/Components/v1/StatusBoxes/index.jsx";
-import { useTheme } from "@emotion/react";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 import { useTranslation } from "react-i18next";
 import { useFetchDiagnostics } from "../../../../Hooks/v1/logHooks.js";
 import { getHumanReadableDuration } from "../../../../Utils/timeUtils.js";
@@ -19,7 +19,7 @@ const Diagnostics = () => {
 	const [diagnostics, fetchDiagnostics, isLoading, error] = useFetchDiagnostics();
 	// Setup
 	return (
-		<Stack gap={theme.spacing(10)}>
+		<Stack gap="2.5rem">
 			<StatusBoxes flexWrap="wrap">
 				<StatBox
 					gradient={true}

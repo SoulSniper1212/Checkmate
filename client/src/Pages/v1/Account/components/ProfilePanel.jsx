@@ -1,7 +1,5 @@
-import { useTheme } from "@emotion/react";
 import { useState } from "react";
-import TabPanel from "@mui/lab/TabPanel";
-import { Box, Button, Divider, Stack, Typography } from "@mui/material";
+import { Box, Button, Divider, Stack, Typography, TabPanel } from "@/Components/v3/ui";
 import Avatar from "@/Components/v1/Avatar/index.jsx";
 import TextInput from "@/Components/v1/Inputs/TextInput/index.jsx";
 import ImageUpload from "@/Components/v1/Inputs/ImageUpload/index.jsx";
@@ -27,10 +25,9 @@ import { useTranslation } from "react-i18next";
  */
 
 const ProfilePanel = () => {
-	const theme = useTheme();
 	const dispatch = useDispatch();
 	const { t } = useTranslation();
-	const SPACING_GAP = theme.spacing(12);
+	const SPACING_GAP = "48px";
 
 	//redux state
 	const { user, isLoading } = useSelector((state) => state.auth);

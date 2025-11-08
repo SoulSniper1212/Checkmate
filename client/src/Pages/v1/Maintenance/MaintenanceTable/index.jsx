@@ -1,9 +1,9 @@
 import PropTypes from "prop-types";
-import { Box } from "@mui/material";
+import { Box } from "@/Components/v3/ui";
 import DataTable from "@/Components/v1/Table/index.jsx";
 import Pagination from "@/Components/v1/Table/TablePagination/index.jsx";
-import ArrowDownwardRoundedIcon from "@mui/icons-material/ArrowDownwardRounded";
-import ArrowUpwardRoundedIcon from "@mui/icons-material/ArrowUpwardRounded";
+import { ArrowDown } from "lucide-react";
+import { ArrowUp } from "lucide-react";
 import ActionsMenu from "./ActionsMenu/index.jsx";
 import { memo } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -11,7 +11,7 @@ import { formatDurationRounded } from "../../../../Utils/timeUtils.js";
 import { StatusLabel } from "@/Components/v1/Label/index.jsx";
 import { setRowsPerPage } from "../../../../Features/UI/uiSlice.js";
 import { useTranslation } from "react-i18next";
-import { useTheme } from "@emotion/react";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 import { useNavigate } from "react-router-dom";
 import dayjs from "dayjs";
 /**
@@ -68,9 +68,9 @@ const MaintenanceTable = ({
 						}}
 					>
 						{sort.order === "asc" ? (
-							<ArrowUpwardRoundedIcon />
+							<ArrowUpIcon />
 						) : (
-							<ArrowDownwardRoundedIcon />
+							<ArrowDownIcon />
 						)}
 					</span>
 				</Box>
@@ -89,9 +89,9 @@ const MaintenanceTable = ({
 						}}
 					>
 						{sort.order === "asc" ? (
-							<ArrowUpwardRoundedIcon />
+							<ArrowUpIcon />
 						) : (
-							<ArrowDownwardRoundedIcon />
+							<ArrowDownIcon />
 						)}
 					</span>
 				</Box>
@@ -187,7 +187,7 @@ const MaintenanceTable = ({
 					rowSX: {
 						cursor: "pointer",
 						"&:hover td": {
-							backgroundColor: theme.palette.tertiary.main,
+							backgroundColor: text-foreground,
 							transition: "background-color .3s ease",
 						},
 					},

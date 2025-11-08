@@ -1,9 +1,10 @@
 import PropTypes from "prop-types";
-import { Box, Breadcrumbs as MUIBreadcrumbs } from "@mui/material";
-import { useTheme } from "@emotion/react";
+import { Box } from "@/Components/v3/ui";
 import { useNavigate } from "react-router-dom";
 import ArrowRight from "../ArrowRight/index.jsx";
 import "./index.css";
+
+// Breadcrumbs component - v1 migrated
 
 /**
  * Breadcrumbs component that displays a list of breadcrumb items.
@@ -17,52 +18,31 @@ import "./index.css";
  */
 
 const Breadcrumbs = ({ list }) => {
-	const theme = useTheme();
 	const navigate = useNavigate();
 
 	return (
-		<MUIBreadcrumbs
-			separator={<ArrowRight />}
+		<nav
 			aria-label="breadcrumb"
-			px={theme.spacing(2)}
-			py={theme.spacing(3.5)}
-			width="fit-content"
-			backgroundColor={theme.palette.secondary.main}
-			borderRadius={theme.shape.borderRadius}
-			lineHeight="18px"
-			sx={{
-				"& .MuiBreadcrumbs-li a": {
-					transition: "background-color 0.2s ease-in-out, color 0.2s ease-in-out",
-				},
-				"& .MuiBreadcrumbs-li:not(:last-of-type):hover a": {
-					backgroundColor: theme.palette.secondary.contrastText,
-					color: theme.palette.secondary.main,
-				},
-			}}
+			className="px-2 py-3.5 w-fit bg-gray-100 rounded-lg leading-[18px] flex items-center gap-2"
 		>
 			{list.map((item, index) => {
+				const isLast = index === list.length - 1;
 				return (
-					<Box
-						component="a"
-						key={`${item.name}-${index}`}
-						px={theme.spacing(4)}
-						pt={theme.spacing(2)}
-						pb={theme.spacing(3)}
-						borderRadius={theme.shape.borderRadius}
-						onClick={() => navigate(item.path)}
-						sx={{
-							opacity: 0.8,
-							textTransform: "capitalize",
-							"&, &:hover": {
-								color: theme.palette.secondary.contrastText,
-							},
-						}}
-					>
-						{item.name}
-					</Box>
+					<div key={`${item.name}-${index}`} className="flex items-center">
+						<Box
+							component="a"
+							className={`px-4 pt-2 pb-3 rounded-lg opacity-80 capitalize text-gray-900 hover:bg-gray-200 transition-colors duration-200 cursor-pointer ${
+								isLast ? 'opacity-100 cursor-default' : ''
+							}`}
+							onClick={() => !isLast && navigate(item.path)}
+						>
+							{item.name}
+						</Box>
+						{!isLast && <ArrowRight />}
+					</div>
 				);
 			})}
-		</MUIBreadcrumbs>
+		</nav>
 	);
 };
 

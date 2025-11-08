@@ -1,15 +1,13 @@
 // Components
-import Stack from "@mui/material/Stack";
-import Typography from "@mui/material/Typography";
+import { Stack, Typography, Button } from "@/Components/v3/ui";
 import Breadcrumbs from "@/Components/v1/Breadcrumbs/index.jsx";
 import TextInput from "@/Components/v1/Inputs/TextInput/index.jsx";
 import Search from "@/Components/v1/Inputs/Search/index.jsx";
-import Button from "@mui/material/Button";
 import RoleTable from "../components/RoleTable/index.jsx";
 import ChangePasswordModal from "@/Pages/Account/components/ChangePasswordModal/index.jsx";
 // Utils
 import { useParams } from "react-router-dom";
-import { useTheme } from "@emotion/react";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 import { useTranslation } from "react-i18next";
 import { useGetUser, useEditUser } from "../../../../Hooks/v1/userHooks.js";
 import { EDITABLE_ROLES, ROLES } from "../../../../Utils/roleUtils.js";
@@ -55,14 +53,13 @@ const EditUser = () => {
 	};
 
 	return (
-		<Stack gap={theme.spacing(20)}>
+		<Stack className="gap-[var(--spacing-20)]">
 			<Breadcrumbs list={BREADCRUMBS} />
 			<Typography variant="h2">{t("editUserPage.title")}</Typography>
 			<Stack
 				component="form"
 				onSubmit={handleSubmit}
-				gap={theme.spacing(12)}
-				maxWidth="50%"
+				className="gap-[var(--spacing-12)] max-w-[50%]"
 			>
 				<TextInput
 					name="firstName"
@@ -107,15 +104,12 @@ const EditUser = () => {
 					handleDeleteRole={handleDeleteRole}
 				/>
 				<Stack
-					direction="row"
-					spacing={theme.spacing(10)}
-					mt={theme.spacing(8)}
-					//justifyContent="flex-end"
+					className="flex-row gap-[var(--spacing-10)] mt-[var(--spacing-8)]"
 				>
 					<Button
 						type="submit"
-						variant="contained"
-						color="accent"
+						muiVariant="contained"
+						color="primary"
 						loading={isLoading || isSaving}
 					>
 						{t("editUserPage.form.save")}

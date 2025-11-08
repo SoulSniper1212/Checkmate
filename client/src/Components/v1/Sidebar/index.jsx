@@ -1,9 +1,7 @@
-import Stack from "@mui/material/Stack";
-
-import List from "@mui/material/List";
+import { Stack, Divider } from "@/Components/v3/ui";
+import { List } from "@/Components/v3/ui";
 import Logo from "./components/logo.jsx";
 import CollapseButton from "./components/collapseButton.jsx";
-import Divider from "@mui/material/Divider";
 import NavItem from "./components/navItem.jsx";
 import AuthFooter from "./components/authFooter.jsx";
 
@@ -26,10 +24,10 @@ import Notifications from "../../../assets/icons/notifications.svg?react";
 import Logs from "../../../assets/icons/logs.svg?react";
 
 // Utils
-import { useTheme } from "@mui/material/styles";
 import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router";
+import { useLocation } from "react-router";
 
 const URL_MAP = {
 	support: "https://discord.com/invite/NAb6H3UTjK",
@@ -79,9 +77,9 @@ const getAccountMenuItems = (t) => [
 ];
 
 const Sidebar = () => {
-	const theme = useTheme();
 	const { t } = useTranslation();
 	const navigate = useNavigate();
+	const location = useLocation();
 	// Redux state
 	const collapsed = useSelector((state) => state.ui.sidebar.collapsed);
 
@@ -91,33 +89,20 @@ const Sidebar = () => {
 
 	return (
 		<Stack
-			height="100vh"
-			width={
-				collapsed
+			className="h-screen sticky top-0 border-r py-6 gap-6 transition-all duration-650 ease-in-out"
+			style={{
+				width: collapsed
 					? "var(--env-var-side-bar-collapsed-width)"
-					: "var(--env-var-side-bar-width)"
-			}
-			component="aside"
-			position="sticky"
-			top={0}
-			borderRight={`1px solid ${theme.palette.primary.lowContrast}`}
-			paddingTop={theme.spacing(6)}
-			paddingBottom={theme.spacing(6)}
-			gap={theme.spacing(6)}
-			sx={{
-				transition: "width 650ms cubic-bezier(0.36, -0.01, 0, 0.77)",
+					: "var(--env-var-side-bar-width)",
+				borderColor: "hsl(var(--border))",
 			}}
 		>
 			<CollapseButton collapsed={collapsed} />
 			<Logo collapsed={collapsed} />
 			<List
-				component="nav"
-				aria-labelledby="nested-menu-subheader"
-				disablePadding
-				sx={{
-					px: theme.spacing(6),
-					height: "100%",
-				}}
+				className="h-full px-6"
+				role="navigation"
+				aria-label="Main navigation"
 			>
 				{menu.map((item) => {
 					const selected = location.pathname.startsWith(`/${item.path}`);
@@ -134,9 +119,9 @@ const Sidebar = () => {
 			</List>
 			{!collapsed && <StarPrompt />}
 			<List
-				component="nav"
-				disablePadding
-				sx={{ px: theme.spacing(6) }}
+				className="px-6"
+				role="navigation"
+				aria-label="Additional navigation"
 			>
 				{otherMenuItems.map((item) => {
 					const selected = location.pathname.startsWith(`/${item.path}`);
@@ -159,7 +144,7 @@ const Sidebar = () => {
 					);
 				})}
 			</List>
-			<Divider sx={{ mt: "auto", borderColor: theme.palette.primary.lowContrast }} />
+			<Divider className="mt-auto" />
 			<AuthFooter
 				collapsed={collapsed}
 				accountMenuItems={accountMenuItems}

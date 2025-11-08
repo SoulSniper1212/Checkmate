@@ -1,0 +1,194 @@
+/* CSS Custom Properties for Light Theme */
+:root {
+  /* Background colors */
+  --background: 0 0% 100%;
+  --foreground: 213 15% 27%;
+
+  /* Card colors */
+  --card: 0 0% 100%;
+  --card-foreground: 213 15% 27%;
+
+  /* Popover colors */
+  --popover: 0 0% 100%;
+  --popover-foreground: 213 15% 27%;
+
+  /* Primary colors */
+  --primary: 213 100% 50%;
+  --primary-foreground: 0 0% 98%;
+
+  /* Secondary colors */
+  --secondary: 210 15% 94%;
+  --secondary-foreground: 213 15% 27%;
+
+  /* Muted colors */
+  --muted: 210 15% 94%;
+  --muted-foreground: 215 13% 47%;
+
+  /* Accent colors */
+  --accent: 213 100% 50%;
+  --accent-foreground: 0 0% 98%;
+
+  /* Destructive colors */
+  --destructive: 0 84% 53%;
+  --destructive-foreground: 0 0% 98%;
+
+  /* Border colors */
+  --border: 214 20% 89%;
+  --input: 214 20% 89%;
+  --ring: 213 100% 50%;
+
+  /* Radius */
+  --radius: 0.5rem;
+
+  /* Custom theme colors from original design */
+  --theme-primary-bg: 0 0% 100%;
+  --theme-primary-fg: 213 15% 27%;
+  --theme-primary-secondary: 213 14% 32%;
+  --theme-primary-tertiary: 215 13% 47%;
+
+  --theme-secondary-bg: 210 15% 94%;
+  --theme-secondary-fg: 213 14% 32%;
+
+  --theme-tertiary-bg: 210 15% 96%;
+  --theme-tertiary-fg: 213 15% 27%;
+
+  --theme-accent: 213 100% 50%;
+  --theme-accent-hover: 213 100% 45%;
+  --theme-accent-light: 213 100% 85%;
+
+  --theme-success: 142 69% 35%;
+  --theme-success-fg: 0 0% 100%;
+  --theme-success-light: 142 69% 85%;
+
+  --theme-warning: 28 96% 54%;
+  --theme-warning-fg: 0 0% 100%;
+  --theme-warning-light: 28 96% 85%;
+
+  --theme-error: 0 84% 53%;
+  --theme-error-fg: 0 0% 100%;
+  --theme-error-light: 0 84% 85%;
+
+  /* Low contrast for borders and decorative elements */
+  --theme-border: 214 20% 89%;
+  --theme-border-subtle: 210 15% 94%;
+
+  /* Typography scale from original design */
+  --font-size-xs: 0.5625rem;   /* 9px */
+  --font-size-sm: 0.6875rem;   /* 11px */
+  --font-size-base: 0.8125rem; /* 13px */
+  --font-size-md: 0.875rem;    /* 14px */
+  --font-size-lg: 0.9375rem;   /* 15px */
+  --font-size-xl: 1.4375rem;   /* 23px */
+
+  /* Spacing scale from original design */
+  --spacing-1: 0.125rem;  /* 2px */
+  --spacing-2: 0.25rem;   /* 4px */
+  --spacing-3: 0.375rem;  /* 6px */
+  --spacing-4: 0.5rem;    /* 8px */
+  --spacing-5: 0.625rem;  /* 10px */
+  --spacing-6: 0.75rem;   /* 12px */
+  --spacing-8: 1rem;      /* 16px */
+  --spacing-10: 1.25rem;  /* 20px */
+  --spacing-12: 1.5rem;   /* 24px */
+  --spacing-15: 1.875rem; /* 30px */
+  --spacing-20: 2.5rem;   /* 40px */
+
+  /* Shadow from original design */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --theme-card-shadow: 0 0 0 1px rgb(0 0 0 / 0.04), 0 12px 24px rgb(0 0 0 / 0.08);
+}
+
+/* CSS Custom Properties for Dark Theme */
+.dark {
+  /* Background colors */
+  --background: 0 0% 7%;
+  --foreground: 210 15% 95%;
+
+  /* Card colors */
+  --card: 0 0% 7%;
+  --card-foreground: 210 15% 95%;
+
+  /* Popover colors */
+  --popover: 0 0% 7%;
+  --popover-foreground: 210 15% 95%;
+
+  /* Primary colors */
+  --primary: 213 100% 50%;
+  --primary-foreground: 0 0% 7%;
+
+  /* Secondary colors */
+  --secondary: 215 15% 19%;
+  --secondary-foreground: 210 15% 95%;
+
+  /* Muted colors */
+  --muted: 215 15% 19%;
+  --muted-foreground: 217 10% 64%;
+
+  /* Accent colors */
+  --accent: 213 100% 50%;
+  --accent-foreground: 0 0% 7%;
+
+  /* Destructive colors */
+  --destructive: 0 62% 50%;
+  --destructive-foreground: 0 0% 7%;
+
+  /* Border colors */
+  --border: 215 15% 19%;
+  --input: 215 15% 19%;
+  --ring: 213 100% 50%;
+
+  /* Custom theme colors from original design */
+  --theme-primary-bg: 0 0% 7%;
+  --theme-primary-fg: 210 15% 95%;
+  --theme-primary-secondary: 210 15% 91%;
+  --theme-primary-tertiary: 210 15% 64%;
+
+  --theme-secondary-bg: 215 15% 19%;
+  --theme-secondary-fg: 210 15% 91%;
+
+  --theme-tertiary-bg: 215 20% 25%;
+  --theme-tertiary-fg: 210 15% 95%;
+
+  --theme-accent: 213 100% 50%;
+  --theme-accent-hover: 213 100% 55%;
+  --theme-accent-light: 213 100% 85%;
+
+  --theme-success: 142 69% 58%;
+  --theme-success-fg: 0 0% 7%;
+  --theme-success-light: 142 69% 85%;
+
+  --theme-warning: 28 96% 58%;
+  --theme-warning-fg: 0 0% 7%;
+  --theme-warning-light: 28 96% 85%;
+
+  --theme-error: 0 62% 50%;
+  --theme-error-fg: 0 0% 7%;
+  --theme-error-light: 0 62% 85%;
+
+  /* Low contrast for borders and decorative elements */
+  --theme-border: 215 15% 19%;
+  --theme-border-subtle: 215 20% 25%;
+
+  /* Shadow from original design */
+  --theme-card-shadow: 0 2px 10px rgb(0 0 0 / 0.2), 0 0 0 1px rgb(255 255 255 / 0.04);
+}
+
+/* Utility classes for theme colors */
+.bg-primary { background-color: hsl(var(--theme-primary-bg)); }
+.bg-secondary { background-color: hsl(var(--theme-secondary-bg)); }
+.bg-tertiary { background-color: hsl(var(--theme-tertiary-bg)); }
+.bg-accent { background-color: hsl(var(--theme-accent)); }
+
+.text-primary { color: hsl(var(--theme-primary-fg)); }
+.text-secondary { color: hsl(var(--theme-primary-secondary)); }
+.text-muted { color: hsl(var(--theme-primary-tertiary)); }
+
+.text-accent { color: hsl(var(--theme-accent)); }
+.text-success { color: hsl(var(--theme-success)); }
+.text-warning { color: hsl(var(--theme-warning)); }
+.text-error { color: hsl(var(--theme-error)); }
+
+.border-theme { border-color: hsl(var(--theme-border)); }
+.border-subtle { border-color: hsl(var(--theme-border-subtle)); }

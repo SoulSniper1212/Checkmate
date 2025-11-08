@@ -1,9 +1,10 @@
-import { Box, Typography, Divider } from "@mui/material";
+import { Typography, Divider } from "@/Components/v3/ui";
+import { Box } from "@/Components/v3/ui";
 import Checkbox from "@/Components/v1/Inputs/Checkbox/index.jsx";
 import MetricsIcon from "../../../../../../assets/icons/ruler-icon.svg?react";
 import LegendBox from "@/Components/v1/Charts/LegendBox/index.jsx";
 import { useTranslation } from "react-i18next";
-import { useTheme } from "@emotion/react";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 
 const AreaChartLegend = ({ metrics, handleMetrics }) => {
 	const theme = useTheme();

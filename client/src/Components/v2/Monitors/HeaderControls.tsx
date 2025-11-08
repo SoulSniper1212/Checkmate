@@ -1,15 +1,9 @@
-import Stack from "@mui/material/Stack";
+import { Stack } from "@/Components/v3/ui";
 import { MonitorStatus } from "@/Components/v2/Monitors/MonitorStatus";
 import { ButtonGroup, Button } from "@/Components/v2/Inputs";
-import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
-import PauseOutlinedIcon from "@mui/icons-material/PauseOutlined";
-import PlayArrowOutlinedIcon from "@mui/icons-material/PlayArrowOutlined";
-import EmailIcon from "@mui/icons-material/Email";
-import BugReportOutlinedIcon from "@mui/icons-material/BugReportOutlined";
+import { Settings, Pause, Play, Mail, Bug } from "lucide-react";
 
-import { useMediaQuery } from "@mui/material";
 import { useTranslation } from "react-i18next";
-import { useTheme } from "@mui/material/styles";
 
 import type { IMonitor } from "@/Types/Monitor";
 
@@ -25,28 +19,27 @@ export const HeaderControls = ({
 	refetch: Function;
 }) => {
 	const { t } = useTranslation();
-	const theme = useTheme();
-	const isSmall = useMediaQuery(theme.breakpoints.down("md"));
 
 	return (
 		<Stack
-			direction={isSmall ? "column" : "row"}
-			spacing={isSmall ? theme.spacing(4) : 0}
+			direction="col md:row"
+			gap={4}
+			mdGap={0}
 			justifyContent={"space-between"}
 		>
 			<MonitorStatus monitor={monitor} />
 			<Stack
 				direction={"row"}
-				spacing={theme.spacing(2)}
+				gap={2}
 			>
 				<ButtonGroup
-					orientation={isSmall ? "vertical" : "horizontal"}
-					fullWidth={isSmall}
+					orientation="vertical md:horizontal"
+					fullWidth="md"
 					variant="contained"
 					color="secondary"
 				>
-					<Button startIcon={<EmailIcon />}>{t("sendTestNotifications")}</Button>
-					<Button startIcon={<BugReportOutlinedIcon />}>{t("menu.incidents")}</Button>
+					<Button startIcon={<Mail />}>{t("sendTestNotifications")}</Button>
+					<Button startIcon={<Bug />}>{t("menu.incidents")}</Button>
 					<Button
 						loading={isPatching}
 						onClick={async () => {
@@ -54,12 +47,12 @@ export const HeaderControls = ({
 							refetch();
 						}}
 						startIcon={
-							monitor?.isActive ? <PauseOutlinedIcon /> : <PlayArrowOutlinedIcon />
+							monitor?.isActive ? <Pause /> : <Play />
 						}
 					>
 						{monitor?.isActive ? t("pause") : t("resume")}
 					</Button>
-					<Button startIcon={<SettingsOutlinedIcon />}>{t("configure")}</Button>
+					<Button startIcon={<Settings />}>{t("configure")}</Button>
 				</ButtonGroup>
 			</Stack>
 		</Stack>

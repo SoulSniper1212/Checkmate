@@ -8,8 +8,8 @@ import {
 	ResponsiveContainer,
 	Text,
 } from "recharts";
-import { Box, Stack, Typography } from "@mui/material";
-import { useTheme } from "@emotion/react";
+import { Card, Stack } from "@/Components/v3/ui";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 import { useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 import { formatDateWithTz } from "../../../../Utils/timeUtils.js";
@@ -28,70 +28,33 @@ const CustomToolTip = ({ active, payload, label, dateRange }) => {
 			? payload[0]?.payload?.originalAvgResponseTime
 			: (payload[0]?.payload?.avgResponseTime ?? 0);
 		return (
-			<Box
-				className="area-tooltip"
-				sx={{
-					backgroundColor: theme.palette.primary.main,
-					border: 1,
-					borderColor: theme.palette.primary.lowContrast,
-					borderRadius: theme.shape.borderRadius,
-					py: theme.spacing(2),
-					px: theme.spacing(4),
-				}}
+			<Card
+				className="area-tooltip border-[var(--color-primary-low-contrast)] bg-[var(--color-primary-main)] px-4 py-2"
 			>
-				<Typography
-					sx={{
-						color: theme.palette.primary.contrastTextTertiary,
-						fontSize: 12,
-						fontWeight: 500,
-					}}
-				>
+				<p className="text-xs font-medium text-[var(--color-primary-contrast-text-tertiary)]">
 					{formatDateWithTz(label, format, uiTimezone)}
-				</Typography>
-				<Box mt={theme.spacing(1)}>
-					<Box
-						display="inline-block"
-						width={theme.spacing(4)}
-						height={theme.spacing(4)}
-						backgroundColor={theme.palette.primary.main}
-						sx={{ borderRadius: "50%" }}
+				</p>
+				<div className="mt-1">
+					<div
+						className="inline-block bg-[var(--color-primary-main)] rounded-full"
+						style={{ width: '1rem', height: '1rem' }}
 					/>
 					<Stack
-						display="inline-flex"
 						direction="row"
 						justifyContent="space-between"
-						ml={theme.spacing(3)}
-						sx={{
-							"& span": {
-								color: theme.palette.primary.contrastTextTertiary,
-								fontSize: 11,
-								fontWeight: 500,
-							},
-						}}
+						className="inline-flex ml-3"
 					>
-						<Typography
-							component="span"
-							sx={{ opacity: 0.8 }}
-						>
+						<span className="opacity-80 text-[11px] font-medium text-[var(--color-primary-contrast-text-tertiary)]">
 							Response time:
-						</Typography>
-						<Typography
-							ml={theme.spacing(4)}
-							component="span"
-						>
+						</span>
+						<span className="ml-4 text-[var(--color-primary-contrast-text-tertiary)]">
 							{Math.floor(responseTime)}
-							<Typography
-								component="span"
-								sx={{ opacity: 0.8 }}
-							>
-								{" "}
-								ms
-							</Typography>
-						</Typography>
+							<span className="opacity-80"> ms</span>
+						</span>
 					</Stack>
-				</Box>
+				</div>
 				{/* Display original value */}
-			</Box>
+			</Card>
 		);
 	}
 	return null;
@@ -121,7 +84,7 @@ const CustomTick = ({ x, y, payload, dateRange }) => {
 			x={x}
 			y={y + 10}
 			textAnchor="middle"
-			fill={theme.palette.primary.contrastTextTertiary}
+			fill="var(--color-primary-contrast-text-tertiary)"
 			fontSize={11}
 			fontWeight={400}
 		>
@@ -139,7 +102,6 @@ CustomTick.propTypes = {
 };
 
 const MonitorDetailsAreaChart = ({ checks, dateRange }) => {
-	const theme = useTheme();
 	const memoizedChecks = useMemo(() => checks, [checks[0]]);
 	const [isHovered, setIsHovered] = useState(false);
 	return (
@@ -162,7 +124,7 @@ const MonitorDetailsAreaChart = ({ checks, dateRange }) => {
 				onMouseLeave={() => setIsHovered(false)}
 			>
 				<CartesianGrid
-					stroke={theme.palette.primary.lowContrast}
+					stroke="var(--color-primary-low-contrast)"
 					strokeWidth={1}
 					strokeOpacity={1}
 					fill="transparent"
@@ -178,18 +140,18 @@ const MonitorDetailsAreaChart = ({ checks, dateRange }) => {
 					>
 						<stop
 							offset="0%"
-							stopColor={theme.palette.accent.main}
+							stopColor="var(--color-accent-main)"
 							stopOpacity={0.8}
 						/>
 						<stop
 							offset="100%"
-							stopColor={theme.palette.accent.light}
+							stopColor="var(--color-accent-light)"
 							stopOpacity={0}
 						/>
 					</linearGradient>
 				</defs>
 				<XAxis
-					stroke={theme.palette.primary.lowContrast}
+					stroke="var(--color-primary-low-contrast)"
 					dataKey="_id"
 					tick={<CustomTick dateRange={dateRange} />}
 					axisLine={false}
@@ -197,17 +159,17 @@ const MonitorDetailsAreaChart = ({ checks, dateRange }) => {
 					height={20}
 				/>
 				<Tooltip
-					cursor={{ stroke: theme.palette.primary.lowContrast }}
+					cursor={{ stroke: "var(--color-primary-low-contrast)" }}
 					content={<CustomToolTip dateRange={dateRange} />}
 					wrapperStyle={{ pointerEvents: "none" }}
 				/>
 				<Area
 					type="monotone"
 					dataKey="avgResponseTime"
-					stroke={theme.palette.accent.main} // CAIO_REVIEW
+					stroke="var(--color-accent-main)" // CAIO_REVIEW
 					fill="url(#colorUv)"
 					strokeWidth={isHovered ? 2.5 : 1.5}
-					activeDot={{ stroke: theme.palette.accent.main, r: 5 }} // CAIO_REVIEW
+					activeDot={{ stroke: "var(--color-accent-main)", r: 5 }} // CAIO_REVIEW
 				/>
 			</AreaChart>
 		</ResponsiveContainer>

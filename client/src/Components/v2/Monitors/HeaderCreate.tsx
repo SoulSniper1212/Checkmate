@@ -1,6 +1,5 @@
-import Stack from "@mui/material/Stack";
+import { Stack } from "@/Components/v3/ui";
 import { Button } from "@/Components/v2/Inputs";
-import { useTheme } from "@mui/material/styles";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router";
 export const HeaderCreate = ({
@@ -12,7 +11,6 @@ export const HeaderCreate = ({
 	isLoading: boolean;
 	path: string;
 }) => {
-	const theme = useTheme();
 	const { t } = useTranslation();
 	const navigate = useNavigate();
 	return (
@@ -20,7 +18,7 @@ export const HeaderCreate = ({
 			direction="row"
 			justifyContent="end"
 			alignItems="center"
-			gap={theme.spacing(6)}
+			gap={6}
 		>
 			<Button
 				loading={isLoading}

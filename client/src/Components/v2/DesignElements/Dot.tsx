@@ -1,5 +1,5 @@
 export const Dot = ({
-	color = "gray",
+	color = "hsl(var(--muted-foreground))",
 	size = "4px",
 	style,
 }: {
@@ -9,13 +9,11 @@ export const Dot = ({
 }) => {
 	return (
 		<span
+			className="inline-block rounded-full opacity-80"
 			style={{
-				content: '""',
 				width: size,
 				height: size,
-				borderRadius: "50%",
 				backgroundColor: color,
-				opacity: 0.8,
 				...style,
 			}}
 		/>

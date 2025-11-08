@@ -1,6 +1,6 @@
-import { Box, Stack, Tooltip, Typography } from "@mui/material";
+import { Box, Stack, Tooltip, Typography } from "@/Components/v3/ui";
 import { useMonitorUtils } from "../../../../../Hooks/v1/useMonitorUtils.js";
-import { useTheme } from "@emotion/react";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 import { useTranslation } from "react-i18next";
 import PulseDot from "@/Components/v1/Animated/PulseDot.jsx";
 import PropTypes from "prop-types";
@@ -10,10 +10,7 @@ const MonitorStatusHeader = ({ monitor, infrastructureMonitor }) => {
 	const { statusColor, pagespeedStatusMsg, determineState } = useMonitorUtils();
 	return (
 		<Stack
-			direction="row"
-			alignItems="center"
-			height="fit-content"
-			gap={theme.spacing(2)}
+			className="flex-row items-center h-fit gap-[var(--spacing-2)]"
 		>
 			<Tooltip
 				title={pagespeedStatusMsg[determineState(monitor)]}
@@ -40,24 +37,7 @@ const MonitorStatusHeader = ({ monitor, infrastructureMonitor }) => {
 				{infrastructureMonitor.url?.replace(/^https?:\/\//, "") || "..."}
 			</Typography>
 			<Typography
-				position="relative"
-				variant="body2"
-				ml={theme.spacing(6)}
-				mt={theme.spacing(1)}
-				sx={{
-					"&:before": {
-						position: "absolute",
-						content: `""`,
-						width: theme.spacing(2),
-						height: theme.spacing(2),
-						borderRadius: "50%",
-						backgroundColor: theme.palette.primary.contrastTextTertiary,
-						opacity: 0.8,
-						left: theme.spacing(-5),
-						top: "50%",
-						transform: "translateY(-50%)",
-					},
-				}}
+				className="relative text-sm ml-[var(--spacing-6)] mt-[var(--spacing-1)] [&::before]:absolute [&::before]:content-[''] [&::before]:w-[var(--spacing-2)] [&::before]:h-[var(--spacing-2)] [&::before]:rounded-full [&::before]:bg-primary-contrast-tertiary [&::before]:opacity-80 [&::before]:left-[calc(var(--spacing-5)*-1)] [&::before]:top-1/2 [&::before]:-translate-y-1/2"
 			>
 				{t("editing")}
 			</Typography>

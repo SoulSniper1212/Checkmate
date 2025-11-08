@@ -1,5 +1,5 @@
 // Components
-import { Stack, Typography } from "@mui/material";
+import { Stack, Typography } from "@/Components/v3/ui";
 import StatusBoxes from "@/Components/v1/StatusBoxes/index.jsx";
 import StatBox from "@/Components/v1/StatBox/index.jsx";
 

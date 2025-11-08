@@ -1,5 +1,6 @@
 // Components
-import { Stack, Typography, Box } from "@mui/material";
+import { Stack, Typography } from "@/Components/v3/ui";
+import { Box } from "@/Components/v3/ui";
 import ChartBox from "@/Components/v1/Charts/ChartBox/index.jsx";
 import UptimeIcon from "../../../../../../assets/icons/uptime-icon.svg?react";
 import IncidentsIcon from "../../../../../../assets/icons/incidents.svg?react";
@@ -11,7 +12,7 @@ import SkeletonLayout from "./skeleton.jsx";
 // Utils
 import { formatDateWithTz } from "../../../../../../Utils/timeUtils.js";
 import PropTypes from "prop-types";
-import { useTheme } from "@emotion/react";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 import { useState } from "react";
 
 const ChartBoxes = ({

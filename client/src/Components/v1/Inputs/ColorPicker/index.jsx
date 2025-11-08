@@ -1,7 +1,6 @@
 import PropTypes from "prop-types";
-import { Stack, Typography } from "@mui/material";
-import { useTheme } from "@emotion/react";
-import { MuiColorInput } from "mui-color-input";
+import { Stack, Typography } from "@/Components/v3/ui";
+import { ColorPicker as BaseColorPicker } from "@/Components/v3/ui/color-picker";
 
 /**
  *
@@ -22,13 +21,10 @@ import { MuiColorInput } from "mui-color-input";
  *	</ColorPicker>
  */
 const ColorPicker = ({ id, name, value, error, onChange, onBlur }) => {
-	const theme = useTheme();
 	return (
-		<Stack gap={theme.spacing(4)}>
-			<MuiColorInput
-				format="hex"
+		<Stack gap="16px">
+			<BaseColorPicker
 				name={name}
-				type="color-picker"
 				value={value}
 				id={id}
 				onChange={(color) => onChange({ target: { name, value: color } })}
@@ -37,12 +33,7 @@ const ColorPicker = ({ id, name, value, error, onChange, onBlur }) => {
 			{error && (
 				<Typography
 					component="span"
-					className="input-error"
-					color={theme.palette.error.main}
-					mt={theme.spacing(2)}
-					sx={{
-						opacity: 0.8,
-					}}
+					className="input-error text-red-500 mt-2 opacity-80"
 				>
 					{error}
 				</Typography>

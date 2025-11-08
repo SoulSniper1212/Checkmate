@@ -1,7 +1,10 @@
 import React from "react";
-import { Typography, IconButton, Stack, Box } from "@mui/material";
-import CloseIcon from "@mui/icons-material/Close";
-import { useTheme } from "@emotion/react";
+import { Stack } from "@/Components/v3/ui";
+import { IconButton } from "@/Components/v3/ui";
+import { Typography } from "@/Components/v3/ui";
+import { Box } from "@/Components/v3/ui";
+import { X } from "lucide-react";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 import { useSelector, useDispatch } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { setStarPromptOpen } from "../../../Features/UI/uiSlice.js";
@@ -67,7 +70,7 @@ const StarPrompt = ({ repoUrl = "https://github.com/bluewave-labs/checkmate" }) 
 						},
 					}}
 				>
-					<CloseIcon sx={{ fontSize: "1.25rem" }} />
+					<X size={20} />
 				</IconButton>
 			</Stack>
 

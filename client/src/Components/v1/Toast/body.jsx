@@ -1,19 +1,14 @@
-import Stack from "@mui/material/Stack";
-import Typography from "@mui/material/Typography";
-
-import { useTheme } from "@emotion/react";
+import { Stack, Typography } from "@/Components/v3/ui";
 import PropTypes from "prop-types";
 
 const ToastBody = ({ body }) => {
-	const theme = useTheme();
-
 	if (Array.isArray(body)) {
 		return (
-			<Stack gap={theme.spacing(2)}>
+			<Stack gap={2}>
 				{body.map((item, idx) => (
 					<Typography
 						key={`item-${idx}`}
-						color={theme.palette.secondary.contrastText}
+						className="text-secondary-foreground"
 					>
 						{item}
 					</Typography>
@@ -21,7 +16,7 @@ const ToastBody = ({ body }) => {
 			</Stack>
 		);
 	} else if (typeof body === "string") {
-		return <Typography color={theme.palette.secondary.contrastText}>{body}</Typography>;
+		return <Typography className="text-secondary-foreground">{body}</Typography>;
 	}
 
 	return null;

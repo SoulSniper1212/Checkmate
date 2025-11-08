@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
-import { Box, MenuItem, Select, Stack } from "@mui/material";
-import { useTheme } from "@emotion/react";
+import { Box, MenuItem, Select, Stack } from "@/Components/v3/ui";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 import "flag-icons/css/flag-icons.min.css";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
@@ -32,14 +32,9 @@ const LanguageSelector = () => {
 			size="small"
 			sx={{
 				minWidth: 80,
-				"& .MuiSelect-select": {
-					display: "flex",
-					alignItems: "center",
-					justifyContent: "center",
-				},
-				"& .MuiSelect-icon": {
-					alignSelf: "center",
-				},
+				display: "flex",
+				alignItems: "center",
+				justifyContent: "center",
 			}}
 		>
 			{languages.map((lang) => {
@@ -61,30 +56,15 @@ const LanguageSelector = () => {
 							display: "flex",
 							justifyContent: "center",
 							alignItems: "center",
+							padding: "4px 8px",
 						}}
 					>
-						<Stack
-							direction="row"
-							spacing={theme.spacing(2)}
-							alignItems="center"
-							justifyContent="center"
-						>
-							<Box
-								component="span"
-								sx={{
-									display: "flex",
-									alignItems: "center",
-								}}
-							>
-								{flag && <span className={flag} />}
-							</Box>
-							<Box
-								component="span"
-								sx={{ textTransform: "uppercase" }}
-							>
+						<span style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+							{flag && <span className={flag} style={{ marginRight: "4px" }} />}
+							<span style={{ textTransform: "uppercase" }}>
 								{lang}
-							</Box>
-						</Stack>
+							</span>
+						</span>
 					</MenuItem>
 				);
 			})}

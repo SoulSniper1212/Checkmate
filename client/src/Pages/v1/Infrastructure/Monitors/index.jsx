@@ -1,5 +1,5 @@
 // Components
-import { Stack } from "@mui/material";
+import { Stack } from "@/Components/v3/ui";
 import Breadcrumbs from "@/Components/v1/Breadcrumbs/index.jsx";
 import MonitorCountHeader from "@/Components/v1/MonitorCountHeader/index.jsx";
 import MonitorCreateHeader from "@/Components/v1/MonitorCreateHeader/index.jsx";
@@ -9,7 +9,7 @@ import PageStateWrapper from "@/Components/v1/PageStateWrapper/index.jsx";
 import Filter from "./Components/Filters/index.jsx";
 import SearchComponent from "../../Uptime/Monitors/Components/SearchComponent/index.jsx";
 // Utils
-import { useTheme } from "@emotion/react";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 import { useEffect, useState } from "react";
 import { useIsAdmin } from "../../../../Hooks/v1/useIsAdmin.js";
 import { useTranslation } from "react-i18next";

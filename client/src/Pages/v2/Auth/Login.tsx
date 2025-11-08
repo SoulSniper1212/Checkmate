@@ -1,6 +1,6 @@
 import { AuthBasePage } from "@/Components/v2/Auth";
 import { Button } from "@/Components/v2/Inputs";
-import Stack from "@mui/material/Stack";
+import { Stack } from "@/Components/v3/ui/stack";
 import { TextInput, TextLink } from "@/Components/v2/Inputs";
 
 import type { ApiResponse } from "@/Hooks/v2/UseApi";
@@ -8,7 +8,6 @@ import type { ApiResponse } from "@/Hooks/v2/UseApi";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { usePost } from "@/Hooks/v2/UseApi";
 import { useNavigate } from "react-router";
-import { useTheme } from "@mui/material/styles";
 import { useDispatch } from "react-redux";
 import { setIsAuthenticated } from "@/Features/Auth/v2AuthSlice";
 import { useTranslation } from "react-i18next";
@@ -25,7 +24,6 @@ type FormData = z.infer<typeof schema>;
 const Login = () => {
 	const { t } = useTranslation();
 	const dispatch = useDispatch();
-	const theme = useTheme();
 	const { post, loading } = usePost<FormData, ApiResponse>();
 	const navigate = useNavigate();
 
@@ -57,18 +55,20 @@ const Login = () => {
 			subtitle={t("auth.login.heading")}
 		>
 			<Stack
-				width={"100%"}
-				alignItems={"center"}
-				justifyContent={"center"}
-				gap={theme.spacing(8)}
+				direction="column"
+				alignItems="center"
+				justifyContent="center"
+				spacing={32} // theme.spacing(8) ≈ 32px
+				className="w-full"
 			>
 				<Stack
 					component="form"
-					padding={theme.spacing(8)}
-					gap={theme.spacing(12)}
+					direction="column"
+					spacing={48} // theme.spacing(12) ≈ 48px
 					onSubmit={handleSubmit(onSubmit)}
-					maxWidth={400}
 					sx={{
+						maxWidth: 400,
+						padding: 32, // theme.spacing(8) ≈ 32px
 						width: {
 							sm: "80%",
 							md: "70%",

@@ -1,5 +1,6 @@
-import { CircularProgress, Box } from "@mui/material";
-import { useTheme } from "@emotion/react";
+import { Box } from "@/Components/v3/ui";
+import { CircularProgress } from "@/Components/v3/ui/mui-progress";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 import PropTypes from "prop-types";
 const LoadingSpinner = ({ shouldRender }) => {
 	const theme = useTheme();

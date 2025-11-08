@@ -1,7 +1,5 @@
-import TabPanel from "@mui/lab/TabPanel";
 import { useState } from "react";
-import { useTheme } from "@emotion/react";
-import { Box, Stack, Typography, Button } from "@mui/material";
+import { Box, Stack, Typography, Button, TabPanel } from "@/Components/v3/ui";
 import { PasswordEndAdornment } from "@/Components/v1/Inputs/TextInput/Adornments/index.jsx";
 import TextInput from "@/Components/v1/Inputs/TextInput/index.jsx";
 import { newOrChangedCredentials } from "../../../../Validation/validation.js";
@@ -25,11 +23,10 @@ const defaultPasswordsState = {
  */
 
 const PasswordPanel = () => {
-	const theme = useTheme();
 	const dispatch = useDispatch();
 	const { t } = useTranslation();
 
-	const SPACING_GAP = theme.spacing(12);
+	const SPACING_GAP = "48px";
 
 	//redux state
 	const { isLoading } = useSelector((state) => state.auth);

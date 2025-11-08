@@ -1,5 +1,4 @@
 import { useSelector } from "react-redux";
-import { lightTheme, darkTheme } from "@/Utils/Theme/v2/theme";
 import { Navigate, Route, Routes as LibRoutes } from "react-router";
 import HomeLayout from "@/Components/v1/Layouts/HomeLayout";
 import NotFound from "../Pages/v1/NotFound";
@@ -53,17 +52,17 @@ import CreateNewMaintenanceWindow from "../Pages/v1/Maintenance/CreateMaintenanc
 import withAdminCheck from "@/Components/v1/HOC/withAdminCheck";
 import BulkImport from "../Pages/v1/Uptime/BulkImport";
 import Logs from "../Pages/v1/Logs";
+import { DemoPage } from "@/Components/v3/ui/demo-page";
 
 import V2Routes from "@/Routes/v2router";
 
 const Routes = () => {
-	const mode = useSelector((state) => state.ui.mode);
 	const AdminCheckedRegister = withAdminCheck(AuthRegister);
 	return (
 		<LibRoutes>
 			<Route
 				path="/v2/*"
-				element={<V2Routes mode={mode} />}
+				element={<V2Routes />}
 			/>
 
 			<Route
@@ -259,6 +258,10 @@ const Routes = () => {
 			<Route
 				path="/server-unreachable"
 				element={<ServerUnreachable />}
+			/>
+			<Route
+				path="/component-demo"
+				element={<DemoPage />}
 			/>
 			<Route
 				path="*"

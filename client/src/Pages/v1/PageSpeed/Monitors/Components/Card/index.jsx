@@ -2,9 +2,10 @@ import PropTypes from "prop-types";
 // import PageSpeedIcon from "../../../../assets/icons/page-speed.svg?react";
 import PageSpeedIcon from "../../../../../../assets/icons/page-speed.svg?react";
 import { StatusLabel } from "@/Components/v1/Label/index.jsx";
-import { Box, Grid, Stack, Typography } from "@mui/material";
+import { Grid, Stack, Typography } from "@/Components/v3/ui";
+import { Box } from "@/Components/v3/ui";
 import { useNavigate } from "react-router-dom";
-import { useTheme } from "@emotion/react";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 import { Area, AreaChart, CartesianGrid, ResponsiveContainer, Tooltip } from "recharts";
 import { useSelector } from "react-redux";
 import {

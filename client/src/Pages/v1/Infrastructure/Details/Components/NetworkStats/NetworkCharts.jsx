@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { Stack, Typography } from "@mui/material";
+import { Stack, Typography } from "@/Components/v3/ui";
 import InfraAreaChart from "../AreaChartBoxes/InfraAreaChart.jsx";
 
 import {
@@ -7,7 +7,7 @@ import {
 	InfrastructureTooltip,
 	NetworkTick,
 } from "@/Components/v1/Charts/Utils/chartUtils.jsx";
-import { useTheme } from "@emotion/react";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 import { useTranslation } from "react-i18next";
 import { useHardwareUtils } from "../../Hooks/useHardwareUtils.jsx";
 

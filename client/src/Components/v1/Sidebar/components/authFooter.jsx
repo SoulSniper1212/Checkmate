@@ -1,16 +1,8 @@
-import Stack from "@mui/material/Stack";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import Tooltip from "@mui/material/Tooltip";
-import IconButton from "@mui/material/IconButton";
+import { Stack, Box, Typography, Tooltip, IconButton, Menu, MenuItem, Divider } from "@/Components/v3/ui";
 import Avatar from "../../Avatar/index.jsx";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
-import Divider from "@mui/material/Divider";
 import DotsVertical from "../../../../assets/icons/dots-vertical.svg?react";
 import LogoutSvg from "../../../../assets/icons/logout.svg?react";
 
-import { useTheme } from "@emotion/react";
 import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
@@ -48,7 +40,6 @@ const getRoleDisplayText = (user, t) => {
 
 const AuthFooter = ({ collapsed, accountMenuItems }) => {
 	const { t } = useTranslation();
-	const theme = useTheme();
 	const authState = useSelector((state) => state.auth);
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
@@ -77,11 +68,7 @@ const AuthFooter = ({ collapsed, accountMenuItems }) => {
 					closePopup();
 					navigate(item.path);
 				}}
-				sx={{
-					gap: theme.spacing(2),
-					borderRadius: theme.shape.borderRadius,
-					pl: theme.spacing(4),
-				}}
+				className="gap-2 rounded pl-4"
 			>
 				{item.icon}
 				{item.name}
@@ -90,63 +77,36 @@ const AuthFooter = ({ collapsed, accountMenuItems }) => {
 	};
 	return (
 		<Stack
-			direction="row"
-			height="var(--env-var-side-bar-auth-footer-height)"
-			alignItems="center"
-			py={theme.spacing(4)}
-			px={theme.spacing(8)}
-			gap={theme.spacing(2)}
-			borderRadius={theme.shape.borderRadius}
-			boxSizing={"border-box"}
+			className="flex-row h-[var(--env-var-side-bar-auth-footer-height)] items-center py-4 px-8 gap-2 rounded box-border"
 		>
 			<Avatar
 				small={true}
 				onClick={(e) => collapsed && openPopup(e)}
-				sx={{
-					cursor: collapsed ? "pointer" : "default",
-				}}
+				className={collapsed ? "cursor-pointer" : "cursor-default"}
 			/>
 
 			<Stack
-				direction={"row"}
-				alignItems={"center"}
-				gap={theme.spacing(2)}
-				minWidth={0}
-				maxWidth={collapsed ? 0 : "100%"}
-				sx={{
+				className={"flex-row items-center gap-2 min-w-0"}
+				style={{
+					maxWidth: collapsed ? 0 : "100%",
 					opacity: collapsed ? 0 : 1,
 					transition: "opacity 300ms ease, max-width 300ms ease",
 					transitionDelay: collapsed ? "0ms" : "300ms",
 				}}
 			>
 				<Stack
-					ml={theme.spacing(2)}
-					sx={{
+					className="ml-2 overflow-hidden"
+					style={{
 						maxWidth: "50%",
-						overflow: "hidden",
 					}}
 				>
 					<Typography
-						color={theme.palette.primary.contrastText}
-						fontWeight={500}
-						lineHeight={1}
-						fontSize={"var(--env-var-font-size-medium)"}
-						sx={{
-							display: "block",
-							whiteSpace: "nowrap",
-							overflow: "hidden",
-							textOverflow: "ellipsis",
-						}}
+						className="text-primary-foreground font-medium leading-none text-[var(--env-var-font-size-medium)] block whitespace-nowrap overflow-hidden text-ellipsis"
 					>
 						{authState.user?.firstName} {authState.user?.lastName}
 					</Typography>
 					<Typography
-						color={theme.palette.primary.contrastText}
-						fontSize={"var(--env-var-font-size-small)"}
-						textOverflow="ellipsis"
-						overflow="hidden"
-						whiteSpace="nowrap"
-						sx={{ textTransform: "capitalize", opacity: 0.8 }}
+						className="text-primary-foreground text-[var(--env-var-font-size-small)] text-ellipsis overflow-hidden whitespace-normal capitalize opacity-80"
 					>
 						{getRoleDisplayText(authState.user, t)}
 					</Typography>
@@ -156,20 +116,7 @@ const AuthFooter = ({ collapsed, accountMenuItems }) => {
 					disableInteractive
 				>
 					<IconButton
-						sx={{
-							ml: "50px",
-							"&:focus": { outline: "none" },
-							alignSelf: "center",
-
-							"& svg": {
-								width: "22px",
-								height: "22px",
-							},
-							"& svg path": {
-								/* Vertical three dots */
-								stroke: theme.palette.primary.contrastTextTertiary,
-							},
-						}}
+						className="ml-[50px] focus:outline-none self-center [&_svg]:w-[22px] [&_svg]:h-[22px] [&_svg_path]:stroke-primary-foreground/70"
 						onClick={(event) => openPopup(event)}
 					>
 						<DotsVertical />
@@ -188,58 +135,34 @@ const AuthFooter = ({ collapsed, accountMenuItems }) => {
 				}}
 				slotProps={{
 					paper: {
-						sx: {
-							marginTop: theme.spacing(-4),
-							marginLeft: collapsed ? theme.spacing(2) : 0,
+						className: "-mt-4",
+						style: {
+							marginLeft: collapsed ? "8px" : 0,
 						},
 					},
 				}}
 				MenuListProps={{
-					sx: {
-						p: 2,
-						"& li": { m: 0 },
-						"& li:has(.MuiBox-root):hover": {
-							backgroundColor: "transparent",
-						},
-					},
+					className: "p-2 [&_li]:m-0 [&_li:hover]:bg-transparent",
 				}}
-				sx={{
-					ml: theme.spacing(4),
-				}}
+				className="ml-4"
 			>
 				{collapsed && (
-					<MenuItem sx={{ cursor: "default", minWidth: "50%" }}>
+					<MenuItem className="cursor-default min-w-[50%]">
 						<Box
-							mb={theme.spacing(2)}
-							sx={{
+							className="mb-2 overflow-visible whitespace-nowrap"
+							style={{
 								minWidth: "50%",
 								maxWidth: "max-content",
-								overflow: "visible",
-								whiteSpace: "nowrap",
 							}}
 						>
 							<Typography
-								component="span"
-								fontWeight={500}
-								fontSize={13}
-								sx={{
-									display: "block",
-									whiteSpace: "nowrap",
-									overflow: "visible",
-									// wordBreak: "break-word",
-									textOverflow: "clip",
-								}}
+								as="span"
+								className="font-medium text-[13px] block whitespace-nowrap overflow-visible text-clip"
 							>
 								{authState.user?.firstName} {authState.user?.lastName}
 							</Typography>
 							<Typography
-								sx={{
-									textTransform: "capitalize",
-									fontSize: 12,
-									whiteSpace: "nowrap",
-									overflow: "visible",
-									// wordBreak: "break-word",
-								}}
+								className="capitalize text-[12px] whitespace-nowrap overflow-visible"
 							>
 								{authState.user?.role}
 							</Typography>
@@ -252,14 +175,7 @@ const AuthFooter = ({ collapsed, accountMenuItems }) => {
 				{renderAccountMenuItems(authState.user, accountMenuItems)}
 				<MenuItem
 					onClick={logout}
-					sx={{
-						gap: theme.spacing(4),
-						borderRadius: theme.shape.borderRadius,
-						pl: theme.spacing(4),
-						"& svg path": {
-							stroke: theme.palette.primary.contrastTextTertiary,
-						},
-					}}
+					className="gap-4 rounded pl-4 [&_svg_path]:stroke-primary-foreground/70"
 				>
 					<LogoutSvg />
 					{t("menu.logOut", "Log out")}

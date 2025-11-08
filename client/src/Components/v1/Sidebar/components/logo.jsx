@@ -1,57 +1,31 @@
-import Stack from "@mui/material/Stack";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import { useTheme } from "@mui/material/styles";
+import { Stack, Box, Typography } from "@/Components/v3/ui";
 import { useNavigate } from "react-router";
 import { useTranslation } from "react-i18next";
 import PropTypes from "prop-types";
 
 const Logo = ({ collapsed }) => {
 	const { t } = useTranslation();
-	const theme = useTheme();
 	const navigate = useNavigate();
 
 	return (
 		<Stack
-			pt={theme.spacing(6)}
-			pb={theme.spacing(12)}
-			pl={theme.spacing(8)}
-			direction="row"
-			alignItems="center"
-			gap={theme.spacing(4)}
+			className="pt-6 pb-12 pl-8 flex-row items-center gap-4 cursor-pointer"
 			onClick={() => navigate("/")}
-			sx={{ cursor: "pointer" }}
 		>
 			<Typography
-				pl={theme.spacing("1px")}
-				minWidth={theme.spacing(16)}
-				minHeight={theme.spacing(16)}
-				display={"flex"}
-				justifyContent={"center"}
-				alignItems={"center"}
-				backgroundColor={theme.palette.accent.main}
-				borderRadius={theme.shape.borderRadius}
-				color={theme.palette.accent.contrastText}
-				fontSize={18}
+				className="pl-px min-w-16 min-h-16 flex justify-center items-center bg-accent text-accent-foreground rounded text-[18px]"
 			>
 				C
 			</Typography>
 			<Box
-				overflow={"hidden"}
-				sx={{
-					transition: "opacity 900ms ease, width 900ms ease",
+				className="overflow-hidden transition-all duration-900 ease-in-out whitespace-nowrap"
+				style={{
 					opacity: collapsed ? 0 : 1,
-					whiteSpace: "nowrap",
 					width: collapsed ? 0 : "100%",
 				}}
 			>
-				{" "}
 				<Typography
-					lineHeight={1}
-					mt={theme.spacing(2)}
-					color={theme.palette.primary.contrastText}
-					fontSize={"var(--env-var-font-size-medium-plus)"}
-					sx={{ fontWeight: 500 }}
+					className="leading-none mt-2 text-primary-foreground text-[var(--env-var-font-size-medium-plus)] font-medium"
 				>
 					{t("common.appName")}
 				</Typography>

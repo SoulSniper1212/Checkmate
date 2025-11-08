@@ -1,23 +1,6 @@
-import Paper from "@mui/material/Paper";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-
-import IconButton from "@mui/material/IconButton";
-import LastPageIcon from "@mui/icons-material/LastPage";
-import FirstPageIcon from "@mui/icons-material/FirstPage";
-import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
-import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
-
-import Box from "@mui/material/Box";
-import TablePagination from "@mui/material/TablePagination";
-import type { TablePaginationProps } from "@mui/material/TablePagination";
-
-import { useTheme } from "@mui/material/styles";
-import { useMediaQuery } from "@mui/material";
+import { TableContainer, Table, TableHead, TableBody, TableRow, TableCell, TablePagination, Box, IconButton } from "@/Components/v3/ui";
+import type { TablePaginationProps } from "@/Components/v3/ui/table";
+import { ChevronLast, ChevronFirst, ChevronLeft, ChevronRight } from "lucide-react";
 export type Header<T> = {
 	id: number | string;
 	content: React.ReactNode;
@@ -38,29 +21,12 @@ export function DataTable<
 		onRowClick?: (row: T) => void;
 	},
 >({ headers, data, onRowClick }: DataTableProps<T>) {
-	const theme = useTheme();
 	if (data.length === 0 || headers.length === 0) return <div>No data</div>;
 	return (
-		<TableContainer component={Paper}>
+		<TableContainer>
 			<Table
 				stickyHeader
-				sx={{
-					"&.MuiTable-root  :is(.MuiTableHead-root, .MuiTableBody-root) :is(th, td)": {
-						paddingLeft: theme.spacing(8),
-					},
-					"& :is(th)": {
-						backgroundColor: theme.palette.secondary.main,
-						color: theme.palette.secondary.contrastText,
-						fontWeight: 600,
-					},
-					"& :is(td)": {
-						backgroundColor: theme.palette.primary.main,
-						color: theme.palette.primary.contrastTextSecondary,
-					},
-					"& .MuiTableBody-root .MuiTableRow-root:last-child .MuiTableCell-root": {
-						borderBottom: "none",
-					},
-				}}
+				className="[&_thead_th]:bg-secondary [&_thead_th]:text-secondary-foreground [&_thead_th]:font-semibold [&_tbody_td]:bg-background [&_tbody_td]:text-muted-foreground [&_tbody_tr:last-child_td]:border-b-0 [&_th_&]:pl-8 [&_td]:pl-8"
 			>
 				<TableHead>
 					<TableRow>
@@ -83,7 +49,7 @@ export function DataTable<
 						return (
 							<TableRow
 								key={key}
-								sx={{ cursor: onRowClick ? "pointer" : "default" }}
+								className={onRowClick ? "cursor-pointer" : "cursor-default"}
 								onClick={() => (onRowClick ? onRowClick(row) : null)}
 							>
 								{headers.map((header, index) => {
@@ -116,7 +82,6 @@ interface TablePaginationActionsProps {
 }
 
 function TablePaginationActions(props: TablePaginationActionsProps) {
-	const theme = useTheme();
 	const { count, page, rowsPerPage, onPageChange } = props;
 
 	const handleFirstPageButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -137,79 +102,47 @@ function TablePaginationActions(props: TablePaginationActionsProps) {
 
 	return (
 		<Box
-			sx={{ flexShrink: 0, ml: 2.5 }}
-			className="table-pagination-actions"
+			className="flex-shrink-0 ml-2.5 table-pagination-actions"
 		>
 			<IconButton
 				onClick={handleFirstPageButtonClick}
 				disabled={page === 0}
 				aria-label="first page"
 			>
-				{theme.direction === "rtl" ? <LastPageIcon /> : <FirstPageIcon />}
+				<ChevronFirst />
 			</IconButton>
 			<IconButton
 				onClick={handleBackButtonClick}
 				disabled={page === 0}
 				aria-label="previous page"
 			>
-				{theme.direction === "rtl" ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
+				<ChevronLeft />
 			</IconButton>
 			<IconButton
 				onClick={handleNextButtonClick}
 				disabled={page >= Math.ceil(count / rowsPerPage) - 1}
 				aria-label="next page"
 			>
-				{theme.direction === "rtl" ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
+				<ChevronRight />
 			</IconButton>
 			<IconButton
 				onClick={handleLastPageButtonClick}
 				disabled={page >= Math.ceil(count / rowsPerPage) - 1}
 				aria-label="last page"
 			>
-				{theme.direction === "rtl" ? <FirstPageIcon /> : <LastPageIcon />}
+				<ChevronLast />
 			</IconButton>
 		</Box>
 	);
 }
 
 export const Pagination: React.FC<TablePaginationProps> = ({ ...props }) => {
-	const isSmall = useMediaQuery((theme: any) => theme.breakpoints.down("sm"));
-	const theme = useTheme();
 	return (
 		<TablePagination
 			ActionsComponent={TablePaginationActions}
 			rowsPerPageOptions={[5, 10, 25]}
 			{...props}
-			sx={{
-				"& .MuiTablePagination-toolbar": {
-					display: isSmall ? "grid" : "flex",
-				},
-				"& .MuiTablePagination-selectLabel": {
-					gridColumn: "1",
-					gridRow: "1",
-					justifySelf: "center",
-				},
-				"& .MuiTablePagination-select": {
-					gridColumn: "2",
-					gridRow: "1",
-					justifySelf: "center",
-				},
-				"& .MuiTablePagination-displayedRows": {
-					gridColumn: "2",
-					gridRow: "2",
-					justifySelf: "center	",
-				},
-				"& .table-pagination-actions": {
-					gridColumn: "1",
-					gridRow: "2",
-					justifySelf: "center",
-				},
-				"& .MuiSelect-select": {
-					border: 1,
-					borderColor: theme.palette.primary.lowContrast,
-					borderRadius: theme.shape.borderRadius,
-				},
-			}}
+			className="[&_div_[role=toolbar]]:grid sm:[&_div_[role=toolbar]]:flex [&_div_[role=toolbar]]:grid-cols-2 [&_div_[role=toolbar]]:gap-4 [&_label]:col-start-1 [&_label]:row-start-1 [&_label]:justify-self-center [&_select]:col-start-2 [&_select]:row-start-1 [&_select]:justify-self-center [&_p]:col-start-2 [&_p]:row-start-2 [&_p]:justify-self-center [&_.table-pagination-actions]:col-start-1 [&_.table-pagination-actions]:row-start-2 [&_.table-pagination-actions]:justify-self-center [&_select]:border [&_select]:border-border [&_select]:rounded-md"
 		/>
 	);
 };

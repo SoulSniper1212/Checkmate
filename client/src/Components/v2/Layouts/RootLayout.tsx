@@ -1,21 +1,16 @@
 import { Outlet } from "react-router";
-import Stack from "@mui/material/Stack";
+import { Stack } from "@/Components/v3/ui";
 import { SideBar } from "@/Components/v2/Layouts/Sidebar";
-import { useTheme } from "@mui/material/styles";
 const RootLayout = () => {
-	const theme = useTheme();
 	return (
 		<Stack
 			direction="row"
-			minHeight="100vh"
+			className="min-h-screen"
 		>
 			<SideBar />
-			<Stack
-				flex={1}
-				padding={theme.spacing(12)}
-			>
+			<div className="flex-1 p-12">
 				<Outlet />
-			</Stack>
+			</div>
 		</Stack>
 	);
 };

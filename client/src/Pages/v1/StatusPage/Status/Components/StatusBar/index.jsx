@@ -1,44 +1,43 @@
 // Components
-import { Stack, Typography } from "@mui/material";
-import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-import ErrorOutlineIcon from "@mui/icons-material/ErrorOutline";
-
+import { Stack, Typography } from "@/Components/v3/ui";
+import { CheckCircle } from "lucide-react";
+import { AlertCircle } from "lucide-react";
 // Utils
-import { useTheme } from "@mui/material/styles";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 import PropTypes from "prop-types";
 
 const getMonitorStatus = (monitors, theme) => {
 	const monitorsStatus = {
 		icon: (
-			<ErrorOutlineIcon
-				sx={{ color: theme.palette.primary.contrastTextSecondaryDarkBg }}
+			<AlertCircle
+				className="text-foreground"
 			/>
 		),
 	};
 	if (monitors.every((monitor) => monitor.status === true)) {
 		monitorsStatus.msg = "All systems operational";
-		monitorsStatus.color = theme.palette.success.lowContrast;
+		monitorsStatus.color = text-foreground;
 		monitorsStatus.icon = (
-			<CheckCircleIcon
-				sx={{ color: theme.palette.primary.contrastTextSecondaryDarkBg }}
+			<CheckCircle
+				className="text-foreground"
 			/>
 		);
 	}
 
 	if (monitors.every((monitor) => monitor.status === false)) {
 		monitorsStatus.msg = "All systems down";
-		monitorsStatus.color = theme.palette.error.lowContrast;
+		monitorsStatus.color = text-foreground;
 	}
 
 	if (monitors.some((monitor) => monitor.status === false)) {
 		monitorsStatus.msg = "Degraded performance";
-		monitorsStatus.color = theme.palette.warning.lowContrast;
+		monitorsStatus.color = text-foreground;
 	}
 
 	// Paused or unknown
 	if (monitors.some((monitor) => typeof monitor.status === "undefined")) {
 		monitorsStatus.msg = "Unknown status";
-		monitorsStatus.color = theme.palette.warning.lowContrast;
+		monitorsStatus.color = text-foreground;
 	}
 	return monitorsStatus;
 };
@@ -54,11 +53,11 @@ const StatusBar = ({ monitors }) => {
 			direction="row"
 			alignItems="center"
 			justifyContent="center"
-			gap={theme.spacing(2)}
-			height={theme.spacing(30)}
+			gap="0.5rem"
+			height="7.5rem"
 			width={"100%"}
 			backgroundColor={monitorsStatus.color}
-			borderRadius={theme.spacing(2)}
+			borderRadius="0.5rem"
 		>
 			{monitorsStatus.icon}
 			{/* CAIO_REVIEW */}

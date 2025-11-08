@@ -1,7 +1,7 @@
 // Components
-import { Typography, Stack } from "@mui/material";
+import { Card } from "@/Components/v3/ui";
 import PropTypes from "prop-types";
-import { useTheme } from "@emotion/react";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 import IconBox from "../../IconBox/index.jsx";
 
 /**
@@ -38,59 +38,27 @@ const EmptyView = ({
 	justifyContent = "flex-start",
 	height = "100%",
 }) => {
-	const theme = useTheme();
 	return (
-		<Stack
-			flex={1}
-			direction="row"
-			sx={{
-				backgroundColor: theme.palette.primary.main,
-
-				border: 1,
-				borderStyle: "solid",
-				borderColor: theme.palette.primary.lowContrast,
-				borderRadius: 2,
-				borderTopRightRadius: 4,
-				borderBottomRightRadius: 4,
-			}}
-		>
-			<Stack
-				flex={1}
-				alignItems="center"
-				sx={{
-					padding: theme.spacing(8),
-					justifyContent,
-					gap: theme.spacing(8),
-					height,
-					"& h2": {
-						color: theme.palette.primary.contrastTextSecondary,
-						fontSize: 15,
-						fontWeight: 500,
-					},
-
-					"& tspan, & text": {
-						fill: theme.palette.primary.contrastTextTertiary,
-					},
-				}}
+		<Card className="flex-1 flex-row bg-[var(--color-primary-main)] border border-solid border-[var(--color-primary-low-contrast)] rounded-[2px] rounded-tr-[4px] rounded-br-[4px)]">
+			<div
+				className="flex-1 items-center p-[var(--spacing-8)] gap-[var(--spacing-8)]"
+				style={{ justifyContent, height }}
 			>
-				<Stack
-					alignSelf="flex-start"
-					direction="row"
-					alignItems="center"
-					gap={theme.spacing(6)}
-				>
+				<div className="self-start flex-row items-center gap-[var(--spacing-6)] flex">
 					{icon && <IconBox>{icon}</IconBox>}
-					{header && <Typography component="h2">{header}</Typography>}
-				</Stack>
-				<Stack
-					flex={1}
-					justifyContent="center"
-					alignItems="center"
-				>
-					<Typography component={headingLevel}>{message}</Typography>
-				</Stack>
-			</Stack>
-		</Stack>
+					{header && <h2 className="text-[15px] font-medium text-[var(--color-primary-contrast-text-secondary)]">{header}</h2>}
+				</div>
+				<div className="flex-1 justify-center items-center flex">
+					{headingLevel === "h1" ? (
+						<h1 className="text-[var(--color-primary-contrast-text-tertiary)]">{message}</h1>
+					) : headingLevel === "h2" ? (
+						<h2 className="text-[var(--color-primary-contrast-text-tertiary)]">{message}</h2>
+					) : (
+						<h3 className="text-[var(--color-primary-contrast-text-tertiary)]">{message}</h3>
+					)}
+				</div>
+			</div>
+		</Card>
 	);
 };
 

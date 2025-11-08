@@ -1,6 +1,5 @@
 import React from "react";
-import Button from "@mui/material/Button";
-import { styled } from "@mui/material/styles";
+import { Button } from "@/Components/v3/ui";
 
 const RoundGradientButton = styled(Button)(({ theme }) => ({
 	position: "relative",

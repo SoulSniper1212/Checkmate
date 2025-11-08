@@ -1,59 +1,39 @@
 import type { IMonitor } from "@/Types/Monitor";
-import Stack from "@mui/material/Stack";
-import Typography from "@mui/material/Typography";
+import { Stack, Typography } from "@/Components/v3/ui";
 import { PulseDot } from "@/Components/v2/DesignElements/PulseDot";
 import { Dot } from "@/Components/v2/DesignElements/Dot";
 import { getStatusColor, formatUrl } from "@/Utils/v2/MonitorUtils";
-import { useTheme } from "@mui/material/styles";
 import prettyMilliseconds from "pretty-ms";
-import { typographyLevels } from "@/Utils/Theme/v2/palette";
-import { useMediaQuery } from "@mui/material";
 export const MonitorStatus = ({ monitor }: { monitor: IMonitor }) => {
-	const theme = useTheme();
-	const isSmall = useMediaQuery(theme.breakpoints.down("md"));
-
 	if (!monitor) {
 		return null;
 	}
 	return (
 		<Stack>
 			<Typography
-				fontSize={typographyLevels.xl}
-				fontWeight={500}
-				color={theme.palette.primary.contrastText}
-				overflow={"hidden"}
-				textOverflow={"ellipsis"}
-				whiteSpace={"nowrap"}
-				maxWidth={isSmall ? "100%" : "calc((100vw - var(--env-var-width-2)) / 2)"}
+				className="text-xl font-medium text-foreground truncate md:max-w-[calc((100vw-theme(spacing.32))/2)] max-w-full"
+				title={monitor.name}
 			>
 				{monitor.name}
 			</Typography>
 			<Stack
 				direction="row"
 				alignItems={"center"}
-				gap={theme.spacing(4)}
+				gap={1}
 			>
-				<PulseDot color={getStatusColor(monitor.status, theme)} />
+				<PulseDot color={getStatusColor(monitor.status)} />
 				<Typography
-					color={theme.palette.primary.contrastTextSecondary}
-					fontSize={typographyLevels.l}
-					fontWeight={"bolder"}
-					fontFamily={"monospace"}
-					overflow={"hidden"}
-					textOverflow={"ellipsis"}
-					whiteSpace={"nowrap"}
-					maxWidth={isSmall ? "100%" : "calc((100vw - var(--env-var-width-2)) / 2)"}
+					className="text-base font-bold font-mono text-muted-foreground truncate md:max-w-[calc((100vw-theme(spacing.32))/2)] max-w-full"
+					title={formatUrl(monitor?.url)}
 				>
 					{formatUrl(monitor?.url)}
 				</Typography>
-				{!isSmall && (
-					<>
-						<Dot />
-						<Typography>
-							Checking every {prettyMilliseconds(monitor?.interval, { verbose: true })}
-						</Typography>
-					</>
-				)}
+				<>
+					<Dot />
+					<Typography className="hidden md:block text-muted-foreground">
+						Checking every {prettyMilliseconds(monitor?.interval, { verbose: true })}
+					</Typography>
+				</>
 			</Stack>
 		</Stack>
 	);

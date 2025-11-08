@@ -12,8 +12,7 @@ import {
 	Tabs,
 	Tab,
 	Stack,
-} from "@mui/material";
-import { useTheme } from "@emotion/react";
+} from "@/Components/v3/ui";
 import TabPanel from "./TabPanel.jsx";
 import TabComponent from "./TabComponent.jsx";
 import useNotifications from "../Hooks/useNotification.js";
@@ -43,7 +42,6 @@ const NotificationIntegrationModal = ({
 	notificationTypes = null,
 }) => {
 	const { t } = useTranslation();
-	const theme = useTheme();
 	const [tabValue, setTabValue] = useState(0);
 
 	const [loading, _, sendTestNotification] = useNotifications();
@@ -308,29 +306,16 @@ const NotificationIntegrationModal = ({
 			onClose={onClose}
 			fullWidth
 			maxWidth="md"
-			sx={{
-				"& .MuiDialog-paper": {
-					width: `calc(80% - ${theme.spacing(40)})`,
-					maxWidth: `${theme.breakpoints.values.md - 70}px`,
-				},
-			}}
+			className="[&_.MuiDialog-paper]:w-[calc(80%-var(--spacing-40))] [&_.MuiDialog-paper]:max-w-[calc(var(--breakpoint-md)-70px)]"
 		>
 			<DialogContent>
 				<Stack
 					direction="row"
-					sx={{
-						height: `calc(30vh - ${theme.spacing(20)})`,
-					}}
+					className="h-[calc(30vh-var(--spacing-20))]"
 				>
 					{/* Left sidebar with tabs */}
 					<Box
-						sx={{
-							borderRight: 1,
-							borderColor: theme.palette.primary.lowContrast,
-							width: "30%",
-							maxWidth: theme.spacing(120),
-							pr: theme.spacing(10),
-						}}
+						className="border-r border-[var(--color-primary-low-contrast)] w-[30%] max-w-[var(--spacing-120)] pr-[var(--spacing-10)]"
 					>
 						<Typography variant="h2">
 							{t("notifications.addOrEditNotifications")}
@@ -356,11 +341,7 @@ const NotificationIntegrationModal = ({
 
 					{/* Right side content */}
 					<Box
-						sx={{
-							flex: 1,
-							pl: theme.spacing(7.5),
-							overflowY: "auto",
-						}}
+						className="flex-1 pl-[var(--spacing-7-5)] overflow-y-auto"
 					>
 						{activeNotificationTypes.map((type, index) => (
 							<TabPanel
@@ -382,24 +363,14 @@ const NotificationIntegrationModal = ({
 				</Stack>
 			</DialogContent>
 			<DialogActions
-				sx={{
-					p: theme.spacing(4),
-					display: "flex",
-					justifyContent: "flex-end",
-					mb: theme.spacing(5),
-					mr: theme.spacing(5),
-				}}
+				className="p-[var(--spacing-4)] flex justify-end mb-[var(--spacing-5)] mr-[var(--spacing-5)]"
 			>
 				<Button
 					variant="contained"
 					color="accent"
 					onClick={handleSave}
 					loading={loading}
-					sx={{
-						width: "auto",
-						minWidth: theme.spacing(60),
-						px: theme.spacing(8),
-					}}
+					className="w-auto min-w-[var(--spacing-60)] px-[var(--spacing-8)]"
 				>
 					{t("commonSave")}
 				</Button>

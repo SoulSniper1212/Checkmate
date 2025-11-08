@@ -1,8 +1,8 @@
 import PropTypes from "prop-types";
 import { useState, useEffect } from "react";
-import { Box } from "@mui/material";
+import { Box } from "@/Components/v3/ui";
 import { useTranslation } from "react-i18next";
-import { useTheme } from "@emotion/react";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 import Select from "@/Components/v1/Inputs/Select/index.jsx";
 import NetworkStatBoxes from "./NetworkStatBoxes.jsx";
 import NetworkCharts from "./NetworkCharts.jsx";

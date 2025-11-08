@@ -1,11 +1,11 @@
 // Components
-import { Stack } from "@mui/material";
+import { Stack } from "@/Components/v3/ui";
 import Breadcrumbs from "@/Components/v1/Breadcrumbs/index.jsx";
 import MonitorCreateHeader from "@/Components/v1/MonitorCreateHeader/index.jsx";
 import StatusPagesTable from "./Components/StatusPagesTable/index.jsx";
 import PageStateWrapper from "@/Components/v1/PageStateWrapper/index.jsx";
 // Utils
-import { useTheme } from "@emotion/react";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 import { useStatusPagesFetch } from "./Hooks/useStatusPagesFetch.jsx";
 import { useIsAdmin } from "../../../../Hooks/v1/useIsAdmin.js";
 const BREADCRUMBS = [{ name: `Status Pages`, path: "" }];
@@ -25,7 +25,7 @@ const StatusPages = () => {
 				type="statusPage"
 				fallbackLink="/status/uptime/create"
 			>
-				<Stack gap={theme.spacing(10)}>
+				<Stack className="gap-[var(--spacing-10)]">
 					<Breadcrumbs list={BREADCRUMBS} />
 					<MonitorCreateHeader
 						label="Create status page"

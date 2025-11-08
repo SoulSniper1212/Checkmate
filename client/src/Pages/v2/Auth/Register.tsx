@@ -1,15 +1,13 @@
 import { AuthBasePage } from "@/Components/v2/Auth";
 import { TextInput } from "@/Components/v2/Inputs";
 import { Button } from "@/Components/v2/Inputs";
-import Typography from "@mui/material/Typography";
-import Stack from "@mui/material/Stack";
+import { Typography, Stack } from "@/Components/v3/ui";
 
 import type { ApiResponse } from "@/Hooks/v2/UseApi";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useTranslation } from "react-i18next";
 import { useForm, Controller } from "react-hook-form";
-import { useTheme } from "@mui/material/styles";
 import { usePost } from "@/Hooks/v2/UseApi";
 import { useNavigate } from "react-router";
 
@@ -32,7 +30,6 @@ type FormData = z.infer<typeof schema>;
 
 const Register = () => {
 	const { t } = useTranslation();
-	const theme = useTheme();
 	const navigate = useNavigate();
 	const { post, loading, error } = usePost<FormData, ApiResponse>();
 
@@ -62,24 +59,10 @@ const Register = () => {
 			title={t("auth.registration.welcome")}
 			subtitle={t("auth.registration.heading.user")}
 		>
-			<Stack
-				alignItems={"center"}
-				width={"100%"}
-			>
-				<Stack
-					component="form"
-					padding={theme.spacing(8)}
-					gap={theme.spacing(12)}
+				<div className="flex items-center w-full">
+				<form
 					onSubmit={handleSubmit(onSubmit)}
-					maxWidth={400}
-					sx={{
-						width: {
-							sm: "80%",
-							md: "70%",
-							lg: "65%",
-							xl: "65%",
-						},
-					}}
+					className="p-8 space-y-12 max-w-[400px] w-full sm:w-4/5 md:w-[70%] lg:w-[65%] xl:w-[65%]"
 				>
 					<Controller
 						name="email"
@@ -159,17 +142,16 @@ const Register = () => {
 						)}
 					/>
 					<Button
-						variant="contained"
+						variant="default"
 						loading={loading}
-						color="accent"
 						type="submit"
-						sx={{ width: "100%", alignSelf: "center", fontWeight: 700 }}
+						className="w-full font-bold"
 					>
 						Register
 					</Button>
-					{error && <Typography color="error">{error}</Typography>}
-				</Stack>
-			</Stack>
+					{error && <Typography variant="destructive">{error}</Typography>}
+				</form>
+			</div>
 		</AuthBasePage>
 	);
 };

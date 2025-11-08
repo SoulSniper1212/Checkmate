@@ -1,15 +1,11 @@
 import "flag-icons/css/flag-icons.min.css";
-import { Select } from "@/Components/v2/Inputs";
-import MenuItem from "@mui/material/MenuItem";
-import Stack from "@mui/material/Stack";
-import Typography from "@mui/material/Typography";
+import { Select, MenuItem } from "@/Components/v3/ui";
 
 import { useTranslation } from "react-i18next";
-import { useTheme } from "@mui/material/styles";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { setLanguage } from "@/Features/UI/uiSlice";
-import type { SelectChangeEvent } from "@mui/material/Select";
 
 export const LanguageSelector = () => {
 	const { i18n } = useTranslation();
@@ -24,9 +20,8 @@ export const LanguageSelector = () => {
 		vi: "vn",
 	};
 
-	const handleChange = (event: SelectChangeEvent<unknown>) => {
-		const newLang = event.target.value;
-		dispatch(setLanguage(newLang));
+	const handleChange = (value: string) => {
+		dispatch(setLanguage(value));
 	};
 
 	const languagesForDisplay = languages.map((l) => {
@@ -38,17 +33,14 @@ export const LanguageSelector = () => {
 		const flag = formattedLanguage ? `fi fi-${formattedLanguage}` : null;
 
 		return (
-			<MenuItem
-				key={l}
-				value={l}
-			>
-				<Stack
-					direction="row"
-					gap={theme.spacing(4)}
+			<MenuItem key={l} value={l}>
+				<div
+					className="flex flex-row"
+					style={{ gap: theme.spacing(4) }}
 				>
 					{flag && <span className={flag} />}
-					<Typography textTransform={"uppercase"}>{l}</Typography>
-				</Stack>
+					<span style={{ textTransform: "uppercase" }}>{l}</span>
+				</div>
 			</MenuItem>
 		);
 	});

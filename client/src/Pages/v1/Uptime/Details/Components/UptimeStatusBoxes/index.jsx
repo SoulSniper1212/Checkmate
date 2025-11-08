@@ -3,8 +3,7 @@ import StatBox from "@/Components/v1/StatBox/index.jsx";
 
 import PropTypes from "prop-types";
 import { getHumanReadableDuration } from "../../../../../../Utils/timeUtils.js";
-import { useTheme } from "@mui/material/styles";
-import { Typography } from "@mui/material";
+import { Typography } from "@/Components/v3/ui";
 import { useMonitorUtils } from "../../../../../../Hooks/v1/useMonitorUtils.js";
 
 const UptimeStatusBoxes = ({
@@ -13,7 +12,6 @@ const UptimeStatusBoxes = ({
 	monitorStats,
 	certificateExpiry,
 }) => {
-	const theme = useTheme();
 	const { determineState } = useMonitorUtils();
 
 	// Determine time since last failure

@@ -1,5 +1,5 @@
 // Components
-import { Stack } from "@mui/material";
+import { Stack } from "@/Components/v3/ui";
 import InfraAreaChart from "./InfraAreaChart.jsx";
 import SkeletonLayout from "./skeleton.jsx";
 
@@ -10,7 +10,7 @@ import {
 	InfrastructureTooltip,
 	TemperatureTooltip,
 } from "@/Components/v1/Charts/Utils/chartUtils.jsx";
-import { useTheme } from "@emotion/react";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 import { useHardwareUtils } from "../../Hooks/useHardwareUtils.jsx";
 import { useTranslation } from "react-i18next";
 const AreaChartBoxes = ({ shouldRender, monitor, dateRange }) => {

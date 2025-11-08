@@ -1,8 +1,8 @@
 import ConfigBox from "@/Components/v1/ConfigBox/index.jsx";
-import { Box, Stack, Typography } from "@mui/material";
+import { Box, Stack, Typography } from "@/Components/v3/ui";
 import { CustomThreshold } from "./CustomThreshold/index.jsx";
 import { capitalizeFirstLetter } from "../../../../../Utils/stringUtils.js";
-import { useTheme } from "@emotion/react";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 import { useTranslation } from "react-i18next";
 import PropTypes from "prop-types";
 const CustomAlertsSection = ({

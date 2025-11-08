@@ -3,10 +3,10 @@ import AreaChart from "../Charts/AreaChart.jsx";
 import AreaChartLegend from "../Charts/AreaChartLegend.jsx";
 import SkeletonLayout from "./skeleton.jsx";
 import ScoreIcon from "../../../../../../assets/icons/monitor-graph-line.svg?react";
-import { Stack } from "@mui/material";
+import { Stack } from "@/Components/v3/ui";
 import PropTypes from "prop-types";
 
-import { useTheme } from "@emotion/react";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 
 const PageSpeedAreaChart = ({ shouldRender, monitor, metrics, handleMetrics }) => {
 	const theme = useTheme();

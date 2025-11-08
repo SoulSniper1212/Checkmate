@@ -1,12 +1,11 @@
-import Stack from "@mui/material/Stack";
+import { Stack } from "@/Components/v3/ui";
 import Breadcrumbs from "@/Components/v1/Breadcrumbs/index.jsx";
-import Tabs from "@mui/material/Tabs";
-import Tab from "@mui/material/Tab";
+import { TabContextProvider, TabList, Tab, TabPanel } from "@/Components/v3/ui";
 import Queue from "./Queue/index.jsx";
 import LogsComponent from "./Logs/index.jsx";
 import Diagnostics from "./Diagnostics/index.jsx";
 
-import { useTheme } from "@emotion/react";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
 
@@ -15,7 +14,7 @@ const Logs = () => {
 	const theme = useTheme();
 
 	// Local state
-	const [value, setValue] = useState(0);
+	const [value, setValue] = useState("logs");
 
 	// Handlers
 	const handleChange = (event, newValue) => {
@@ -24,25 +23,28 @@ const Logs = () => {
 
 	const BREADCRUMBS = [{ name: t("logsPage.title"), path: "/logs" }];
 	return (
-		<Stack gap={theme.spacing(20)}>
+		<Stack className="gap-[var(--spacing-20)]">
 			<Breadcrumbs list={BREADCRUMBS} />
-			<Tabs
-				value={value}
-				onChange={handleChange}
-				sx={{
-					position: "sticky",
-					top: theme.spacing(0),
-					backdropFilter: "blur(10px)",
-					zIndex: theme.zIndex.appBar,
-				}}
-			>
-				<Tab label={t("logsPage.tabs.logs")} />
-				<Tab label={t("logsPage.tabs.queue")} />
-				<Tab label={t("logsPage.tabs.diagnostics")} />
-			</Tabs>
-			{value === 0 && <LogsComponent />}
-			{value === 1 && <Queue />}
-			{value === 2 && <Diagnostics />}
+			<TabContextProvider value={value}>
+				<TabList
+					value={value}
+					onChange={handleChange}
+					className="sticky top-0 backdrop-blur-lg z-[var(--z-index-app-bar)]"
+				>
+					<Tab label={t("logsPage.tabs.logs")} value="logs" />
+					<Tab label={t("logsPage.tabs.queue")} value="queue" />
+					<Tab label={t("logsPage.tabs.diagnostics")} value="diagnostics" />
+				</TabList>
+				<TabPanel value={value} index="logs">
+					<LogsComponent />
+				</TabPanel>
+				<TabPanel value={value} index="queue">
+					<Queue />
+				</TabPanel>
+				<TabPanel value={value} index="diagnostics">
+					<Diagnostics />
+				</TabPanel>
+			</TabContextProvider>
 		</Stack>
 	);
 };

@@ -1,42 +1,14 @@
-import Stack from "@mui/material/Stack";
-import Box from "@mui/material/Box";
-import { useTheme } from "@mui/material/styles";
+import { Stack, Box } from "@/Components/v3/ui";
 export const PulseDot = ({ color }: { color: string }) => {
-	const theme = useTheme();
 	return (
 		<Stack
-			width="26px"
-			height="24px"
-			alignItems="center"
-			justifyContent="center"
+			className="w-[26px] h-[24px] items-center justify-center"
 		>
 			<Box
-				minWidth="18px"
-				minHeight="18px"
-				sx={{
-					position: "relative",
+				className="w-[18px] h-[18px] relative rounded-full before:absolute before:inset-0 before:rounded-full before:bg-inherit before:animate-pulse after:absolute after:w-[7px] after:h-[7px] after:rounded-full after:bg-background after:top-1/2 after:left-1/2 after:-translate-x-1/2 after:-translate-y-1/2"
+				style={{
 					backgroundColor: color,
-					borderRadius: "50%",
-					"&::before": {
-						content: `""`,
-						position: "absolute",
-						width: "100%",
-						height: "100%",
-						backgroundColor: "inherit",
-						borderRadius: "50%",
-						animation: "ripple 1.8s ease-out infinite",
-					},
-					"&::after": {
-						content: `""`,
-						position: "absolute",
-						width: "7px",
-						height: "7px",
-						borderRadius: "50%",
-						backgroundColor: theme.palette.accent.contrastText,
-						top: "50%",
-						left: "50%",
-						transform: "translate(-50%, -50%)",
-					},
+					animation: 'ripple 1.8s ease-out infinite'
 				}}
 			/>
 		</Stack>

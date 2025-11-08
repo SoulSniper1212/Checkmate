@@ -1,17 +1,14 @@
 // Components
-import Stack from "@mui/material/Stack";
-import Typography from "@mui/material/Typography";
+import { Stack, Typography, Button, Box } from "@/Components/v3/ui";
 import Breadcrumbs from "@/Components/v1/Breadcrumbs/index.jsx";
-import Button from "@mui/material/Button";
 import ConfigBox from "@/Components/v1/ConfigBox/index.jsx";
-import Box from "@mui/material/Box";
 import Select from "@/Components/v1/Inputs/Select/index.jsx";
 import TextInput from "@/Components/v1/Inputs/TextInput/index.jsx";
 import Dialog from "@/Components/v1/Dialog/index.jsx";
 
 // Utils
 import { useState } from "react";
-import { useTheme } from "@emotion/react";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 import {
 	useCreateNotification,
 	useGetNotificationById,

@@ -1,13 +1,9 @@
 // Components
-import Stack from "@mui/material/Stack";
-import Typography from "@mui/material/Typography";
-import TextInput from "@/Components/v1/Inputs/TextInput/index.jsx";
-import Button from "@mui/material/Button";
-import Box from "@mui/material/Box";
+import { Stack, Typography, Button, Box } from "@/Components/v3/ui";
 import PasswordTooltip from "../components/PasswordTooltip.jsx";
 
 // Utils
-import { useTheme } from "@emotion/react";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 import { useTranslation } from "react-i18next";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";

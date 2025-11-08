@@ -11,6 +11,13 @@ export interface TypographyProps extends Omit<BoxProps, 'component'> {
   noWrap?: boolean
   paragraph?: boolean
   align?: 'inherit' | 'left' | 'center' | 'right' | 'justify'
+  textTransform?: string
+  marginY?: string | number
+  marginX?: string | number
+  marginTop?: string | number
+  marginBottom?: string | number
+  marginLeft?: string | number
+  marginRight?: string | number
 }
 
 const Typography = forwardRef<HTMLDivElement, TypographyProps>(
@@ -22,6 +29,13 @@ const Typography = forwardRef<HTMLDivElement, TypographyProps>(
     noWrap = false,
     paragraph = false,
     align = 'inherit',
+    textTransform,
+    marginY,
+    marginX,
+    marginTop,
+    marginBottom,
+    marginLeft,
+    marginRight,
     children,
     ...props
   }, ref) => {
@@ -109,6 +123,7 @@ const Typography = forwardRef<HTMLDivElement, TypographyProps>(
       gutterBottom && 'mb-2',
       noWrap && 'truncate',
       align !== 'inherit' && `text-${align}`,
+      textTransform && textTransform !== 'none' && textTransform,
     ].filter(Boolean).join(' ')
 
     return (
@@ -116,6 +131,12 @@ const Typography = forwardRef<HTMLDivElement, TypographyProps>(
         ref={ref}
         component={variantMapping.component}
         className={cn(classes, className)}
+        marginY={marginY}
+        marginX={marginX}
+        marginTop={marginTop}
+        marginBottom={marginBottom}
+        marginLeft={marginLeft}
+        marginRight={marginRight}
         {...props}
       >
         {children}

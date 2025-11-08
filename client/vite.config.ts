@@ -18,7 +18,7 @@ export default defineConfig(({}) => {
 			},
 		},
 		optimizeDeps: {
-			include: ["@mui/material/Tooltip", "@emotion/styled"],
+			include: [],
 		},
 		define: {
 			__APP_VERSION__: JSON.stringify(version),

@@ -1,13 +1,13 @@
 // Components
-import Stack from "@mui/material/Stack";
-import Typography from "@mui/material/Typography";
-import Divider from "@mui/material/Divider";
-import DeleteOutlineRoundedIcon from "@mui/icons-material/DeleteOutlineRounded";
+import { Stack } from "@/Components/v3/ui";
+import { Typography } from "@/Components/v3/ui";
+import { Divider } from "@/Components/v3/ui";
+import { Trash2 } from "lucide-react";
 import Search from "../Inputs/Search/index.jsx";
 
 // Utils
 import { useState, useEffect } from "react";
-import { useTheme } from "@mui/material/styles";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 import PropTypes from "prop-types";
 
 const NotificationConfig = ({
@@ -64,7 +64,7 @@ const NotificationConfig = ({
 	}, [setNotifications, notifications]);
 
 	return (
-		<Stack gap={theme.spacing(6)}>
+		<Stack gap="1.5rem">
 			<Search
 				type="notifications"
 				label="Notifications"
@@ -82,9 +82,8 @@ const NotificationConfig = ({
 				labelFontWeight={labelFontWeight}
 				labelSx={labelSx}
 				gap={gap}
-				sx={{
-					...sx,
-				}}
+				className="/* TODO: Convert sx to Tailwind - ...sx,
+				 */"
 			/>
 			<Stack
 				flex={1}
@@ -102,11 +101,11 @@ const NotificationConfig = ({
 						>
 							{notification.notificationName}
 						</Typography>
-						<DeleteOutlineRoundedIcon
+						<Trash2
 							onClick={() => {
 								handleDelete(notification._id);
 							}}
-							sx={{ cursor: "pointer" }}
+							className="cursor-pointer"
 						/>
 						{index < selectedNotifications.length - 1 && <Divider />}
 					</Stack>

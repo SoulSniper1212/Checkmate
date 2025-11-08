@@ -1,11 +1,8 @@
-import Stack from "@mui/material/Stack";
-import Box from "@mui/material/Box";
+import { Stack, Box, Divider, Typography } from "@/Components/v3/ui";
 import Select from "@/Components/v1/Inputs/Select/index.jsx";
-import Typography from "@mui/material/Typography";
-import Divider from "@mui/material/Divider";
 
 import { useFetchLogs } from "../../../../Hooks/v1/logHooks.js";
-import { useTheme } from "@emotion/react";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 

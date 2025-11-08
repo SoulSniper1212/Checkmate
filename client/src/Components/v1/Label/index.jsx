@@ -1,6 +1,5 @@
 import PropTypes from "prop-types";
-import { Box } from "@mui/material";
-import { useTheme } from "@mui/material";
+import { Box } from "@/Components/v3/ui";
 import "./index.css";
 
 /**
@@ -20,22 +19,10 @@ import "./index.css";
  */
 
 const BaseLabel = ({ label, styles, children }) => {
-	const theme = useTheme();
-	// Grab the default borderRadius from the theme to match button style
-	const { borderRadius } = theme.shape;
-	// Calculate padding for the label to mimic button.  Appears to scale correctly, not 100% sure though.
-	const padding = theme.spacing(3, 5);
-
 	return (
 		<Box
-			className="label"
-			sx={{
-				borderRadius: borderRadius,
-				border: `1px solid ${theme.palette.primary.lowContrast}`,
-				color: theme.palette.primary.contrastText,
-				padding: padding,
-				...styles,
-			}}
+			className="label border border-gray-300 text-gray-900 px-5 py-3 rounded-md inline-flex items-center gap-2"
+			style={styles}
 		>
 			{children}
 			{label}
@@ -84,10 +71,9 @@ const lightenColor = (color, percent) => {
  */
 
 const ColoredLabel = ({ label, color }) => {
-	const theme = useTheme();
-	// If an invalid color is passed, default to the labelGray color
+	// If an invalid color is passed, default to gray
 	if (typeof color !== "string" || !/^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$/.test(color)) {
-		color = theme.palette.primary.lowContrast;
+		color = "#6b7280";
 	}
 
 	// Calculate lighter shades for border and bg
@@ -133,25 +119,30 @@ const statusToTheme = {
 };
 
 const StatusLabel = ({ status, text, customStyles }) => {
-	const theme = useTheme();
+	const statusColors = {
+		up: { color: "#16a34a", borderColor: "#22c55e", dotColor: "#22c55e" },
+		down: { color: "#dc2626", borderColor: "#ef4444", dotColor: "#ef4444" },
+		paused: { color: "#ea580c", borderColor: "#f97316", dotColor: "#f97316" },
+		pending: { color: "#ea580c", borderColor: "#f97316", dotColor: "#f97316" },
+		"cannot resolve": { color: "#dc2626", borderColor: "#ef4444", dotColor: "#ef4444" },
+		published: { color: "#16a34a", borderColor: "#22c55e", dotColor: "#22c55e" },
+		unpublished: { color: "#dc2626", borderColor: "#ef4444", dotColor: "#ef4444" },
+	};
 
-	const themeColor = statusToTheme[status];
+	const colors = statusColors[status] || statusColors.up;
 
 	return (
 		<BaseLabel
 			label={text}
-			styles={{
-				color: theme.palette[themeColor].main,
-				borderColor: theme.palette[themeColor].lowContrast,
+			style={{
+				color: colors.color,
+				borderColor: colors.borderColor,
 				...customStyles,
 			}}
 		>
 			<Box
-				width={7}
-				height={7}
-				bgcolor={theme.palette[themeColor].lowContrast}
-				borderRadius="50%"
-				marginRight="5px"
+				className="w-2 h-2 rounded-full mr-1"
+				style={{ backgroundColor: colors.dotColor }}
 			/>
 		</BaseLabel>
 	);

@@ -1,5 +1,6 @@
-import { Button, Stack } from "@mui/material";
-import { useTheme } from "@mui/material/styles";
+import { Stack } from "@/Components/v3/ui";
+import { Button } from "@/Components/v3/ui";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import PropTypes from "prop-types";

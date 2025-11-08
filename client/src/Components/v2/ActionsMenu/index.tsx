@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
-import IconButton from "@mui/material/IconButton";
+import { MenuItem, IconButton, Menu } from "@/Components/v3/ui";
 import Settings from "@/assets/icons/settings-bold.svg?react";
 
 export type ActionMenuItem = {

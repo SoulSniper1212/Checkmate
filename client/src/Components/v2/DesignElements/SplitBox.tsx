@@ -1,9 +1,5 @@
 import { Fragment } from "react";
-import Stack from "@mui/material/Stack";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import { useTheme } from "@mui/material/styles";
-import { useMediaQuery } from "@mui/material";
+import { Stack, Box, Typography } from "@/Components/v3/ui";
 export const SplitBox = ({
 	left,
 	right,
@@ -11,28 +7,18 @@ export const SplitBox = ({
 	left: React.ReactNode;
 	right: React.ReactNode;
 }) => {
-	const theme = useTheme();
-	const isSmall = useMediaQuery(theme.breakpoints.down("md"));
 	return (
 		<Stack
-			direction={isSmall ? "column" : "row"}
-			bgcolor={theme.palette.primary.main}
-			border={1}
-			borderColor={theme.palette.primary.lowContrast}
-			borderRadius={theme.spacing(2)}
+			direction="col md:row"
+			className="bg-background border border-border rounded-lg"
 		>
 			<Box
-				padding={theme.spacing(15)}
-				borderRight={isSmall ? 0 : 1}
-				borderBottom={isSmall ? 1 : 0}
-				borderColor={theme.palette.primary.lowContrast}
-				flex={0.7}
+				className="p-[15px] md:flex-[0.7] border-r border-b md:border-b-0 border-border"
 			>
 				{left}
 			</Box>
 			<Box
-				flex={1}
-				padding={theme.spacing(15)}
+				className="flex-1 p-[15px]"
 			>
 				{right}
 			</Box>

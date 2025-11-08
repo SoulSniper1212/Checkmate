@@ -1,12 +1,10 @@
-import Box from "@mui/material/Box";
-import Stack from "@mui/material/Stack";
-import Typography from "@mui/material/Typography";
+import { Box, Stack, Typography } from "@/Components/v3/ui";
 import ConfigBox from "@/Components/v1/ConfigBox/index.jsx";
 import Search from "@/Components/v1/Inputs/Search/index.jsx";
 import timezones from "../../../Utils/timezones.json";
 
 // Utils
-import { useTheme } from "@emotion/react";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 import { PropTypes } from "prop-types";
 import { useTranslation } from "react-i18next";
 import { useCallback, useMemo, useState } from "react";
@@ -48,7 +46,7 @@ const SettingsTimeZone = ({ HEADING_SX, handleChange, timezone }) => {
 					</Typography>
 				</Typography>
 			</Box>
-			<Stack gap={theme.spacing(20)}>
+			<Stack className="gap-[var(--spacing-20)]">
 				<Search
 					id="timezone"
 					label={t("settingsDisplayTimezone")}

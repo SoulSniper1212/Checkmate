@@ -7,14 +7,13 @@ import ResponseTimeChart from "./Components/Charts/ResponseTimeChart.jsx";
 import ResponseTable from "./Components/ResponseTable/index.jsx";
 import UptimeStatusBoxes from "./Components/UptimeStatusBoxes/index.jsx";
 import GenericFallback from "@/Components/v1/GenericFallback/index.jsx";
-import Stack from "@mui/material/Stack";
-import Typography from "@mui/material/Typography";
-
+import { Stack } from "@/Components/v3/ui";
+import { Typography } from "@/Components/v3/ui";
 // Utils
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { useTheme } from "@emotion/react";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 import { useIsAdmin } from "../../../../Hooks/v1/useIsAdmin.js";
 import { useFetchUptimeMonitorById } from "../../../../Hooks/v1/monitorHooks.js";
 import useCertificateFetch from "./Hooks/useCertificateFetch.jsx";
@@ -96,8 +95,8 @@ const UptimeDetails = () => {
 			<GenericFallback>
 				<Typography
 					variant="h1"
-					marginY={theme.spacing(4)}
-					color={theme.palette.primary.contrastTextTertiary}
+					marginY="1rem"
+					color={text-foreground}
 				>
 					{t("common.toasts.networkError")}
 				</Typography>
@@ -109,7 +108,7 @@ const UptimeDetails = () => {
 	// Empty view, displayed when loading is complete and there are no checks
 	if (!monitorIsLoading && !checksAreLoading && checksCount === 0) {
 		return (
-			<Stack gap={theme.spacing(10)}>
+			<Stack gap="2.5rem">
 				<Breadcrumbs list={BREADCRUMBS} />
 
 				<MonitorDetailsControlHeader
@@ -140,7 +139,7 @@ const UptimeDetails = () => {
 	}
 
 	return (
-		<Stack gap={theme.spacing(10)}>
+		<Stack gap="2.5rem">
 			<Breadcrumbs list={BREADCRUMBS} />
 			<MonitorDetailsControlHeader
 				path={"uptime"}

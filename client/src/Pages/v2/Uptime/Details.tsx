@@ -1,6 +1,6 @@
 import { BasePage } from "@/Components/v2/DesignElements";
 import { HeaderControls } from "@/Components/v2/Monitors/HeaderControls";
-import Stack from "@mui/material/Stack";
+import { Stack } from "@/Components/v3/ui";
 import { StatBox } from "@/Components/v2/DesignElements";
 import { HistogramStatus } from "@/Components/v2/Monitors/HistogramStatus";
 import { ChartAvgResponse } from "@/Components/v2/Monitors/ChartAvgResponse";
@@ -9,8 +9,7 @@ import { HeaderRange } from "@/Components/v2/Monitors/HeaderRange";
 import { CheckTable } from "@/Pages/v2/Uptime/CheckTable";
 
 import type { IMonitor } from "@/Types/Monitor";
-import { useMediaQuery } from "@mui/material";
-import { useTheme } from "@mui/material/styles";
+import { useIsSmall } from "@/hooks/useMediaQuery";
 import { useParams } from "react-router";
 import { useGet, usePatch, type ApiResponse } from "@/Hooks/v2/UseApi";
 import { useState } from "react";
@@ -19,8 +18,7 @@ import prettyMilliseconds from "pretty-ms";
 
 const UptimeDetailsPage = () => {
 	const { id } = useParams();
-	const theme = useTheme();
-	const isSmall = useMediaQuery(theme.breakpoints.down("md"));
+	const isSmall = useIsSmall();
 
 	// Local state
 	const [range, setRange] = useState("2h");
@@ -99,7 +97,7 @@ const UptimeDetailsPage = () => {
 			/>
 			<Stack
 				direction="row"
-				gap={theme.spacing(8)}
+				spacing="32"
 			>
 				<StatBox
 					palette={palette}
@@ -126,7 +124,7 @@ const UptimeDetailsPage = () => {
 			/>
 			<Stack
 				direction={isSmall ? "column" : "row"}
-				gap={theme.spacing(8)}
+				spacing="32"
 			>
 				<HistogramStatus
 					title="Uptime"

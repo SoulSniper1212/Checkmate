@@ -1,9 +1,10 @@
 // Components
 import CustomGauge from "@/Components/v1/Charts/CustomGauge/index.jsx";
 import BaseContainer from "../BaseContainer/index.jsx";
-import { Stack, Typography, Box } from "@mui/material";
+import { Stack, Typography } from "@/Components/v3/ui";
+import { Box } from "@/Components/v3/ui";
 // Utils
-import { useTheme } from "@emotion/react";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 import PropTypes from "prop-types";
 
 const Gauge = ({ value, heading, metricOne, valueOne, metricTwo, valueTwo }) => {

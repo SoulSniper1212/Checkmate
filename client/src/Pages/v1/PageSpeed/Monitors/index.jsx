@@ -1,7 +1,7 @@
 // Components
 import { useState } from "react";
 import Breadcrumbs from "@/Components/v1/Breadcrumbs/index.jsx";
-import { Stack } from "@mui/material";
+import { Stack } from "@/Components/v3/ui";
 import CreateMonitorHeader from "@/Components/v1/MonitorCreateHeader/index.jsx";
 import MonitorCountHeader from "@/Components/v1/MonitorCountHeader/index.jsx";
 import MonitorGrid from "./Components/MonitorGrid/index.jsx";
@@ -9,7 +9,7 @@ import PageStateWrapper from "@/Components/v1/PageStateWrapper/index.jsx";
 import FallbackPageSpeedWarning from "@/Components/v1/Fallback/FallbackPageSpeedWarning.jsx";
 
 // Utils
-import { useTheme } from "@emotion/react";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 import { useIsAdmin } from "../../../../Hooks/v1/useIsAdmin.js";
 import { useFetchMonitorsByTeamId } from "../../../../Hooks/v1/monitorHooks.js";
 import { useFetchSettings } from "../../../../Hooks/v1/settingsHooks.js";
@@ -53,7 +53,7 @@ const PageSpeed = () => {
 					)
 				}
 			>
-				<Stack gap={theme.spacing(10)}>
+				<Stack className="gap-[var(--spacing-10)]">
 					<Breadcrumbs list={BREADCRUMBS} />
 					<CreateMonitorHeader
 						isAdmin={isAdmin}
@@ -63,7 +63,7 @@ const PageSpeed = () => {
 					<MonitorCountHeader
 						isLoading={isLoading}
 						monitorCount={monitorsSummary?.totalMonitors}
-						sx={{ mb: theme.spacing(8) }}
+						className="mb-[var(--spacing-8)]"
 					/>
 					<MonitorGrid
 						size={6}

@@ -1,29 +1,22 @@
-import { Stack, Typography } from "@mui/material";
-import { useTheme } from "@emotion/react";
+import { Stack, Typography } from "@/Components/v3/ui";
 import IconBox from "../../IconBox/index.jsx";
 import PropTypes from "prop-types";
 
 const LegendBox = ({ children, icon, header, sx }) => {
-	const theme = useTheme();
 	return (
 		<Stack
 			direction="column"
-			gap={theme.spacing(4)}
-			borderRadius={theme.spacing(8)}
-			sx={{
+			gap="16px"
+			borderRadius="32px"
+			className="pl-6 border-l border-slate-700 bg-slate-900 p-8"
+			style={{
+				background: "linear-gradient(325deg, #1e293b 20%, #0f172a 45%)",
 				...sx,
-				"& label": { pl: theme.spacing(6) },
-				borderLeftStyle: "solid",
-				borderLeftWidth: 1,
-				borderLeftColor: theme.palette.primary.lowContrast,
-				backgroundColor: theme.palette.primary.main,
-				padding: theme.spacing(8),
-				background: `linear-gradient(325deg, ${theme.palette.tertiary.main} 20%, ${theme.palette.primary.main} 45%)`,
 			}}
 		>
 			<Stack
 				direction="row"
-				gap={theme.spacing(6)}
+				gap="24px"
 			>
 				<IconBox>{icon}</IconBox>
 				<Typography component="h2">{header}</Typography>

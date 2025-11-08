@@ -1,21 +1,20 @@
-import Stack from "@mui/material/Stack";
+import { Stack } from "@/Components/v3/ui";
 import CustomGauge from "@/Components/v1/Charts/CustomGauge/index.jsx";
-import Typography from "@mui/material/Typography";
-
+import { Typography } from "@/Components/v3/ui";
 // Utils
-import { useTheme } from "@emotion/react";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 import PropTypes from "prop-types";
 import { getPercentage, formatBytes } from "../../utils/utils.js";
 import { useTranslation } from "react-i18next";
-import { Box } from "@mui/material";
+import { Box } from "@/Components/v3/ui";
 
 const BaseContainer = ({children}) => {
 	const theme = useTheme()
 	return(
 		<Box 
 			sx={{
-				padding: theme.spacing(3),
-				borderRadius: theme.spacing(2),
+				padding: "0.75rem",
+				borderRadius: "0.5rem",
 				border: `1px solid ${theme.palette.divider}`,
 				minWidth: 250,
 				width: "fit-content",
@@ -33,18 +32,10 @@ const InfrastructureStyleGauge = ({ value, heading, metricOne, valueOne, metricT
 			justifyContent="space-between"
 			direction="row"
 			alignItems="center"
-			gap={theme.spacing(2)}
+			gap="0.5rem"
 		>
 			<Typography>{label}</Typography>
-			<Typography sx={{
-				borderRadius: theme.spacing(2),
-				backgroundColor: theme.palette.tertiary.main,
-				width: "40%",
-				mb: theme.spacing(2),
-				mt: theme.spacing(2),
-				pr: theme.spacing(2),
-				textAlign: "right",
-			}}>
+			<Typography className="/* TODO: Convert sx to Tailwind - borderRadius: 0.5rem, backgroundColor: text-foreground, width: 40%, mb: 0.5rem, mt: 0.5rem, pr: 0.5rem, textAlign: right */">
 				{value}
 			</Typography>
 		</Stack>
@@ -52,7 +43,7 @@ const InfrastructureStyleGauge = ({ value, heading, metricOne, valueOne, metricT
 
 	return(
 		<BaseContainer>
-			<Stack direction="column" gap={theme.spacing(2)} alignItems="center">
+			<Stack direction="column" gap="0.5rem" alignItems="center">
 				<Box
 					sx = {{
 						display: "flex",
@@ -62,7 +53,7 @@ const InfrastructureStyleGauge = ({ value, heading, metricOne, valueOne, metricT
 					}}
 				>
 					<CustomGauge progress={value} radius={100}/>
-					<Typography component="h2" sx={{fontWeight: 600}}>
+					<Typography component="h2" className="/* TODO: Convert sx to Tailwind - fontWeight: 600 */">
 						{heading}
 					</Typography>		
 				</Box>
@@ -99,7 +90,7 @@ const Gauges = ({ diagnostics, isLoading }) => {
 	return (
 		<Stack
 			direction="row"
-			spacing={theme.spacing(8)}
+			spacing="2rem"
 			flexWrap="wrap"
 		>
 			<InfrastructureStyleGauge

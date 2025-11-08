@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+import { Box } from "@/Components/v3/ui";
 import PropTypes from "prop-types";
 
 const isValidBase64Image = (data) => {

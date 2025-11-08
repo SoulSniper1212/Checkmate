@@ -1,7 +1,7 @@
 // Components
-import { Stack, Typography } from "@mui/material";
-import DeleteIcon from "@mui/icons-material/Delete";
-import { useTheme } from "@emotion/react";
+import { Stack, Typography } from "@/Components/v3/ui";
+import { Trash2 } from "lucide-react";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 import PropTypes from "prop-types";
 
 const MonitorListItem = ({ monitor, onDelete }) => {
@@ -10,12 +10,12 @@ const MonitorListItem = ({ monitor, onDelete }) => {
 		<Stack
 			direction={"row"}
 			alignItems={"center"}
-			gap={theme.spacing(4)}
+			gap="1rem"
 			width="100%"
 		>
 			<Typography flexGrow={1}>{monitor.name}</Typography>
-			<DeleteIcon
-				sx={{ cursor: "pointer" }}
+			<Trash2
+				className="cursor-pointer"
 				onClick={() => onDelete(monitor)}
 			/>
 		</Stack>
@@ -42,7 +42,7 @@ const MonitorList = ({ selectedMonitors, setSelectedMonitors }) => {
 
 	return (
 		<Stack
-			gap={theme.spacing(6)}
+			gap="1.5rem"
 			width="100%"
 		>
 			{selectedMonitors?.map((monitor) => (

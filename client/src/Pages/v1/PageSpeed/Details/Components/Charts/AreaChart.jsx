@@ -8,9 +8,10 @@ import {
 	ResponsiveContainer,
 	Text,
 } from "recharts";
-import { useTheme } from "@emotion/react";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 import { useMemo, useState } from "react";
-import { Box, Stack, Typography } from "@mui/material";
+import { Stack, Typography } from "@/Components/v3/ui";
+import { Box } from "@/Components/v3/ui";
 import { formatDateWithTz } from "../../../../../../Utils/timeUtils.js";
 import { useSelector } from "react-redux";
 

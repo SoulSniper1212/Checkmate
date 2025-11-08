@@ -1,5 +1,5 @@
-import { Box, useTheme } from "@mui/material";
-import { TabList } from "@mui/lab";
+import { Box } from "@/Components/v3/ui";
+import { TabList } from "@/Components/v3/ui";
 import PropTypes from "prop-types";
 
 /**
@@ -11,15 +11,9 @@ import PropTypes from "prop-types";
  */
 
 const CustomTabList = ({ value, onChange, children, ...props }) => {
-	const theme = useTheme();
-
 	return (
 		<Box
-			sx={{
-				marginBottom: theme.spacing(12),
-				borderBottom: `1px solid ${theme.palette.primary.lowContrast}`,
-				"& .MuiTabs-root": { height: "fit-content", minHeight: "0" },
-			}}
+			className="mb-12 border-b border-gray-300 [&_.MuiTabs-root]:h-fit [&_.MuiTabs-root]:min-h-0"
 		>
 			<TabList
 				value={value}

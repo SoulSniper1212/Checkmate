@@ -9,11 +9,11 @@ export const getStatusPalette = (status: MonitorStatus): PaletteKey => {
 	return paletteMap[status];
 };
 
-export const getStatusColor = (status: MonitorStatus, theme: any): string => {
+export const getStatusColor = (status: MonitorStatus): string => {
 	const statusColors: Record<MonitorStatus, string> = {
-		up: theme.palette.success.lowContrast,
-		down: theme.palette.error.lowContrast,
-		initializing: theme.palette.warning.lowContrast,
+		up: "hsl(var(--success))",
+		down: "hsl(var(--destructive))",
+		initializing: "hsl(var(--warning))",
 	};
 	return statusColors[status];
 };

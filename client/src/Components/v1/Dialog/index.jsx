@@ -1,7 +1,6 @@
 import PropTypes from "prop-types";
-import { Button, Stack } from "@mui/material";
+import { Button, Stack } from "@/Components/v3/ui";
 import { GenericDialog } from "./genericDialog.jsx";
-import { useTheme } from "@emotion/react";
 import { useTranslation } from "react-i18next";
 
 const Dialog = ({
@@ -13,7 +12,6 @@ const Dialog = ({
 	onConfirm,
 	isLoading,
 }) => {
-	const theme = useTheme();
 	const { t } = useTranslation();
 
 	return (
@@ -22,12 +20,11 @@ const Dialog = ({
 			description={description}
 			open={open}
 			onClose={onCancel}
-			theme={theme}
 		>
 			<Stack
 				direction="row"
-				gap={theme.spacing(4)}
-				mt={theme.spacing(12)}
+				gap="16px"
+				marginTop="48px"
 				justifyContent="flex-end"
 			>
 				<Button

@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { Box, Button } from "@mui/material";
-import { useTheme } from "@emotion/react";
+import { Box } from "@/Components/v3/ui";
+import { Button } from "@/Components/v3/ui";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 import { useTranslation } from "react-i18next";
-import PauseCircleOutlineIcon from "@mui/icons-material/PauseCircleOutline";
-import PlayCircleOutlineRoundedIcon from "@mui/icons-material/PlayCircleOutlineRounded";
+import { Pause, Play } from "lucide-react";
 import Dialog from "@/Components/v1/Dialog/index.jsx";
 import PropTypes from "prop-types";
 
@@ -36,12 +36,12 @@ const MonitorActionButtons = ({ monitor, isBusy, handlePause, handleRemove }) =>
 			>
 				{monitor?.isActive ? (
 					<>
-						<PauseCircleOutlineIcon />
+						<Pause />
 						{t("pause")}
 					</>
 				) : (
 					<>
-						<PlayCircleOutlineRoundedIcon />
+						<Play />
 						{t("resume")}
 					</>
 				)}

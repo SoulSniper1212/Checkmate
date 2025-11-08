@@ -1,5 +1,5 @@
 // Components
-import { Typography, Stack } from "@mui/material";
+import { Typography, Stack } from "@/Components/v3/ui";
 import GenericFallback from "@/Components/v1/GenericFallback/index.jsx";
 import AdminLink from "./Components/AdminLink/index.jsx";
 import ControlsHeader from "./Components/ControlsHeader/index.jsx";
@@ -11,7 +11,7 @@ import TextLink from "@/Components/v1/TextLink/index.jsx";
 
 // Utils
 import { useStatusPageFetch } from "./Hooks/useStatusPageFetch.jsx";
-import { useTheme } from "@emotion/react";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 import { useIsAdmin } from "../../../../Hooks/v1/useIsAdmin.js";
 import { useLocation } from "react-router-dom";
 import { useParams } from "react-router-dom";

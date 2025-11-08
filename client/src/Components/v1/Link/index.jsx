@@ -1,6 +1,6 @@
-import { Link as MuiLink, useTheme } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
-
+import { Link } from "@/Components/v3/ui";
+import { cn } from "@/lib/utils";
 import PropTypes from "prop-types";
 
 /**
@@ -12,62 +12,54 @@ import PropTypes from "prop-types";
  * @returns {JSX.Element}
  */
 
-const Link = ({ level, label, url, external = true }) => {
-	const theme = useTheme();
-
+const LinkComponent = ({ level, label, url, external = true, className }) => {
 	const levelConfig = {
 		primary: {
-			color: theme.palette.primary.contrastTextTertiary,
-			sx: {
-				":hover": {
-					color: theme.palette.primary.contrastTextSecondary,
-				},
-			},
+			className: "text-muted-foreground hover:text-foreground transition-colors w-fit",
 		},
 		secondary: {
-			color: theme.palette.primary.contrastTextSecondary,
-			sx: {
-				":hover": {
-					color: theme.palette.primary.contrastTextSecondary,
-				},
-			},
+			className: "text-foreground/80 hover:text-foreground transition-colors w-fit",
 		},
 		tertiary: {
-			color: theme.palette.primary.contrastTextTertiary,
-			sx: {
-				textDecoration: "underline",
-				textDecorationStyle: "dashed",
-				textDecorationColor: theme.palette.primary.main,
-				textUnderlineOffset: "1px",
-				":hover": {
-					color: theme.palette.primary.contrastTextTertiary,
-					textDecorationColor: theme.palette.primary.main,
-					backgroundColor: theme.palette.primary.lowContrast,
-				},
-			},
+			className: "text-muted-foreground underline underline-dashed underline-offset-1 hover:bg-accent hover:text-muted-foreground transition-colors w-fit",
 		},
-		error: {},
+		error: {
+			className: "text-destructive hover:text-destructive/80 transition-colors w-fit",
+		},
 	};
-	const { sx, color } = levelConfig[level];
+
+	const config = levelConfig[level] || levelConfig.primary;
+
+	if (external) {
+		return (
+			<Link
+				href={url}
+				target="_blank"
+				rel="noreferrer"
+				className={cn(config.className, className)}
+			>
+				{label}
+			</Link>
+		);
+	}
+
 	return (
-		<MuiLink
-			component={external ? "a" : RouterLink}
-			to={external ? undefined : url}
-			href={external ? url : undefined}
-			sx={{ width: "fit-content", ...sx }}
-			color={color}
-			{...(external && { target: "_blank", rel: "noreferrer" })}
+		<Link
+			as={RouterLink}
+			to={url}
+			className={cn(config.className, className)}
 		>
 			{label}
-		</MuiLink>
+		</Link>
 	);
 };
 
-Link.propTypes = {
+LinkComponent.propTypes = {
 	url: PropTypes.string.isRequired,
 	level: PropTypes.oneOf(["primary", "secondary", "tertiary", "error"]),
 	label: PropTypes.string.isRequired,
 	external: PropTypes.bool,
+	className: PropTypes.string,
 };
 
-export default Link;
+export default LinkComponent;

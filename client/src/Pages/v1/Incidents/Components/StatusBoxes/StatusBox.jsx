@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
-import { useTheme } from "@emotion/react";
-import { Box, Stack, Typography } from "@mui/material";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
+import { Box, Stack, Typography } from "@/Components/v3/ui";
 import Background from "../../../../../assets/Images/background-grid.svg?react";
 import AlertIcon from "../../../../../assets/icons/alert-icon.svg?react";
 import CheckIcon from "../../../../../assets/icons/check-icon.svg?react";

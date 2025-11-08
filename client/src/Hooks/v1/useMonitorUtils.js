@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import { useTheme } from "@mui/material";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 
 const useMonitorUtils = () => {
 	const getMonitorWithPercentage = useCallback((monitor, theme) => {
@@ -14,12 +14,12 @@ const useMonitorUtils = () => {
 
 			percentageColor =
 				monitor?.uptimePercentage < 0.25
-					? theme.palette.error.main
+					? "hsl(var(--destructive))"
 					: monitor?.uptimePercentage < 0.5
-						? theme.palette.warning.main
+						? "hsl(var(--warning))"
 						: monitor?.uptimePercentage < 0.75
-							? theme.palette.success.main
-							: theme.palette.success.main;
+							? "hsl(var(--success))"
+							: "hsl(var(--success))";
 		}
 
 		return {
@@ -40,10 +40,10 @@ const useMonitorUtils = () => {
 	const theme = useTheme();
 
 	const statusColor = {
-		up: theme.palette.success.lowContrast,
-		down: theme.palette.error.lowContrast,
-		paused: theme.palette.warning.lowContrast,
-		pending: theme.palette.warning.lowContrast,
+		up: "hsl(var(--success))",
+		down: "hsl(var(--destructive))",
+		paused: "hsl(var(--warning))",
+		pending: "hsl(var(--muted-foreground))",
 	};
 
 	const statusToTheme = {

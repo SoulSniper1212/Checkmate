@@ -1,9 +1,9 @@
-import { Button, Stack } from "@mui/material";
+import { Button, Stack } from "@/Components/v3/ui";
 import { GenericDialog } from "@/Components/v1/Dialog/genericDialog.jsx";
 import TextInput from "@/Components/v1/Inputs/TextInput/index.jsx";
 import Select from "@/Components/v1/Inputs/Select/index.jsx";
 import { useGetInviteToken } from "../../../../../Hooks/v1/inviteHooks.js";
-import { useTheme } from "@emotion/react";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 import { useTranslation } from "react-i18next";
 import { createToast } from "../../../../../Utils/toastUtils.jsx";
 import { useState } from "react";

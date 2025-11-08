@@ -1,8 +1,9 @@
 // Components
-import { Box, Typography } from "@mui/material";
+import { Typography } from "@/Components/v3/ui";
+import { Box } from "@/Components/v3/ui";
 
 // Utils
-import { useTheme } from "@mui/material/styles";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 

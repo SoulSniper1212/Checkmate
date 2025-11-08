@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
-import { useTheme } from "@emotion/react";
-import { Stack, Typography } from "@mui/material";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
+import { Stack, Typography } from "@/Components/v3/ui";
 
 /**
 

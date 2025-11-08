@@ -1,10 +1,7 @@
-import Stack from "@mui/material/Stack";
-import Typography from "@mui/material/Typography";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import CircularProgress from "@mui/material/CircularProgress";
+import { Stack, Typography, Card } from "@/Components/v3/ui";
+import { CircularProgress } from "@/Components/v3/ui/mui-progress";
 
-import { useTheme } from "@emotion/react";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 import PropTypes from "prop-types";
 
 import { getHumanReadableDuration } from "../../../../../../Utils/timeUtils.js";
@@ -14,28 +11,23 @@ import { useTranslation } from "react-i18next";
 const StatsCard = ({ title, value, unit = "", isLoading }) => {
 	const theme = useTheme();
 	return (
-		<Card sx={{ width: 150, maxWidth: 150, height: 80, maxHeight: 80 }}>
+		<Card className="w-[150px] max-w-[150px] h-20 max-h-20">
 			{isLoading ? (
-				<Stack
-					alignItems="center"
-					justifyContent="center"
-					height={80}
-					maxHeight={80}
-				>
+				<div className="flex items-center justify-center h-20 max-h-20">
 					<CircularProgress color="accent" />
-				</Stack>
+				</div>
 			) : (
-				<CardContent>
+				<div className="p-4">
 					<Typography
 						variant="body1"
-						color={theme.palette.primary.contrastText}
+						style={{ color: theme.palette.primary.contrastText }}
 					>
 						{title}
 					</Typography>
 					<Typography variant="body1">
 						{value} {unit}
 					</Typography>
-				</CardContent>
+				</div>
 			)}
 		</Card>
 	);
@@ -52,10 +44,9 @@ const Stats = ({ diagnostics, isLoading }) => {
 	const theme = useTheme();
 	const { t } = useTranslation();
 	return (
-		<Stack
-			direction="row"
-			gap={theme.spacing(4)}
-			flexWrap="wrap"
+		<div
+			className="flex flex-row flex-wrap"
+			style={{ gap: theme.spacing(4) }}
 		>
 			<StatsCard
 				title={t("diagnosticsPage.stats.eventLoopDelayTitle")}
@@ -85,7 +76,7 @@ const Stats = ({ diagnostics, isLoading }) => {
 				value={formatBytes(diagnostics?.osStats?.totalMemoryBytes)}
 				isLoading={isLoading}
 			/>
-		</Stack>
+		</div>
 	);
 };
 

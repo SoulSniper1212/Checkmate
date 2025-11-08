@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
-import { useTheme } from "@emotion/react";
-import { Box, Typography } from "@mui/material";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
+import { Box } from "@/Components/v3/ui";
+import { Typography } from "@/Components/v3/ui";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
@@ -136,8 +137,8 @@ const Greeting = ({ type = "" }) => {
 	const dispatch = useDispatch();
 	const { t } = useTranslation();
 	const { firstName } = useSelector((state) => state.auth.user);
-	const index = useSelector((state) => state.ui.greeting.index);
-	const lastUpdate = useSelector((state) => state.ui.greeting.lastUpdate);
+	const greetingIndex = useSelector((state) => state.ui?.greeting?.index ?? 0);
+	const lastUpdate = useSelector((state) => state.ui?.greeting?.lastUpdate ?? null);
 
 	const now = new Date();
 	const hour = now.getHours();
@@ -153,7 +154,7 @@ const Greeting = ({ type = "" }) => {
 
 	let greetingArray =
 		hour < 6 ? early : hour < 12 ? morning : hour < 18 ? afternoon : evening;
-	const { prepend, append, emoji } = greetingArray[index];
+	const { prepend, append, emoji } = greetingArray[greetingIndex];
 
 	return (
 		<Box>

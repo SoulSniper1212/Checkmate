@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { Box, Typography, Button, Stack } from "@mui/material";
-import { useTheme } from "@emotion/react";
+import { Box, Typography, Button, Stack } from "@/Components/v3/ui";
 import { useNavigate } from "react-router-dom";
 import { networkService } from "../../Utils/NetworkService.js";
 import Alert from "@/Components/v1/Alert/index.jsx";
@@ -12,7 +11,6 @@ import ThemeSwitch from "@/Components/v1/ThemeSwitch/index.jsx";
 import LanguageSelector from "../../Components/LanguageSelector.jsx";
 
 const ServerUnreachable = () => {
-	const theme = useTheme();
 	const navigate = useNavigate();
 	const { t } = useTranslation();
 
@@ -48,11 +46,6 @@ const ServerUnreachable = () => {
 		>
 			<Box
 				className="background-pattern-svg"
-				sx={{
-					"& svg g g:last-of-type path": {
-						stroke: theme.palette.primary.lowContrast,
-					},
-				}}
 			>
 				<Background style={{ width: "100%" }} />
 			</Box>
@@ -62,20 +55,20 @@ const ServerUnreachable = () => {
 				direction="row"
 				alignItems="center"
 				justifyContent="space-between"
-				px={theme.spacing(12)}
-				gap={theme.spacing(4)}
+				px="48px"
+				gap="16px"
 			>
 				<Stack
 					direction="row"
 					alignItems="center"
-					gap={theme.spacing(4)}
+					gap="16px"
 				>
-					<Logo style={{ borderRadius: theme.shape.borderRadius }} />
-					<Typography sx={{ userSelect: "none" }}>{t("common.appName")}</Typography>
+					<Logo style={{ borderRadius: "8px" }} />
+					<Typography className="select-none">{t("common.appName")}</Typography>
 				</Stack>
 				<Stack
 					direction="row"
-					spacing={2}
+					spacing="8px"
 					alignItems="center"
 				>
 					<LanguageSelector />
@@ -84,40 +77,21 @@ const ServerUnreachable = () => {
 			</Stack>
 			<Stack
 				width="100%"
-				maxWidth={600}
+				maxWidth="600px"
 				flex={1}
 				justifyContent="center"
-				px={{ xs: theme.spacing(12), lg: theme.spacing(20) }}
-				pb={theme.spacing(20)}
+				px={{ xs: "48px", lg: "80px" }}
+				pb="80px"
 				mx="auto"
-				rowGap={theme.spacing(8)}
-				sx={{
-					"& > .MuiStack-root": {
-						border: 1,
-						borderRadius: theme.spacing(5),
-						borderColor: theme.palette.primary.lowContrast,
-						backgroundColor: theme.palette.primary.main,
-						padding: {
-							xs: theme.spacing(12),
-							sm: theme.spacing(20),
-						},
-					},
-				}}
+				rowGap="32px"
+				className="border border-gray-300 rounded-[20px] bg-white p-12 xs:p-20"
 			>
 				<Stack
-					spacing={theme.spacing(6)}
+					spacing="24px"
 					alignItems="center"
 				>
 					<Box
-						sx={{
-							width: theme.spacing(220),
-							mx: "auto",
-							"& .alert.row-stack": {
-								width: "100%",
-								alignItems: "center",
-								gap: theme.spacing(3),
-							},
-						}}
+						className="w-full max-w-[880px] mx-auto"
 					>
 						<Alert
 							variant="error"
@@ -125,32 +99,21 @@ const ServerUnreachable = () => {
 							hasIcon={true}
 						/>
 					</Box>
-					<Box mt={theme.spacing(2)}>
+					<Box className="mt-2">
 						<Typography
 							variant="body1"
 							align="center"
-							color={theme.palette.primary.contrastTextSecondary}
+							className="text-gray-600"
 						>
 							{t("errorPages.serverUnreachable.description")}
 						</Typography>
 					</Box>
-					<Box sx={{ mt: theme.spacing(4) }}>
+					<Box className="mt-4">
 						<Button
-							variant="contained"
-							color="accent"
+							variant="default"
 							onClick={handleRetry}
 							disabled={isCheckingConnection}
-							className="dashboard-style-button"
-							sx={{
-								px: theme.spacing(6),
-								borderRadius: `${theme.shape.borderRadius}px !important`,
-								"&.MuiButtonBase-root": {
-									borderRadius: `${theme.shape.borderRadius}px !important`,
-								},
-								"&.MuiButton-root": {
-									borderRadius: `${theme.shape.borderRadius}px !important`,
-								},
-							}}
+							className="dashboard-style-button px-6 rounded"
 						>
 							{isCheckingConnection
 								? t("errorPages.serverUnreachable.retryButton.processing")

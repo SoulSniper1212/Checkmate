@@ -1,18 +1,14 @@
 // Components
-import Stack from "@mui/material/Stack";
+import { Stack, ButtonGroup, Button, Typography, Divider } from "@/Components/v3/ui";
 import JobTable from "./components/JobTable/index.jsx";
 import Metrics from "./components/Metrics/index.jsx";
 import FailedJobTable from "./components/FailedJobTable/index.jsx";
-import ButtonGroup from "@mui/material/ButtonGroup";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
-import Divider from "@mui/material/Divider";
 
 // Utils
 import { useState } from "react";
 import { useFetchQueueData, useFlushQueue } from "../../../../Hooks/v1/logHooks.js";
 import { useTranslation } from "react-i18next";
-import { useTheme } from "@emotion/react";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 
 const QueueDetails = () => {
 	// Local state
@@ -28,10 +24,9 @@ const QueueDetails = () => {
 	if (error || flushError) return <div>Error: {error.message}</div>;
 
 	return (
-		<Stack gap={theme.spacing(4)}>
+		<Stack className="gap-[var(--spacing-4)]">
 			<Stack
-				gap={theme.spacing(20)}
-				mt={theme.spacing(10)}
+				className="gap-[var(--spacing-20)] mt-[var(--spacing-10)]"
 			>
 				<Metrics metrics={metrics} />
 				<JobTable jobs={jobs} />
@@ -39,16 +34,8 @@ const QueueDetails = () => {
 
 				<ButtonGroup
 					variant="contained"
-					color="accent"
-					sx={{
-						position: "sticky",
-						bottom: 0,
-						zIndex: 1000,
-						backgroundColor: theme.palette.primary.main,
-						p: theme.spacing(4),
-						border: `1px solid ${theme.palette.primary.lowContrast}`,
-						borderRadius: theme.spacing(2),
-					}}
+					color="primary"
+					className="sticky bottom-0 z-[1000] bg-primary p-[var(--spacing-4)] border border-primary-low-contrast rounded-[var(--spacing-2)]"
 				>
 					<Button
 						onClick={() => {

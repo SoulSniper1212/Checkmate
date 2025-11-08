@@ -1,11 +1,14 @@
 // Components
-import { Box, Stack, Typography, Button } from "@mui/material";
+import { Stack } from "@/Components/v3/ui";
+import { Button } from "@/Components/v3/ui";
+import { Box } from "@/Components/v3/ui";
+import { Typography } from "@/Components/v3/ui";
 import Image from "@/Components/v1/Image/index.jsx";
 import SettingsIcon from "../../../../../../assets/icons/settings-bold.svg?react";
 import ThemeSwitch from "@/Components/v1/ThemeSwitch/index.jsx";
-import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
+import { ExternalLink } from "lucide-react";
 //Utils
-import { useTheme } from "@mui/material/styles";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import PropTypes from "prop-types";
@@ -111,7 +114,7 @@ const ControlsHeader = ({ statusPage, isPublic, url, type = "uptime" }) => {
 						}}
 					>
 						<Typography>{t("publicLink")}</Typography>
-						<ArrowOutwardIcon />
+						<ExternalLink />
 					</Stack>
 				)}
 			</Stack>

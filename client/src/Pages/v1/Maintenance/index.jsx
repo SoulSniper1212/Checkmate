@@ -1,5 +1,6 @@
-import { Stack, Button } from "@mui/material";
-import { useTheme } from "@emotion/react";
+import { Stack } from "@/Components/v3/ui";
+import { Button } from "@/Components/v3/ui";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 import { useState, useEffect } from "react";
 import "./index.css";
 import MaintenanceTable from "./MaintenanceTable/index.jsx";

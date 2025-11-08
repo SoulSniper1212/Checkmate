@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
-import { Stack, Typography, Grid, Button } from "@mui/material";
-import { useTheme } from "@emotion/react";
+import { Stack, Typography, Grid } from "@/Components/v3/ui";
+import { Button } from "@/Components/v3/ui";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 import Discord from "../../../assets/icons/discord-icon.svg?react";
 import Slack from "../../../assets/icons/slack-icon.svg?react";
 import Zapier from "../../../assets/icons/zapier-icon.svg?react";

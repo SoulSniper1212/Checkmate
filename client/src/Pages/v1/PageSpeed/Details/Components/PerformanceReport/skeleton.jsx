@@ -1,4 +1,4 @@
-import { Box, Skeleton } from "@mui/material";
+import { Box, Skeleton } from "@/Components/v3/ui";
 
 const SkeletonLayout = () => {
 	return (

@@ -1,6 +1,6 @@
-import { Stack, Typography } from "@mui/material";
+import { Stack, Typography } from "@/Components/v3/ui";
 import Image from "../Image/index.jsx";
-import { useTheme } from "@mui/material/styles";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 import PropTypes from "prop-types";
 import { useMonitorUtils } from "../../../Hooks/v1/useMonitorUtils.js";
 

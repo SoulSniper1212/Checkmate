@@ -1,24 +1,35 @@
-import { Typography, Select } from "@mui/material";
-import MenuItem from "@mui/material/MenuItem";
-import type { SelectProps } from "@mui/material/Select";
-import { useTheme } from "@mui/material/styles";
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import { Select, MenuItem, Typography } from "@/Components/v3/ui";
+import type { SelectProps } from "@/Components/v3/ui/select";
 
-export const SelectInput: React.FC<SelectProps> = ({ ...props }) => {
-	const theme = useTheme();
+// Simple down arrow icon to replace MUI icon
+const KeyboardArrowDownIcon = () => (
+	<svg
+		width="24"
+		height="24"
+		viewBox="0 0 24 24"
+		fill="currentColor"
+	>
+		<path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+	</svg>
+);
+
+export const SelectInput: React.FC<SelectProps> = ({ sx, ...props }) => {
+	// Convert MUI sx prop to Tailwind classes where possible
+	const selectStyle = sx || {};
+
+	// Apply specific styling from the original MUI component
+	const combinedStyle = {
+		...selectStyle,
+		// Maintain the 34px height from original component
+		minHeight: '34px',
+		fontSize: '14px', // typographyLevels.base equivalent
+	};
+
 	return (
 		<Select
 			{...props}
-			sx={{
-				height: "34px",
-				"& .MuiOutlinedInput-notchedOutline": {
-					borderRadius: theme.shape.borderRadius,
-					borderColor: theme.palette.primary.lowContrast,
-				},
-				"&:hover .MuiOutlinedInput-notchedOutline": {
-					borderColor: theme.palette.primary.lowContrast,
-				},
-			}}
+			sx={combinedStyle}
+			IconComponent={KeyboardArrowDownIcon}
 		/>
 	);
 };

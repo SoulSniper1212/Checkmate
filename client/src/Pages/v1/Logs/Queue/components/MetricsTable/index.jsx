@@ -1,10 +1,10 @@
-import Stack from "@mui/material/Stack";
-import Typography from "@mui/material/Typography";
+import { Stack } from "@/Components/v3/ui";
+import { Typography } from "@/Components/v3/ui";
 import DataTable from "@/Components/v1/Table/index.jsx";
 
 // Utils
 import { useTranslation } from "react-i18next";
-import { useTheme } from "@emotion/react";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 import PropTypes from "prop-types";
 
 const camelToTitle = (str) => {
@@ -43,7 +43,7 @@ const Metrics = ({ metrics = {} }) => {
 		});
 
 	return (
-		<Stack gap={theme.spacing(2)}>
+		<Stack gap={0.5rem}>
 			<Typography variant="h2">{t("queuePage.metricsTable.title")}</Typography>
 			<DataTable
 				headers={headers}

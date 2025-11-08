@@ -1,19 +1,10 @@
 import PropTypes from "prop-types";
-import { useTheme } from "@mui/material/styles";
-import Box from "@mui/material/Box";
-import Stack from "@mui/material/Stack";
+import { Box, Stack } from "@/Components/v3/ui";
 import Check from "../Check/Check.jsx";
 const FallbackCheckList = ({ checks, type }) => {
-	const theme = useTheme();
 	return (
 		<Box
-			sx={{
-				display: "flex",
-				flexWrap: "wrap",
-				gap: theme.spacing(2),
-				alignItems: "flex-start",
-				maxWidth: { xs: "90%", md: "80%", lg: "75%" },
-			}}
+			className="flex flex-wrap gap-2 items-start max-w-[75%] md:max-w-[80%] xs:max-w-[90%]"
 		>
 			{checks?.map((check, index) => (
 				<Check

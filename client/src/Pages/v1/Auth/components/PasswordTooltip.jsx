@@ -1,6 +1,6 @@
 import Check from "@/Components/v1/Check/Check.jsx";
-import Stack from "@mui/material/Stack";
-import { Tooltip, useTheme } from "@mui/material";
+import { Stack, Tooltip } from "@/Components/v3/ui";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 import { useTranslation } from "react-i18next";
 import PropTypes from "prop-types";
 
@@ -19,8 +19,7 @@ const PasswordTooltip = ({ feedback, form, children }) => {
 			open={showPasswordTooltip}
 			title={
 				<Stack
-					gap={theme.spacing(4)}
-					mb={{ xs: theme.spacing(6), sm: theme.spacing(8) }}
+					className="gap-[var(--spacing-4)] mb-[var(--spacing-6)] sm:mb-[var(--spacing-8)]"
 				>
 					<Check
 						noHighlightText={

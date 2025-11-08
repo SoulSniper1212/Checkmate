@@ -1,58 +1,41 @@
-import { Stack, TextField, Typography } from "@mui/material";
-import { useTheme } from "@emotion/react";
+import { Input as ShadcnInput } from "@/Components/v3/ui/input";
+import { Textarea as ShadcnTextarea } from "@/Components/v3/ui/textarea";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 import { forwardRef, useState, cloneElement } from "react";
 import PropTypes from "prop-types";
 import FieldWrapper from "../FieldWrapper/index.jsx";
 
-const getSx = (theme, type, maxWidth) => {
-	const sx = {
+const getInputStyles = (type, maxWidth) => {
+	const baseStyles = {
 		maxWidth: maxWidth,
-
-		"& .MuiFormHelperText-root": {
-			position: "absolute",
-			bottom: `-${theme.spacing(24)}`,
-			minHeight: theme.spacing(24),
-		},
 	};
 
 	if (type === "url") {
 		return {
-			...sx,
-			"& .MuiInputBase-root": { padding: 0 },
-			"& .MuiStack-root": {
-				borderTopLeftRadius: theme.shape.borderRadius,
-				borderBottomLeftRadius: theme.shape.borderRadius,
-			},
+			...baseStyles,
+			borderTopLeftRadius: "0.375rem",
+			borderBottomLeftRadius: "0.375rem",
 		};
 	}
-	return sx;
+	return baseStyles;
 };
 
 const Required = () => {
-	const theme = useTheme();
 	return (
-		<Typography
-			component="span"
-			ml={theme.spacing(1)}
-			color={theme.palette.error.main}
-		>
+		<span className="ml-1 text-destructive">
 			*
-		</Typography>
+		</span>
 	);
 };
 
 const Optional = ({ optionalLabel }) => {
-	const theme = useTheme();
 	return (
-		<Typography
-			component="span"
-			fontSize="inherit"
-			fontWeight={400}
-			ml={theme.spacing(2)}
-			sx={{ opacity: 0.6 }}
+		<span
+			className="ml-2 text-muted-foreground"
+			style={{ opacity: 0.6 }}
 		>
 			{optionalLabel || "(optional)"}
-		</Typography>
+		</span>
 	);
 };
 
@@ -123,28 +106,48 @@ const TextInput = forwardRef(
 					...sx,
 				}}
 			>
-				<TextField
-					id={id}
-					name={name}
-					type={fieldType}
-					value={value}
-					placeholder={placeholder}
-					onChange={onChange}
-					onBlur={onBlur}
-					error={error}
-					helperText={helperText}
-					inputRef={ref}
-					sx={getSx(theme, type, maxWidth)}
-					slotProps={{
-						input: {
-							startAdornment: startAdornment,
-							endAdornment: endAdornment
-								? cloneElement(endAdornment, { fieldType, setFieldType })
-								: null,
-						},
-					}}
-					disabled={disabled}
-				/>
+				{type === "textarea" ? (
+					<ShadcnTextarea
+						id={id}
+						name={name}
+						value={value}
+						placeholder={placeholder}
+						onChange={onChange}
+						onBlur={onBlur}
+						ref={ref}
+						style={getInputStyles(type, maxWidth)}
+						disabled={disabled}
+					/>
+				) : (
+					<div className="relative">
+						{startAdornment && (
+							<div className="absolute left-3 top-1/2 transform -translate-y-1/2">
+								{startAdornment}
+							</div>
+						)}
+						<ShadcnInput
+							id={id}
+							name={name}
+							type={fieldType}
+							value={value}
+							placeholder={placeholder}
+							onChange={onChange}
+							onBlur={onBlur}
+							ref={ref}
+							style={getInputStyles(type, maxWidth)}
+							disabled={disabled}
+							className={startAdornment ? "pl-10" : ""}
+						/>
+						{endAdornment && (
+							<div className="absolute right-3 top-1/2 transform -translate-y-1/2">
+								{cloneElement(endAdornment, { fieldType, setFieldType })}
+							</div>
+						)}
+					</div>
+				)}
+				{error && helperText && (
+					<p className="text-sm text-destructive mt-1">{helperText}</p>
+				)}
 			</FieldWrapper>
 		);
 	}

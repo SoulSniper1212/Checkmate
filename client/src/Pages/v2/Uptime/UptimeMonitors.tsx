@@ -5,18 +5,16 @@ import {
 	PausedStatusBox,
 } from "@/Components/v2/DesignElements";
 import { HeaderCreate } from "@/Components/v2/Monitors";
-import Stack from "@mui/material/Stack";
+import { Stack } from "@/Components/v3/ui";
 import { MonitorTable } from "@/Pages/v2/Uptime/MonitorTable";
 
-import { useTheme } from "@mui/material/styles";
 import { useGet } from "@/Hooks/v2/UseApi";
 import type { ApiResponse } from "@/Hooks/v2/UseApi";
 import type { IMonitor } from "@/Types/Monitor";
-import { useMediaQuery } from "@mui/material";
+import { useIsSmall } from "@/hooks/useMediaQuery";
 
 const UptimeMonitors = () => {
-	const theme = useTheme();
-	const isSmall = useMediaQuery(theme.breakpoints.down("md"));
+	const isSmall = useIsSmall();
 
 	const { response, isValidating, error, refetch } = useGet<ApiResponse>(
 		"/monitors?embedChecks=true",
@@ -57,7 +55,7 @@ const UptimeMonitors = () => {
 			/>
 			<Stack
 				direction={isSmall ? "column" : "row"}
-				gap={theme.spacing(8)}
+				spacing="32"
 			>
 				<UpStatusBox n={monitorStatuses.up} />
 				<DownStatusBox n={monitorStatuses.down} />

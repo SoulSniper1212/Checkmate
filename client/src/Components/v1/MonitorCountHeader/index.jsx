@@ -1,6 +1,5 @@
-import { Stack, Typography } from "@mui/material";
+import { Stack } from "@/Components/v3/ui";
 import PropTypes from "prop-types";
-import { useTheme } from "@emotion/react";
 import SkeletonLayout from "./skeleton.jsx";
 
 const MonitorCountHeader = ({
@@ -10,7 +9,6 @@ const MonitorCountHeader = ({
 	sx,
 	children,
 }) => {
-	const theme = useTheme();
 	if (isLoading) return <SkeletonLayout />;
 
 	if (monitorCount === 1) {
@@ -23,19 +21,17 @@ const MonitorCountHeader = ({
 			alignItems="center"
 			display="flex"
 			width="fit-content"
-			height={theme.spacing(18)}
-			gap={theme.spacing(2)}
-			mt={theme.spacing(2)}
-			px={theme.spacing(4)}
-			pt={theme.spacing(2)}
-			pb={theme.spacing(3)}
-			borderRadius={theme.spacing(1)}
-			sx={{
-				...sx,
-				backgroundColor: theme.palette.secondary.main,
-			}}
+			height="[var(--spacing-18)]"
+			gap="[var(--spacing-2)]"
+			mt="[var(--spacing-2)]"
+			px="[var(--spacing-4)]"
+			pt="[var(--spacing-2)]"
+			pb="[var(--spacing-3)]"
+			borderRadius="[var(--spacing-1)]"
+			className="bg-[var(--color-secondary-main)]"
+			style={sx}
 		>
-			{monitorCount} <Typography component="h2">{heading}</Typography>
+			{monitorCount} <h2>{heading}</h2>
 			{children}
 		</Stack>
 	);

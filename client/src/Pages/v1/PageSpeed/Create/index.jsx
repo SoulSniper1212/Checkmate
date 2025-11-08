@@ -1,12 +1,14 @@
 // Components
-import { Box, Stack, Tooltip, Typography, Button, ButtonGroup } from "@mui/material";
+import { Stack, Tooltip, Typography } from "@/Components/v3/ui";
+import { Button, ButtonGroup } from "@/Components/v3/ui";
+import { Box } from "@/Components/v3/ui";
 import ConfigBox from "@/Components/v1/ConfigBox/index.jsx";
 import Select from "@/Components/v1/Inputs/Select/index.jsx";
 import TextInput from "@/Components/v1/Inputs/TextInput/index.jsx";
-import PauseCircleOutlineIcon from "@mui/icons-material/PauseCircleOutline";
+import { PauseCircle } from "lucide-react";
 import Breadcrumbs from "@/Components/v1/Breadcrumbs/index.jsx";
 import PulseDot from "@/Components/v1/Animated/PulseDot.jsx";
-import PlayCircleOutlineRoundedIcon from "@mui/icons-material/PlayCircleOutlineRounded";
+import { PlayCircle } from "lucide-react";
 import SkeletonLayout from "./skeleton.jsx";
 import NotificationsConfig from "@/Components/v1/NotificationConfig/index.jsx";
 import Dialog from "@/Components/v1/Dialog/index.jsx";
@@ -20,7 +22,7 @@ import { monitorValidation } from "../../../../Validation/validation.js";
 import { parseDomainName } from "../../../../Utils/monitorUtils.js";
 import { useTranslation } from "react-i18next";
 import { useGetNotificationsByTeamId } from "../../../../Hooks/v1/useNotifications.js";
-import { useTheme } from "@emotion/react";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 import { createToast } from "../../../../Utils/toastUtils.jsx";
 
 import { useParams } from "react-router";
@@ -313,12 +315,12 @@ const PageSpeedSetup = () => {
 							>
 								{monitor?.isActive ? (
 									<>
-										<PauseCircleOutlineIcon />
+										<PauseCircle />
 										{t("pause")}
 									</>
 								) : (
 									<>
-										<PlayCircleOutlineRoundedIcon />
+										<PlayCircle />
 										{t("resume")}
 									</>
 								)}

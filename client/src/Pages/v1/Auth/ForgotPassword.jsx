@@ -1,5 +1,8 @@
-import { Box, Stack, Typography, Button } from "@mui/material";
-import { useTheme } from "@emotion/react";
+import { Stack } from "@/Components/v3/ui";
+import { Button } from "@/Components/v3/ui";
+import { Typography } from "@/Components/v3/ui";
+import { Box } from "@/Components/v3/ui";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 import { createToast } from "../../../Utils/toastUtils.jsx";
 import { useDispatch, useSelector } from "react-redux";
 import { forgotPassword } from "../../../Features/Auth/authSlice.js";
@@ -90,72 +93,52 @@ const ForgotPassword = () => {
 	};
 
 	return (
-		<Stack
-			className="forgot-password-page auth"
-			overflow="hidden"
-			sx={{
-				"& h1": {
-					color: theme.palette.primary.main,
-					fontWeight: 600,
-					fontSize: 21,
-				},
-				"& p": {
-					/* TODO font size from theme */
-					fontSize: 14,
-					color: theme.palette.primary.contrastTextSecondary,
-				},
-			}}
-		>
-			<Box
+		<div className="forgot-password-page auth overflow-hidden" style={{
+			"& h1": {
+				color: theme.palette?.primary?.main,
+				fontWeight: 600,
+				fontSize: 21,
+			},
+			"& p": {
+				fontSize: 14,
+				color: theme.palette?.primary?.contrastTextSecondary,
+			},
+		}}>
+			<div
 				className="background-pattern-svg"
-				sx={{
-					"& svg g g:last-of-type path": {
-						stroke: theme.palette.primary.lowContrast,
+				style={{
+					"& svg g g:last-of-type path svg g g:last-child path svg g g:last-child path": {
+						stroke: theme.palette?.primary?.lowContrast,
 					},
 				}}
 			>
 				<Background style={{ width: "100%" }} />
-			</Box>
-			<Stack
-				direction="row"
-				alignItems="center"
-				px={theme.spacing(12)}
-				gap={theme.spacing(4)}
-			>
-				<Logo style={{ borderRadius: theme.shape.borderRadius }} />
-				<Typography sx={{ userSelect: "none" }}>{t("common.appName")}</Typography>
-			</Stack>
-			<Stack
-				width="100%"
-				maxWidth={600}
-				flex={1}
-				justifyContent="center"
-				px={{ xs: theme.spacing(12), lg: theme.spacing(20) }}
-				pb={theme.spacing(20)}
-				mx="auto"
-				sx={{
-					"& > .MuiStack-root": {
-						border: 1,
-						borderRadius: theme.spacing(5),
-						borderColor: theme.palette.primary.lowContrast,
-						backgroundColor: theme.palette.primary.main,
-						padding: {
-							xs: theme.spacing(12),
-							sm: theme.spacing(20),
-						},
-					},
-				}}
-			>
-				<Stack
-					gap={{ xs: theme.spacing(8), sm: theme.spacing(12) }}
-					alignItems="center"
-					textAlign="center"
-				>
-					<Box>
-						<Stack
-							direction="row"
-							justifyContent="center"
-						>
+			</div>
+			<div className="flex items-center" style={{
+				paddingLeft: theme.spacing ? theme.spacing(12) : "48px",
+				paddingRight: theme.spacing ? theme.spacing(12) : "48px",
+				gap: theme.spacing ? theme.spacing(4) : "16px",
+			}}>
+				<Logo style={{ borderRadius: theme.shape?.borderRadius || "8px" }} />
+				<Typography style={{ userSelect: "none" }}>{t("common.appName")}</Typography>
+			</div>
+			<div className="flex-1 flex justify-center mx-auto" style={{
+				width: "100%",
+				maxWidth: 600,
+				paddingLeft: theme.spacing ? theme.spacing(12) : "48px",
+				paddingRight: theme.spacing ? theme.spacing(20) : "80px",
+				paddingBottom: theme.spacing ? theme.spacing(20) : "80px",
+				"& > div": {
+					border: "1px solid",
+					borderRadius: theme.spacing ? theme.spacing(5) : "20px",
+					borderColor: theme.palette?.primary?.lowContrast,
+					backgroundColor: theme.palette?.primary?.main,
+					padding: theme.spacing ? theme.spacing(12) : "48px",
+				},
+			}}>
+				<div className="flex flex-col items-center text-center gap-8">
+					<div>
+						<div className="flex justify-center">
 							<IconBox
 								height={48}
 								width={48}
@@ -163,18 +146,16 @@ const ForgotPassword = () => {
 								borderRadius={12}
 								svgWidth={24}
 								svgHeight={24}
-								mb={theme.spacing(4)}
+								mb={theme.spacing ? theme.spacing(4) : "16px"}
 							>
 								<Key alt={t("auth.forgotPassword.imageAlts.passwordKey")} />
 							</IconBox>
-						</Stack>
+						</div>
 						<Typography component="h1">{t("auth.forgotPassword.heading")}</Typography>
 						<Typography>{t("auth.forgotPassword.subheadings.stepOne")}</Typography>
-					</Box>
-					<Box
-						component="form"
-						width="95%"
-						textAlign="left"
+					</div>
+					<form
+						className="w-[95%] text-left"
 						noValidate
 						spellCheck={false}
 						onSubmit={handleSubmit}
@@ -191,24 +172,25 @@ const ForgotPassword = () => {
 							helperText={t(errors.email)} // Localization keys are in validation.js
 						/>
 						<Button
-							variant="contained"
-							color="accent"
+							variant="default"
 							loading={isLoading}
 							disabled={errors.email !== undefined}
 							onClick={handleSubmit}
-							sx={{
-								width: "100%",
-								mt: theme.spacing(15),
+							className="w-full"
+							style={{
+								marginTop: theme.spacing ? theme.spacing(15) : "60px",
 							}}
 						>
 							{t("auth.common.navigation.continue")}
 						</Button>
-					</Box>
-				</Stack>
-			</Stack>
-			<Box
-				textAlign="center"
-				p={theme.spacing(12)}
+					</form>
+				</div>
+			</div>
+			<div
+				className="text-center"
+				style={{
+					padding: theme.spacing ? theme.spacing(12) : "48px",
+				}}
 			>
 				<Typography display="inline-block">
 					<Trans
@@ -217,17 +199,19 @@ const ForgotPassword = () => {
 							a: (
 								<Typography
 									component="span"
-									color={theme.palette.accent.main}
-									ml={theme.spacing(2)}
+									style={{
+										color: theme.palette?.accent?.main,
+										marginLeft: theme.spacing ? theme.spacing(2) : "8px",
+										userSelect: "none",
+									}}
 									onClick={handleNavigate}
-									sx={{ userSelect: "none" }}
 								/>
 							),
 						}}
 					/>
 				</Typography>
-			</Box>
-		</Stack>
+			</div>
+		</div>
 	);
 };
 

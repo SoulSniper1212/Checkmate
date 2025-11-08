@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { networkService } from "../../main.jsx";
 import { createToast } from "../../Utils/toastUtils.jsx";
-import { useTheme } from "@emotion/react";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 import { useMonitorUtils } from "./useMonitorUtils.js";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";

@@ -1,14 +1,11 @@
 import { BaseChart } from "./HistogramStatus";
-import Stack from "@mui/material/Stack";
-import Typography from "@mui/material/Typography";
+import { Stack, Typography } from "@/Components/v3/ui";
 import AverageResponseIcon from "@/assets/icons/average-response-icon.svg?react";
 import { Cell, RadialBarChart, RadialBar, ResponsiveContainer } from "recharts";
 
 import { getResponseTimeColor } from "@/Utils/v2/MonitorUtils";
-import { useTheme } from "@mui/material/styles";
 
 export const ChartAvgResponse = ({ avg, max }: { avg: number; max: number }) => {
-	const theme = useTheme();
 	const chartData = [
 		{ name: "max", value: max - avg, color: "transparent" },
 		{ name: "avg", value: avg, color: "red" },
@@ -18,7 +15,14 @@ export const ChartAvgResponse = ({ avg, max }: { avg: number; max: number }) => 
 	const msg: Record<string, string> = {
 		success: "Excellent",
 		warning: "Average",
-		danger: "Poor",
+		error: "Poor",
+	};
+
+	// Map color names to CSS custom properties
+	const colorMap: { [key: string]: string } = {
+		success: "hsl(var(--success))",
+		warning: "hsl(var(--warning))",
+		error: "hsl(var(--destructive))",
 	};
 
 	return (
@@ -45,10 +49,10 @@ export const ChartAvgResponse = ({ avg, max }: { avg: number; max: number }) => 
 					>
 						<RadialBar
 							dataKey="value"
-							background={{ fill: theme.palette[palette].lowContrast }}
+							background={{ fill: colorMap[palette] || "hsl(var(--primary))", opacity: 0.3 }}
 						>
 							<Cell visibility={"hidden"} />
-							<Cell fill={theme.palette[palette].main} />
+							<Cell fill={colorMap[palette] || "hsl(var(--primary))"} />
 						</RadialBar>
 					</RadialBarChart>
 				</ResponsiveContainer>
@@ -63,9 +67,7 @@ export const ChartAvgResponse = ({ avg, max }: { avg: number; max: number }) => 
 					position="absolute"
 					top={"50%"}
 					right={"50%"}
-					sx={{
-						transform: "translate(50%, 0%)",
-					}}
+					className="translate-x-1/2"
 				>
 					<Typography
 						variant="h6"

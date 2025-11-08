@@ -1,5 +1,5 @@
-import { Stack, Typography, Button, ButtonGroup } from "@mui/material";
-import { useTheme } from "@emotion/react";
+import { Stack } from "@/Components/v3/ui";
+import { Button, ButtonGroup } from "@/Components/v3/ui";
 import SkeletonLayout from "./skeleton.jsx";
 import PropTypes from "prop-types";
 
@@ -9,7 +9,6 @@ const MonitorTimeFrameHeader = ({
 	dateRange,
 	setDateRange,
 }) => {
-	const theme = useTheme();
 
 	if (isLoading) {
 		return <SkeletonLayout />;
@@ -19,7 +18,7 @@ const MonitorTimeFrameHeader = ({
 
 	if (hasDateRange) {
 		timeFramePicker = (
-			<ButtonGroup sx={{ height: 32 }}>
+			<ButtonGroup className="h-8">
 				<Button
 					variant="group"
 					filled={(dateRange === "recent").toString()}
@@ -57,9 +56,9 @@ const MonitorTimeFrameHeader = ({
 			direction="row"
 			justifyContent="flex-end"
 			alignItems="center"
-			gap={theme.spacing(4)}
+			gap="[var(--spacing-4)]"
 		>
-			<Typography variant="body2">
+			<p className="text-sm">
 				Showing statistics for past{" "}
 				{dateRange === "recent"
 					? "2 hours"
@@ -69,7 +68,7 @@ const MonitorTimeFrameHeader = ({
 							? "7 days"
 							: "30 days"}
 				.
-			</Typography>
+			</p>
 			{timeFramePicker}
 		</Stack>
 	);

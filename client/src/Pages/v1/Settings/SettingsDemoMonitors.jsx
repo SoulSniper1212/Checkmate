@@ -1,9 +1,7 @@
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
+import { Box, Typography, Button } from "@/Components/v3/ui";
 import ConfigBox from "@/Components/v1/ConfigBox/index.jsx";
 // Utils
-import { useTheme } from "@emotion/react";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 import { PropTypes } from "prop-types";
 import { useTranslation } from "react-i18next";
 import Dialog from "@/Components/v1/Dialog/index.jsx";
@@ -35,8 +33,8 @@ const SettingsDemoMonitors = ({ isAdmin, HEADER_SX, handleChange, isLoading }) =
 				</Box>
 				<Box>
 					<Button
-						variant="contained"
-						color="accent"
+						muiVariant="contained"
+						color="primary"
 						loading={isLoading}
 						onClick={() => {
 							const syntheticEvent = {
@@ -46,7 +44,7 @@ const SettingsDemoMonitors = ({ isAdmin, HEADER_SX, handleChange, isLoading }) =
 							};
 							handleChange(syntheticEvent);
 						}}
-						sx={{ mt: theme.spacing(4) }}
+						className="mt-[var(--spacing-4)]"
 					>
 						{t("settingsPage.demoMonitorsSettings.buttonAddMonitors")}
 					</Button>
@@ -60,17 +58,17 @@ const SettingsDemoMonitors = ({ isAdmin, HEADER_SX, handleChange, isLoading }) =
 					>
 						{t("settingsPage.systemResetSettings.title")}
 					</Typography>
-					<Typography sx={{ mt: theme.spacing(2) }}>
+					<Typography className="mt-[var(--spacing-2)]">
 						{t("settingsPage.systemResetSettings.description")}
 					</Typography>
 				</Box>
 				<Box>
 					<Button
-						variant="contained"
+						muiVariant="contained"
 						color="error"
 						loading={isLoading}
 						onClick={() => setIsOpen(true)}
-						sx={{ mt: theme.spacing(4) }}
+						className="mt-[var(--spacing-4)]"
 					>
 						{t("settingsPage.systemResetSettings.buttonRemoveAllMonitors")}
 					</Button>

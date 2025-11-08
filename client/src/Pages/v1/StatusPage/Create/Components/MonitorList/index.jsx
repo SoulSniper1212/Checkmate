@@ -1,11 +1,10 @@
 // Components
-import { Stack, Typography } from "@mui/material";
-import ReorderRoundedIcon from "@mui/icons-material/ReorderRounded";
-import DeleteIcon from "@mui/icons-material/Delete";
-
+import { Stack, Typography } from "@/Components/v3/ui";
+import { GripVertical } from "lucide-react";
+import { Trash2 } from "lucide-react";
 // Utils
 import { DragDropContext, Droppable, Draggable } from "@hello-pangea/dnd";
-import { useTheme } from "@emotion/react";
+import { useTheme } from "@/Utils/Theme/globalTheme.jsx";
 const MonitorListItem = ({
 	monitor,
 	innerRef,
@@ -20,18 +19,18 @@ const MonitorListItem = ({
 			{...draggableProps}
 			{...dragHandleProps}
 			ref={innerRef}
-			gap={theme.spacing(4)}
-			margin={theme.spacing(4)}
-			padding={theme.spacing(4)}
+			gap="1rem"
+			margin="1rem"
+			padding="1rem"
 			borderRadius={theme.shape.borderRadius}
 			alignItems={"center"}
 			justifyContent={"start"}
-			border={`1px solid ${theme.palette.primary.lowContrast}`}
+			border={`1px solid ${text-foreground}`}
 		>
-			<ReorderRoundedIcon />
+			<GripVertical />
 			<Typography>{monitor.name}</Typography>
-			<DeleteIcon
-				sx={{ marginLeft: "auto" }}
+			<Trash2
+				className="ml-auto cursor-pointer"
 				onClick={() => {
 					onDelete(monitor);
 				}}

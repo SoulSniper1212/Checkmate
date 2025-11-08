@@ -1,48 +1,12 @@
 import { useState } from "react";
-import { styled, alpha } from "@mui/material/styles";
-import Box from "@mui/material/Box";
-import AppBar from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
-import Button from "@mui/material/Button";
-import IconButton from "@mui/material/IconButton";
-import Container from "@mui/material/Container";
-import MenuItem from "@mui/material/MenuItem";
-import Drawer from "@mui/material/Drawer";
-import MenuIcon from "@mui/icons-material/Menu";
-import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
+import { Box, Button, IconButton, Sheet, Container } from "@/Components/v3/ui";
+import { Menu, X } from "lucide-react";
 import ThemeSwitch from "../ThemeSwitch/index.jsx";
-import { useTheme } from "@mui/material/styles";
 import { useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 
-const StyledToolbar = styled(Toolbar)(({ theme, mode }) => ({
-	display: "flex",
-	alignItems: "center",
-	justifyContent: "space-between",
-	flexShrink: 0,
-	borderRadius: `calc(${theme.shape.borderRadius}px + 4px)`,
-	backdropFilter: "blur(24px)",
-	border: "1px solid",
-	borderColor:
-		mode === "light"
-			? alpha(theme.palette.common.black, 0.1)
-			: alpha(theme.palette.common.white, 0.1),
-	backgroundColor:
-		mode === "light"
-			? alpha(theme.palette.common.white, 0.4)
-			: alpha(theme.palette.common.black, 0.4),
-	boxShadow: theme.shadows[3],
-	padding: "8px 12px",
-}));
-
-const StyledMenuItem = styled(MenuItem)(({ theme }) => ({
-	fontSize: "1.1rem",
-	margin: theme.spacing(4, 2),
-}));
-
 const AppAppBar = () => {
 	const [open, setOpen] = useState(false);
-	const theme = useTheme();
 	const mode = useSelector((state) => state.ui.mode);
 	const location = useLocation();
 	const navigate = useNavigate();
@@ -66,147 +30,119 @@ const AppAppBar = () => {
 	};
 
 	return (
-		<AppBar
-			position="fixed"
-			sx={{
-				boxShadow: 0,
-				bgcolor: "transparent",
+		<Box
+			className="fixed top-0 left-0 right-0 z-50 mt-7"
+			style={{
 				backgroundImage: "none",
 				border: "none",
-				mt: "calc(var(--template-frame-height, 0px) + 28px)",
 			}}
 		>
-			<Container maxWidth="lg">
-				<StyledToolbar
-					variant="dense"
-					disableGutters
-					mode={mode}
+			<Container className="max-w-screen-lg">
+				<Box className="flex items-center justify-between shrink-0 backdrop-blur-md border rounded-lg p-2 min-h-16"
+					style={{
+						borderColor: mode === "light" ? "rgba(0, 0, 0, 0.1)" : "rgba(255, 255, 255, 0.1)",
+						backgroundColor: mode === "light" ? "rgba(255, 255, 255, 0.4)" : "rgba(0, 0, 0, 0.4)",
+						boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
+					}}
 				>
-					<Box sx={{ flexGrow: 1, display: "flex", alignItems: "center", px: 0 }}>
+					<Box className="flex-1 flex items-center">
 						<img
 							src={logoSrc}
 							alt="Prism Logo"
+							className="mr-2.5"
 							style={{
 								height: "auto",
 								width: "auto",
-								marginRight: "10px",
 								maxHeight: "32px",
 							}}
 						/>
-						<Box sx={{ display: { xs: "none", md: "flex" } }}>
+						<Box className="hidden md:flex">
 							<Button
-								variant="text"
-								color="info"
-								size="large"
+								variant="ghost"
+								size="lg"
 								onClick={() => handleScroll("features")}
+								className="text-info"
 							>
 								Features
 							</Button>
 							<Button
-								variant="text"
-								color="info"
-								size="large"
+								variant="ghost"
+								size="lg"
 								onClick={() => handleScroll("highlights")}
+								className="text-info"
 							>
 								Highlights
 							</Button>
 							<Button
-								variant="text"
-								color="info"
-								size="large"
+								variant="ghost"
+								size="lg"
 								onClick={() => handleScroll("faq")}
+								className="text-info"
 							>
 								FAQ
 							</Button>
 							<Button
-								variant="text"
-								color="info"
-								size="large"
+								variant="ghost"
+								size="lg"
 								href="https://uprock.com/blog"
+								className="text-info"
 							>
 								Blog
 							</Button>
 						</Box>
 					</Box>
 					<Box
-						sx={{
-							display: { xs: "none", md: "flex" },
-							gap: 1,
-							alignItems: "center",
-						}}
+						className="hidden md:flex gap-1 items-center"
 					>
-						{/* <Button color="primary" variant="text" size="small">
-              Sign in
-            </Button>
-            <Button color="primary" variant="contained" size="small">
-              Sign up
-            </Button> */}
+						{/* Placeholder for future auth buttons */}
 					</Box>
 					<Box
-						sx={{
-							display: { xs: "flex", md: "none" },
-
-							gap: 1,
-						}}
+						className="flex md:hidden gap-1"
 					>
 						<IconButton
 							aria-label="Menu button"
 							onClick={toggleDrawer(true)}
+							variant="ghost"
 						>
-							<MenuIcon sx={{ color: theme.palette.text.primary }} />
+							<Menu />
 						</IconButton>
-						<Drawer
-							anchor="top"
-							open={open}
-							onClose={toggleDrawer(false)}
-							PaperProps={{
-								sx: {
-									top: 0,
-									marginTop: 0,
-									borderRadius: 0,
-									backgroundColor: theme.palette.background.paper,
-								},
-							}}
-						>
-							<Box sx={{ p: 4, backgroundColor: theme.palette.background.main }}>
-								<Box
-									sx={{
-										display: "flex",
-										justifyContent: "flex-end",
-									}}
-								>
-									<IconButton onClick={toggleDrawer(false)}>
-										<CloseRoundedIcon sx={{ color: theme.palette.text.primary }} />
+						<Sheet open={open} onOpenChange={setOpen}>
+							<Box className="p-4 bg-background">
+								<Box className="flex justify-end">
+									<IconButton
+										onClick={toggleDrawer(false)}
+										variant="ghost"
+									>
+										<X />
 									</IconButton>
 								</Box>
 
-								<StyledMenuItem>Features</StyledMenuItem>
-								<StyledMenuItem>Testimonials</StyledMenuItem>
-								<StyledMenuItem>Highlights</StyledMenuItem>
-								<StyledMenuItem>FAQ</StyledMenuItem>
-								<StyledMenuItem
+								<Box className="py-2 px-3 rounded-md hover:bg-accent text-accent-foreground cursor-pointer">
+									Features
+								</Box>
+								<Box className="py-2 px-3 rounded-md hover:bg-accent text-accent-foreground cursor-pointer">
+									Testimonials
+								</Box>
+								<Box className="py-2 px-3 rounded-md hover:bg-accent text-accent-foreground cursor-pointer">
+									Highlights
+								</Box>
+								<Box className="py-2 px-3 rounded-md hover:bg-accent text-accent-foreground cursor-pointer">
+									FAQ
+								</Box>
+								<Box
+									className="py-2 px-3 rounded-md hover:bg-accent text-accent-foreground cursor-pointer"
 									component="a"
 									href="https://uprock.com/blog"
 								>
 									Blog
-								</StyledMenuItem>
-								{/* <MenuItem>
-                  <Button color="primary" variant="contained" fullWidth>
-                    Sign up
-                  </Button>
-                </MenuItem>
-                <MenuItem>
-                  <Button color="primary" variant="outlined" fullWidth>
-                    Sign in
-                  </Button>
-                </MenuItem> */}
+								</Box>
 							</Box>
-						</Drawer>
+						</Sheet>
 					</Box>
 					<ThemeSwitch />
-				</StyledToolbar>
+				</Box>
 			</Container>
-		</AppBar>
+		</Box>
 	);
 };
 
